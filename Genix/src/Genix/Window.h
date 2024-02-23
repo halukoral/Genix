@@ -6,16 +6,21 @@
 #include "Genix/Core.h"
 #include <GLFW/glfw3.h>
 
+using EventCallbackFn = std::function<void(Event&)>;
+
 struct WindowAttributes
 {
+	bool VSync;
 	std::string Title;
 	unsigned int Width;
 	unsigned int Height;
+	EventCallbackFn EventCallback;
 
-	WindowAttributes(const std::string& title = "Genix Engine",
-				unsigned int width = 1920,
-				unsigned int height = 1080)
-		: Title(title), Width(width), Height(height)
+	WindowAttributes(bool vSync = true,
+					 const std::string& title = "Genix Engine",
+					 unsigned int width = 1920,
+					 unsigned int height = 1080)
+		: Title(title), Width(width), Height(height), VSync(vSync)
 	{
 	}
 };
@@ -23,7 +28,6 @@ struct WindowAttributes
 class GENIX_API Window
 {
 public:
-	using EventCallbackFn = std::function<void(Event&)>;
 		
 	Window(const WindowAttributes& attributes);
 	~Window();
@@ -44,15 +48,6 @@ private:
 	virtual void Init(const WindowAttributes& attributes);
 	virtual void Shutdown();
 
-	struct WindowData
-	{
-		std::string Title;
-		unsigned int Width, Height;
-		bool VSync;
-
-		EventCallbackFn EventCallback;
-	};
-
-	WindowData m_Data;		
+	WindowAttributes m_Data;		
 	GLFWwindow* m_Window;
 };
