@@ -4,7 +4,7 @@
 
 #include "Events/Event.h"
 #include "Genix/Core.h"
-#include <GLFW/glfw3.h>
+#include <glfw3.h>
 
 using EventCallbackFn = std::function<void(Event&)>;
 

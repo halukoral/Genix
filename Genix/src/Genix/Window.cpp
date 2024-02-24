@@ -5,6 +5,8 @@
 #include "Events/KeyEvent.h"
 #include "Events/MouseEvent.h"
 
+#include <glad/glad.h>
+
 static bool s_GLFWInitialized = false;
 
 Window* Window::Create(const WindowAttributes& attributes)
@@ -137,6 +139,9 @@ void Window::Init(const WindowAttributes& attributes)
 	glfwSetWindowUserPointer(m_Window, &m_Data);
 	SetVSync(true);
 
+	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+	GX_CORE_ASSERT(status, "Failed to initialize Glad!");
+	
 	// Set GLFW callbacks
 	glfwSetWindowSizeCallback(m_Window, FramebufferSizeCallback);
 	glfwSetWindowCloseCallback(m_Window, WindowCloseCallback);

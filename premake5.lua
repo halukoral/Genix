@@ -10,6 +10,12 @@ workspace "Genix"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"    
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Genix/ThirdParty/GLFW"
+IncludeDir["Glad"] = "Genix/ThirdParty/glad/include"
+
+include "Genix/ThirdParty/glad"
+
 project "Genix"
     location "Genix"
     kind "SharedLib"
@@ -30,8 +36,9 @@ project "Genix"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/ThirdParty",
-        "%{prj.name}/ThirdParty/spdlog/include"
+        "%{prj.name}/ThirdParty/spdlog/include",
+        "%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
     libdirs 
@@ -43,7 +50,8 @@ project "Genix"
 	{ 
         "opengl32.lib",
 		"glfw3.lib",
-		"dwmapi.lib"
+		"dwmapi.lib",
+		"Glad",
 	}
     
     filter "system:windows"
@@ -53,7 +61,8 @@ project "Genix"
         defines
         {
             "_CRT_SECURE_NO_WARNINGS",
-            "GX_BUILD_DLL"
+            "GX_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
         
         postbuildcommands
