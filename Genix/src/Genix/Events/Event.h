@@ -37,6 +37,9 @@ public:
 	virtual int GetCategoryFlags() const = 0;
 	virtual std::string ToString() const { return GetName(); }
 
+	void SetHandled(const bool handled) { m_Handled = handled; }
+	bool GetHandled() const { return m_Handled; }
+	
 	bool IsInCategory(EventCategory category) const
 	{
 		return GetCategoryFlags() & category;
