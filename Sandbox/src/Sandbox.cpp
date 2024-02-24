@@ -19,11 +19,17 @@ public:
 	}
 
 };
+
 class Sandbox : public Application
 {
 public:
-	Sandbox() { PushLayer(new ExampleLayer()); }
-	~Sandbox() {}
+	Sandbox()
+	{
+		PushLayer(new ExampleLayer());
+		PushOverlay(new ImGuiLayer());
+	}
+
+	~Sandbox() override {}
 };
 
 Application* CreateApplication()

@@ -1,3 +1,6 @@
 [submodule "Genix/ThirdParty/spdlog"]
 	path = Genix/ThirdParty/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Genix/ThirdParty/imgui"]
+	path = Genix/ThirdParty/imgui
+	url = https://github.com/ocornut/imgui

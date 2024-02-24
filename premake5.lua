@@ -13,6 +13,8 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Genix/ThirdParty/GLFW"
 IncludeDir["Glad"] = "Genix/ThirdParty/glad/include"
+IncludeDir["SpdLog"] = "Genix/ThirdParty/spdlog/include"
+IncludeDir["ImGui"] = "Genix/ThirdParty/imgui"
 
 include "Genix/ThirdParty/glad"
 
@@ -20,25 +22,26 @@ project "Genix"
     location "Genix"
     kind "SharedLib"
     language "C++"    
-    
+
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-    
+        
     pchheader "gxpch.h"
     pchsource "Genix/src/gxpch.cpp"
-    
+       
     files
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp"
     }
-    
+        
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/ThirdParty/spdlog/include",
         "%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.SpdLog}",
+        "%{IncludeDir.ImGui}"
 	}
 
     libdirs 
@@ -52,6 +55,7 @@ project "Genix"
 		"glfw3.lib",
 		"dwmapi.lib",
 		"Glad",
+        "ImGui"
 	}
     
     filter "system:windows"
@@ -105,6 +109,7 @@ project "Sandbox"
     includedirs
     {
         "Genix/ThirdParty",
+        "Genix/ThirdParty/GLFW",
         "Genix/ThirdParty/spdlog/include",
         "Genix/src"
     }
@@ -135,3 +140,38 @@ project "Sandbox"
         runtime "Release"
         buildoptions "/MD"
         optimize "On"
+
+project "ImGui"
+	kind "StaticLib"
+	language "C++"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"Genix/ThirdParty/imgui/imconfig.h",
+		"Genix/ThirdParty/imgui/imgui.h",
+		"Genix/ThirdParty/imgui/imgui.cpp",
+		"Genix/ThirdParty/imgui/imgui_draw.cpp",
+		"Genix/ThirdParty/imgui/imgui_internal.h",
+		"Genix/ThirdParty/imgui/imgui_widgets.cpp",
+		"Genix/ThirdParty/imgui/imgui_tables.cpp",
+		"Genix/ThirdParty/imgui/imstb_rectpack.h",
+		"Genix/ThirdParty/imgui/imstb_textedit.h",
+		"Genix/ThirdParty/imgui/imstb_truetype.h",
+		"Genix/ThirdParty/imgui/imgui_demo.cpp"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+		cppdialect "C++17"
+		staticruntime "On"
+
+	filter "configurations:Debug"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		runtime "Release"
+		optimize "on"
