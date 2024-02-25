@@ -1,6 +1,7 @@
 workspace "Genix"
     architecture "x64"
-    
+    startproject "Sandbox"
+
     configurations
     {
         "Debug",
@@ -16,12 +17,17 @@ IncludeDir["Glad"] = "Genix/ThirdParty/glad/include"
 IncludeDir["SpdLog"] = "Genix/ThirdParty/spdlog/include"
 IncludeDir["ImGui"] = "Genix/ThirdParty/imgui"
 
-include "Genix/ThirdParty/glad"
+group "Dependencies"
+    include "Genix/ThirdParty/glad"
+
+group ""
+
 
 project "Genix"
     location "Genix"
     kind "SharedLib"
     language "C++"    
+    staticruntime "off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -71,32 +77,30 @@ project "Genix"
         
         postbuildcommands
         {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+            ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
         }
         
     filter "configurations:Debug"
         defines "GX_DEBUG"
         runtime "Debug"
-        buildoptions "/MDd"
         symbols "On"
         
     filter "configurations:Release"
         defines "GX_RELEASE"
         runtime "Release"
-        buildoptions "/MD"
         optimize "On"
             
     filter "configurations:Dist"
         defines "GX_DIST"
         runtime "Release"
-        buildoptions "/MD"
         optimize "On"
 
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"  
-    
+    staticruntime "off"
+
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
     
@@ -108,7 +112,6 @@ project "Sandbox"
     
     includedirs
     {
-        "Genix/ThirdParty",
         "Genix/ThirdParty/GLFW",
         "Genix/ThirdParty/spdlog/include",
         "Genix/src"
@@ -126,19 +129,16 @@ project "Sandbox"
     filter "configurations:Debug"
         defines "GX_DEBUG"
         runtime "Debug"
-        buildoptions "/MDd"
         symbols "On"
         
     filter "configurations:Release"
         defines "GX_RELEASE"
         runtime "Release"
-        buildoptions "/MD"
         optimize "On"
             
     filter "configurations:Dist"
         defines "GX_DIST"
         runtime "Release"
-        buildoptions "/MD"
         optimize "On"
 
 project "ImGui"
