@@ -6,6 +6,10 @@
 	#define GENIX_API __declspec(dllimport)
 #endif
 
+#ifdef GX_DEBUG
+	#define GX_ENABLE_ASSERTS
+#endif
+
 #ifdef GX_ENABLE_ASSERTS
 	#define GX_ASSERT(x, ...) { if(!(x)) { LOG_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define GX_CORE_ASSERT(x, ...) { if(!(x)) { LOG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
