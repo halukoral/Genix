@@ -102,6 +102,14 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 	}	
 }
 
+void CharCallback(GLFWwindow* window, unsigned int keycode)
+{
+	WindowAttributes& data = *(WindowAttributes*)glfwGetWindowUserPointer(window);
+
+	KeyTypedEvent event(keycode);
+	data.EventCallback(event);
+}
+
 Window::Window(const WindowAttributes& attributes)
 {
 	Init(attributes);
@@ -147,7 +155,8 @@ void Window::Init(const WindowAttributes& attributes)
 	glfwSetWindowCloseCallback(m_Window, WindowCloseCallback);
 
 	glfwSetKeyCallback(m_Window, KeyCallback);
-
+	glfwSetCharCallback(m_Window, CharCallback);
+	
 	glfwSetMouseButtonCallback(m_Window, MouseButtonCallback);
 	glfwSetScrollCallback(m_Window, ScrollCallback);
 	glfwSetCursorPosCallback(m_Window, MouseCallback);

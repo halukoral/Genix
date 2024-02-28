@@ -45,8 +45,8 @@ public:
 	static Window* Create(const WindowAttributes& attributes = WindowAttributes());
 		
 private:
-	virtual void Init(const WindowAttributes& attributes);
-	virtual void Shutdown();
+	void Init(const WindowAttributes& attributes);
+	void Shutdown();
 
 	WindowAttributes m_Data;		
 	GLFWwindow* m_Window;
