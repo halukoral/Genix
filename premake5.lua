@@ -25,9 +25,10 @@ group ""
 
 project "Genix"
     location "Genix"
-    kind "SharedLib"
-    language "C++"    
-    staticruntime "off"
+    kind "StaticLib"
+    language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -40,7 +41,12 @@ project "Genix"
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp"
     }
-        
+
+    defines
+    {
+        "_CRT_SECURE_NO_WARNINGS"
+    }
+         
     includedirs
     {
         "%{prj.name}/src",
@@ -49,11 +55,6 @@ project "Genix"
         "%{IncludeDir.SpdLog}",
         "%{IncludeDir.ImGui}"
 	}
-
-    libdirs 
-    {
-        "%{prj.name}/Libs"
-    }
 
 	links 
 	{ 
@@ -70,36 +71,31 @@ project "Genix"
         
         defines
         {
-            "_CRT_SECURE_NO_WARNINGS",
-            "GX_BUILD_DLL",
-            "GLFW_INCLUDE_NONE"
-        }
-        
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-        }
+			"GX_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
+		}
         
     filter "configurations:Debug"
         defines "GX_DEBUG"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
         
     filter "configurations:Release"
         defines "GX_RELEASE"
         runtime "Release"
-        optimize "On"
+        optimize "on"
             
     filter "configurations:Dist"
         defines "GX_DIST"
         runtime "Release"
-        optimize "On"
+        optimize "on"
 
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
-    language "C++"  
-    staticruntime "off"
+    language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -123,23 +119,22 @@ project "Sandbox"
     }
     
     filter "system:windows"
-        cppdialect "C++17"
         systemversion "latest"
         
     filter "configurations:Debug"
         defines "GX_DEBUG"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
         
     filter "configurations:Release"
         defines "GX_RELEASE"
         runtime "Release"
-        optimize "On"
+        optimize "on"
             
     filter "configurations:Dist"
         defines "GX_DIST"
         runtime "Release"
-        optimize "On"
+        optimize "on"
 
 project "ImGui"
 	kind "StaticLib"
