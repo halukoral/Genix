@@ -12,7 +12,7 @@ workspace "Genix"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"    
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "Genix/ThirdParty/GLFW"
+IncludeDir["GLFW"] = "Genix/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "Genix/ThirdParty/glad/include"
 IncludeDir["SpdLog"] = "Genix/ThirdParty/spdlog/include"
 IncludeDir["ImGui"] = "Genix/ThirdParty/imgui"
@@ -59,8 +59,7 @@ project "Genix"
 	links 
 	{ 
         "opengl32.lib",
-		"glfw3.lib",
-		"dwmapi.lib",
+		"GLFW",
 		"Glad",
         "ImGui"
 	}
@@ -108,7 +107,7 @@ project "Sandbox"
     
     includedirs
     {
-        "Genix/ThirdParty/GLFW",
+        "Genix/ThirdParty/GLFW/include",
         "Genix/ThirdParty/spdlog/include",
         "Genix/src"
     }
@@ -170,3 +169,77 @@ project "ImGui"
 	filter "configurations:Release"
 		runtime "Release"
 		optimize "on"
+
+
+project "GLFW"
+	kind "StaticLib"
+	language "C"
+	staticruntime "on"
+	warnings "off"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+    GLFWDir = "Genix/ThirdParty/GLFW"
+
+	files
+	{
+		"%{GLFWDir}/include/GLFW/glfw3.h",
+		"%{GLFWDir}/include/GLFW/glfw3native.h",
+		"%{GLFWDir}/src/glfw_config.h",
+		"%{GLFWDir}/src/context.c",
+		"%{GLFWDir}/src/init.c",
+		"%{GLFWDir}/src/input.c",
+		"%{GLFWDir}/src/monitor.c",
+
+		"%{GLFWDir}/src/null_init.c",
+		"%{GLFWDir}/src/null_joystick.c",
+		"%{GLFWDir}/src/null_monitor.c",
+		"%{GLFWDir}/src/null_window.c",
+
+		"%{GLFWDir}/src/platform.c",
+		"%{GLFWDir}/src/vulkan.c",
+		"%{GLFWDir}/src/window.c",
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+		files
+		{
+			"%{GLFWDir}/src/win32_init.c",
+			"%{GLFWDir}/src/win32_joystick.c",
+			"%{GLFWDir}/src/win32_module.c",
+			"%{GLFWDir}/src/win32_monitor.c",
+			"%{GLFWDir}/src/win32_time.c",
+			"%{GLFWDir}/src/win32_thread.c",
+			"%{GLFWDir}/src/win32_window.c",
+			"%{GLFWDir}/src/wgl_context.c",
+			"%{GLFWDir}/src/egl_context.c",
+			"%{GLFWDir}/src/osmesa_context.c"
+		}
+
+		defines 
+		{ 
+			"_GLFW_WIN32",
+			"_CRT_SECURE_NO_WARNINGS"
+		}
+
+	filter "configurations:Debug"
+		runtime "Debug"
+		symbols "on"
+
+	filter { "system:windows", "configurations:Debug-AS" }	
+		runtime "Debug"
+		symbols "on"
+		sanitize { "Address" }
+		flags { "NoRuntimeChecks", "NoIncrementalLink" }
+
+	filter "configurations:Release"
+		runtime "Release"
+		optimize "speed"
+
+    filter "configurations:Dist"
+		runtime "Release"
+		optimize "speed"
+        symbols "off"

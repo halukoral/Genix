@@ -4,3 +4,6 @@
 [submodule "Genix/ThirdParty/imgui"]
 	path = Genix/ThirdParty/imgui
 	url = https://github.com/ocornut/imgui
+[submodule "Genix/ThirdParty/GLFW"]
+	path = Genix/ThirdParty/GLFW
+	url = https://github.com/glfw/glfw.git
