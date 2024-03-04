@@ -114,7 +114,8 @@ project "Sandbox"
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.spdlog}",
         "%{IncludeDir.glm}",
-        "Genix/src"
+        "Genix/src",
+        "Genix/ThirdParty"
     }
     
     links
