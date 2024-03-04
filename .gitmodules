@@ -7,3 +7,6 @@
 [submodule "Genix/ThirdParty/GLFW"]
 	path = Genix/ThirdParty/GLFW
 	url = https://github.com/glfw/glfw.git
+[submodule "Genix/ThirdParty/glm"]
+	path = Genix/ThirdParty/glm
+	url = https://github.com/g-truc/glm.git

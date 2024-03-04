@@ -14,7 +14,8 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Genix/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "Genix/ThirdParty/glad/include"
-IncludeDir["SpdLog"] = "Genix/ThirdParty/spdlog/include"
+IncludeDir["glm"] = "Genix/ThirdParty/glm"
+IncludeDir["spdlog"] = "Genix/ThirdParty/spdlog/include"
 IncludeDir["ImGui"] = "Genix/ThirdParty/imgui"
 
 group "Dependencies"
@@ -39,7 +40,9 @@ project "Genix"
     files
     {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/ThirdParty/glm/glm/**.hpp",
+        "%{prj.name}/ThirdParty/glm/glm/**.inl"
     }
 
     defines
@@ -52,7 +55,8 @@ project "Genix"
         "%{prj.name}/src",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
-        "%{IncludeDir.SpdLog}",
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.spdlog}",
         "%{IncludeDir.ImGui}"
 	}
 
@@ -107,8 +111,9 @@ project "Sandbox"
     
     includedirs
     {
-        "Genix/ThirdParty/GLFW/include",
-        "Genix/ThirdParty/spdlog/include",
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.spdlog}",
+        "%{IncludeDir.glm}",
         "Genix/src"
     }
     
