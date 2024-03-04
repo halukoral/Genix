@@ -37,6 +37,8 @@ public:
 	unsigned int GetWidth() const { return m_Data.Width; }
 	unsigned int GetHeight() const { return m_Data.Height; }
 
+	GLFWwindow* GetNativeWindow() const { return m_Window; }
+		
 	// Window attributes
 	void SetEventCallback(const EventCallbackFn& callback) { m_Data.EventCallback = callback; }
 	void SetVSync(bool enabled);

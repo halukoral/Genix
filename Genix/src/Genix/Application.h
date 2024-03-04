@@ -4,6 +4,7 @@
 #include "LayerStack.h"
 #include "Window.h"
 
+class ImGuiLayer;
 class Layer;
 class WindowCloseEvent;
 
@@ -29,6 +30,7 @@ private:
 	bool m_Running = true;
 	LayerStack m_LayerStack;
 	std::unique_ptr<Window> m_Window;
+	ImGuiLayer* m_ImGuiLayer;
 
 	static Application* s_Instance;
 };

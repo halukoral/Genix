@@ -1,4 +1,5 @@
 #include <Genix.h>
+#include "imgui/imgui.h"
 
 class ExampleLayer : public Layer
 {
@@ -11,6 +12,13 @@ public:
 	void OnUpdate() override
 	{
 		LOG_INFO("ExampleLayer::Update");
+	}
+	
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 
 	void OnEvent(Event& event) override
@@ -26,7 +34,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new ImGuiLayer());
 	}
 
 	~Sandbox() override {}
