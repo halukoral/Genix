@@ -6,7 +6,7 @@ class GENIX_API KeyEvent : public Event
 public:
 	int GetKeyCode() const { return m_KeyCode; }
 
-	EVENT_CLASS_CATEGORY(Keyboard | Input)
+	EVENT_CLASS_CATEGORY(EventCategory::Keyboard | EventCategory::Input)
 protected:
 	KeyEvent(int keycode) : m_KeyCode(keycode) {}
 

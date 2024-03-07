@@ -5,7 +5,7 @@
 #include <utility>
 #include <algorithm>
 #include <functional>
-
+#include <type_traits>
 #include <string>
 #include <sstream>
 #include <vector>

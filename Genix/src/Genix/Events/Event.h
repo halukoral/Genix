@@ -2,6 +2,25 @@
 #include "gxpch.h"
 #include "Genix/Core.h"
 
+template <typename E>
+struct FEnableBitmaskOperators {
+	static constexpr bool enable = false;
+};
+
+template <typename E>
+std::enable_if_t<FEnableBitmaskOperators<E>::enable, E> operator|(
+	E Lhs, E Rhs) {
+	return static_cast<E>(static_cast<std::underlying_type_t<E>>(Lhs) |
+						  static_cast<std::underlying_type_t<E>>(Rhs));
+}
+
+template <typename E>
+std::enable_if_t<FEnableBitmaskOperators<E>::enable, E> operator&(
+	E Lhs, E Rhs) {
+	return static_cast<E>(static_cast<std::underlying_type_t<E>>(Lhs) &
+						  static_cast<std::underlying_type_t<E>>(Rhs));
+}
+
 enum class EventType
 {
 	None = 0,
@@ -11,7 +30,7 @@ enum class EventType
 	MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 };
 
-enum EventCategory
+enum class EventCategory : uint8_t
 {
 	None = 0,
 	Application    = BIT(0),
@@ -21,28 +40,33 @@ enum EventCategory
 	MouseButton    = BIT(4)
 };
 
-#define EVENT_CLASS_TYPE(type) static EventType   GetStaticType() { return EventType::##type; }\
-virtual EventType   GetEventType() const override { return GetStaticType(); }\
-virtual const char* GetName() const override { return #type; }
+template <>
+struct FEnableBitmaskOperators<EventCategory> {
+	static constexpr bool enable = true;
+};
 
-#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
+#define EVENT_CLASS_TYPE(type)  static  EventType   GetStaticType() { return EventType::##type; }\
+								virtual EventType   GetEventType() const override { return GetStaticType(); }\
+								virtual const char* GetName() const override { return #type; }
+
+#define EVENT_CLASS_CATEGORY(category) virtual EventCategory GetCategory() const override { return category; }
 
 class GENIX_API Event
 {
 public:
 	friend class EventDispatcher;
 
-	virtual EventType GetEventType() const = 0;
-	virtual const char* GetName() const = 0;
-	virtual int GetCategoryFlags() const = 0;
-	virtual std::string ToString() const { return GetName(); }
+	virtual EventType		GetEventType() const = 0;
+	virtual EventCategory	GetCategory() const = 0;
+	virtual const char*		GetName() const = 0;
+	virtual std::string		ToString() const { return GetName(); }
 
 	void SetHandled(const bool handled) { m_Handled = handled; }
 	bool GetHandled() const { return m_Handled; }
 	
 	bool IsInCategory(EventCategory category) const
 	{
-		return GetCategoryFlags() & category;
+		return (bool)(GetCategory() & category);
 	}
 		
 protected:
