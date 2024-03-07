@@ -14,11 +14,11 @@ enum class EventType
 enum EventCategory
 {
 	None = 0,
-	EventCategoryApplication    = BIT(0),
-	EventCategoryInput          = BIT(1),
-	EventCategoryKeyboard       = BIT(2),
-	EventCategoryMouse          = BIT(3),
-	EventCategoryMouseButton    = BIT(4)
+	Application    = BIT(0),
+	Input          = BIT(1),
+	Keyboard       = BIT(2),
+	Mouse          = BIT(3),
+	MouseButton    = BIT(4)
 };
 
 #define EVENT_CLASS_TYPE(type) static EventType   GetStaticType() { return EventType::##type; }\
