@@ -1,4 +1,5 @@
 #include <Genix.h>
+
 #include "imgui/imgui.h"
 
 class ExampleLayer : public Layer
@@ -11,7 +12,8 @@ public:
 
 	void OnUpdate() override
 	{
-		LOG_INFO("ExampleLayer::Update");
+		if (Input::IsKeyPressed(GX_KEY_TAB))
+			LOG_TRACE("Tab key is pressed (poll)!");
 	}
 	
 	void OnImGuiRender() override
@@ -23,7 +25,15 @@ public:
 
 	void OnEvent(Event& event) override
 	{
-		LOG_TRACE("{0}", event);
+		if (event.GetEventType() == EventType::KeyPressed)
+		{
+			KeyPressedEvent& e = (KeyPressedEvent&)event;
+			if (e.GetKeyCode() == GX_KEY_TAB)
+			{
+				LOG_TRACE("Tab key is pressed (event)!");
+			}
+			LOG_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 
 };
