@@ -51,7 +51,7 @@ void ImGuiLayer::OnAttach()
 	}
 
 	Application& app = Application::Get();
-	GLFWwindow* window = app.GetWindow().GetNativeWindow();
+	GLFWwindow* window = static_cast<GLFWwindow*>(app.GetWindow().GetNativeWindow());
 
 	// Setup Platform/Renderer bindings
 	ImGui_ImplGlfw_InitForOpenGL(window, true);

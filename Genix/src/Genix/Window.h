@@ -4,7 +4,6 @@
 
 #include "Events/Event.h"
 #include "Genix/Core.h"
-#include <GLFW/glfw3.h>
 
 using EventCallbackFn = std::function<void(Event&)>;
 
@@ -28,28 +27,24 @@ struct WindowAttributes
 class GENIX_API Window
 {
 public:
-		
-	Window(const WindowAttributes& attributes);
-	~Window();
+	using EventCallbackFn = std::function<void(Event&)>;
 
-	void OnUpdate();
+	static Window* Create(const WindowAttributes& props = WindowAttributes());
+
+	virtual ~Window() {}
+
+	virtual void OnUpdate() = 0;
 
 	unsigned int GetWidth() const { return m_Data.Width; }
 	unsigned int GetHeight() const { return m_Data.Height; }
 
-	GLFWwindow* GetNativeWindow() const { return m_Window; }
-		
 	// Window attributes
-	void SetEventCallback(const EventCallbackFn& callback) { m_Data.EventCallback = callback; }
-	void SetVSync(bool enabled);
-	bool IsVSyncEnabled() const;
+	virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
+	virtual void SetVSync(bool enabled) = 0;
+	virtual bool IsVSync() const = 0;
 
-	static Window* Create(const WindowAttributes& attributes = WindowAttributes());
-		
-private:
-	void Init(const WindowAttributes& attributes);
-	void Shutdown();
+	virtual void* GetNativeWindow() const = 0;
 
+protected:
 	WindowAttributes m_Data;		
-	GLFWwindow* m_Window;
 };

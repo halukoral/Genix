@@ -1,17 +1,17 @@
 ﻿#include "gxpch.h"
-#include "Window.h"
+#include "Window_GLFW.h"
 
-#include "Events/ApplicationEvent.h"
-#include "Events/KeyEvent.h"
-#include "Events/MouseEvent.h"
-
-#include <glad/glad.h>
+#include "Genix/Events/ApplicationEvent.h"
+#include "Genix/Events/KeyEvent.h"
+#include "Genix/Events/MouseEvent.h"
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
 
 static bool s_GLFWInitialized = false;
 
 Window* Window::Create(const WindowAttributes& attributes)
 {
-	return new Window(attributes);
+	return new Window_GLFW(attributes);
 }
 
 static void GLFWErrorCallback(int error, const char* description)
@@ -42,18 +42,18 @@ void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 
 	switch (action)
 	{
-	case GLFW_PRESS:
-	{
-		MouseButtonPressedEvent event(button);
-		data.EventCallback(event);
-		break;
-	}
-	case GLFW_RELEASE:
-	{
-		MouseButtonReleasedEvent event(button);
-		data.EventCallback(event);
-		break;
-	}
+		case GLFW_PRESS:
+		{
+			MouseButtonPressedEvent event(button);
+			data.EventCallback(event);
+			break;
+		}
+		case GLFW_RELEASE:
+		{
+			MouseButtonReleasedEvent event(button);
+			data.EventCallback(event);
+			break;
+		}
 	}	
 }
 
@@ -110,22 +110,42 @@ void CharCallback(GLFWwindow* window, unsigned int keycode)
 	data.EventCallback(event);
 }
 
-Window::Window(const WindowAttributes& attributes)
+Window_GLFW::Window_GLFW(const WindowAttributes& attributes)
 {
 	Init(attributes);
 }
 
-Window::~Window()
+Window_GLFW::~Window_GLFW()
 {
 	Shutdown();
 }
 
-void Window::Shutdown()
+void Window_GLFW::OnUpdate()
 {
-	glfwDestroyWindow(m_Window);
+	glfwPollEvents();
+	glfwSwapBuffers(m_Window);
 }
-	
-void Window::Init(const WindowAttributes& attributes)
+
+void Window_GLFW::SetVSync(bool enabled)
+{
+	if (enabled)
+	{
+		glfwSwapInterval(1);
+	}
+	else
+	{
+		glfwSwapInterval(0);
+	}
+
+	m_Data.VSync = enabled;
+}
+
+bool Window_GLFW::IsVSync() const
+{
+	return m_Data.VSync;
+}
+
+void Window_GLFW::Init(const WindowAttributes& attributes)
 {
 	m_Data.Title = attributes.Title;
 	m_Data.Width = attributes.Width;
@@ -161,28 +181,8 @@ void Window::Init(const WindowAttributes& attributes)
 	glfwSetScrollCallback(m_Window, ScrollCallback);
 	glfwSetCursorPosCallback(m_Window, MouseCallback);
 }
-	
-void Window::OnUpdate()
-{
-	glfwPollEvents();
-	glfwSwapBuffers(m_Window);
-}
 
-void Window::SetVSync(bool enabled)
+void Window_GLFW::Shutdown()
 {
-	if (enabled)
-	{
-		glfwSwapInterval(1);
-	}
-	else
-	{
-		glfwSwapInterval(0);
-	}
-
-	m_Data.VSync = enabled;
-}
-
-bool Window::IsVSyncEnabled() const
-{
-	return m_Data.VSync;
+	glfwDestroyWindow(m_Window);
 }
