@@ -2,6 +2,7 @@
 
 #include "Genix/Window.h"
 
+class RendererContext;
 class GLFWwindow;
 
 class GENIX_API Window_GLFW : public Window
@@ -24,4 +25,5 @@ private:
 	virtual void Shutdown();
 
 	GLFWwindow* m_Window;
+	RendererContext* m_Context;
 };

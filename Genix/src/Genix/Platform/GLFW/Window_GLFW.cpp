@@ -4,6 +4,8 @@
 #include "Genix/Events/ApplicationEvent.h"
 #include "Genix/Events/KeyEvent.h"
 #include "Genix/Events/MouseEvent.h"
+#include "Genix/Platform/OpenGL/OpenGLContext.h"
+#include "Genix/Renderer/RendererContext.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
@@ -120,12 +122,6 @@ Window_GLFW::~Window_GLFW()
 	Shutdown();
 }
 
-void Window_GLFW::OnUpdate()
-{
-	glfwPollEvents();
-	glfwSwapBuffers(m_Window);
-}
-
 void Window_GLFW::SetVSync(bool enabled)
 {
 	if (enabled)
@@ -163,12 +159,12 @@ void Window_GLFW::Init(const WindowAttributes& attributes)
 	}
 
 	m_Window = glfwCreateWindow((int)attributes.Width, (int)attributes.Height, m_Data.Title.c_str(), nullptr, nullptr);
-	glfwMakeContextCurrent(m_Window);
-	glfwSetWindowUserPointer(m_Window, &m_Data);
-	SetVSync(true);
 
-	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-	GX_CORE_ASSERT(status, "Failed to initialize Glad!");
+	m_Context = new OpenGLContext(m_Window);
+	m_Context->Init();
+	
+	SetVSync(true);
+	glfwSetWindowUserPointer(m_Window, &m_Data);
 	
 	// Set GLFW callbacks
 	glfwSetWindowSizeCallback(m_Window, FramebufferSizeCallback);
@@ -180,6 +176,12 @@ void Window_GLFW::Init(const WindowAttributes& attributes)
 	glfwSetMouseButtonCallback(m_Window, MouseButtonCallback);
 	glfwSetScrollCallback(m_Window, ScrollCallback);
 	glfwSetCursorPosCallback(m_Window, MouseCallback);
+}
+
+void Window_GLFW::OnUpdate()
+{
+	glfwPollEvents();
+	m_Context->SwapBuffers();
 }
 
 void Window_GLFW::Shutdown()
