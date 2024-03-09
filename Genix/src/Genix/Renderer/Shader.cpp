@@ -60,21 +60,9 @@ void Shader::Compile(std::unordered_map<GLenum, std::string> shaderSources)
 
 		glCompileShader(shader);
 
-		GLint isCompiled = 0;
-		glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
-		if (isCompiled == GL_FALSE)
+		if (CheckCompileErrors(shader, std::to_string(type)))
 		{
-			GLint maxLength = 0;
-			glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
-
-			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
-
-			glDeleteShader(shader);
-
-			LOG_CORE_ERROR("{0}", infoLog.data());
-			GX_CORE_ASSERT(false, "Shader compilation failure!")
-			break;
+			return;
 		}
 
 		glAttachShader(program, shader);
@@ -85,35 +73,40 @@ void Shader::Compile(std::unordered_map<GLenum, std::string> shaderSources)
 
 	// Link our program
 	glLinkProgram(program);
-
-	// Note the different functions here: glGetProgram* instead of glGetShader*.
-	GLint isLinked = 0;
-	glGetProgramiv(program, GL_LINK_STATUS, (int*)&isLinked);
-	if (isLinked == GL_FALSE)
-	{
-		GLint maxLength = 0;
-		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
-
-		// The maxLength includes the NULL character
-		std::vector<GLchar> infoLog(maxLength);
-		glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
-
-		// We don't need the program anymore.
-		glDeleteProgram(program);
-			
-		for (auto id : glShaderIDs)
-		{
-			glDeleteShader(id);
-		}
-
-		LOG_CORE_ERROR("{0}", infoLog.data());
-		GX_CORE_ASSERT(false, "Shader link failure!")
-		return;
-	}
+	CheckCompileErrors(program, "PROGRAM");
 
 	for (auto id : glShaderIDs)
 	{
 		glDetachShader(program, id);
 		glDeleteShader(id);
 	}
+}
+
+bool Shader::CheckCompileErrors(unsigned shader, const std::string& type)
+{	
+	int success;
+	char infoLog[1024];
+	if (type != "PROGRAM")
+	{
+		glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+		if (!success)
+		{
+			glGetShaderInfoLog(shader, 1024, nullptr, infoLog);
+			LOG_CORE_ERROR("{0}", infoLog);
+			GX_CORE_ASSERT(false, "Shader compilation failure!")
+			return true;
+		}
+	}
+	else
+	{
+		glGetProgramiv(shader, GL_LINK_STATUS, &success);
+		if (!success)
+		{
+			glGetProgramInfoLog(shader, 1024, nullptr, infoLog);
+			LOG_CORE_ERROR("{0}", infoLog);
+			GX_CORE_ASSERT(false, "Shader linking failure!")
+			return true;
+		}
+	}
+	return false;
 }
