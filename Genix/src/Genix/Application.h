@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+
 #include "LayerStack.h"
 #include "Window.h"
 
@@ -32,6 +33,10 @@ private:
 	std::unique_ptr<Window> m_Window;
 	ImGuiLayer* m_ImGuiLayer;
 
+	unsigned int m_VertexArray;
+	unsigned int m_VertexBuffer;
+	unsigned int m_IndexBuffer;
+	
 	static Application* s_Instance;
 };
 

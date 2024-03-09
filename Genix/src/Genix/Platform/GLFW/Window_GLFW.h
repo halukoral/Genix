@@ -3,7 +3,7 @@
 #include "Genix/Window.h"
 
 class RendererContext;
-class GLFWwindow;
+struct GLFWwindow;
 
 class GENIX_API Window_GLFW : public Window
 {

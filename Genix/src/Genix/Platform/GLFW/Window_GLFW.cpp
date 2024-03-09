@@ -4,10 +4,11 @@
 #include "Genix/Events/ApplicationEvent.h"
 #include "Genix/Events/KeyEvent.h"
 #include "Genix/Events/MouseEvent.h"
+
 #include "Genix/Platform/OpenGL/OpenGLContext.h"
-#include "Genix/Renderer/RendererContext.h"
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 static bool s_GLFWInitialized = false;
 
@@ -151,8 +152,8 @@ void Window_GLFW::Init(const WindowAttributes& attributes)
 
 	if (!s_GLFWInitialized)
 	{
-		[[maybe_unused]] int success = glfwInit();
-		GX_CORE_ASSERT(success, "Could not intialize GLFW!");
+		int success = glfwInit();
+		GX_CORE_ASSERT(success, "Could not intialize GLFW!")
 
 		glfwSetErrorCallback(GLFWErrorCallback);
 		s_GLFWInitialized = true;
