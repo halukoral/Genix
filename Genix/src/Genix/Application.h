@@ -5,6 +5,7 @@
 #include "LayerStack.h"
 #include "Window.h"
 
+class Shader;
 class ImGuiLayer;
 class Layer;
 class WindowCloseEvent;
@@ -36,6 +37,10 @@ private:
 	unsigned int m_VertexArray;
 	unsigned int m_VertexBuffer;
 	unsigned int m_IndexBuffer;
+	std::unique_ptr<Shader> m_Shader;
+
+	std::string vertexSrc;
+	std::string fragmentSrc;
 	
 	static Application* s_Instance;
 };
