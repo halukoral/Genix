@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include <glad/glad.h>
+
 class Shader
 {
 public:
@@ -10,5 +12,7 @@ public:
 	void Unbind() const;
 
 private:
+	void Compile(std::unordered_map<GLenum, std::string> shaderSources);
+	
 	uint32_t m_RendererID;
 };

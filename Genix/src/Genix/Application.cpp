@@ -50,8 +50,8 @@ Application::Application()
 	constexpr unsigned int indices[3] = { 0, 1, 2 };
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	vertexSrc = "Renderer/Shaders/shader.vert";
-	fragmentSrc = "Renderer/Shaders/shader.frag";
+	vertexSrc = "Assets/Shaders/shader.vert";
+	fragmentSrc = "Assets/Shaders/shader.frag";
 
 	m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
 }
