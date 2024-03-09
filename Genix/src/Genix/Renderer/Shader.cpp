@@ -114,5 +114,6 @@ void Shader::Compile(std::unordered_map<GLenum, std::string> shaderSources)
 	for (auto id : glShaderIDs)
 	{
 		glDetachShader(program, id);
+		glDeleteShader(id);
 	}
 }
