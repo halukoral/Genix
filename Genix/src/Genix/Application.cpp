@@ -18,6 +18,32 @@
 
 Application* Application::s_Instance = nullptr;
 
+static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
+{
+	switch (type)
+	{
+	case ShaderDataType::Float:    
+	case ShaderDataType::Float2:   
+	case ShaderDataType::Float3:   
+	case ShaderDataType::Float4:   
+	case ShaderDataType::Mat3:     
+	case ShaderDataType::Mat4:
+		return GL_FLOAT;
+		
+	case ShaderDataType::Int:      
+	case ShaderDataType::Int2:     
+	case ShaderDataType::Int3:     
+	case ShaderDataType::Int4:
+		return GL_INT;
+
+	case ShaderDataType::Bool:
+		return GL_BOOL;
+	}
+
+	ASSERT_CORE(false, "Unknown ShaderDataType!")
+	return 0;
+}
+
 Application::Application()
 {
 	ASSERT_CORE(!s_Instance, "Application already exists!");
@@ -32,17 +58,40 @@ Application::Application()
 	glGenVertexArrays(1, &m_VertexArray);
 	glBindVertexArray(m_VertexArray);
 
-	float vertices[3 * 3] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.0f,  0.5f, 0.0f
+	float vertices[3 * 7] = {
+		// Vertices			// Color
+		-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+		 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
+		 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 	};
 
 	m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-	
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
+	const BufferLayout layout =
+	{
+		{ ShaderDataType::Float3, "a_Position" },
+		{ ShaderDataType::Float4, "a_Color" }
+	};
+	m_VertexBuffer->SetLayout(layout);
+	
+	uint32_t index = 0;
+	const auto& vertexBufferLayout = m_VertexBuffer->GetLayout();
+	const auto& stride = vertexBufferLayout.GetStride();
+	for (const auto& element : vertexBufferLayout)
+	{
+		glEnableVertexAttribArray(index);
+
+		glVertexAttribPointer(
+			index,
+			(GLint)element.GetComponentCount(),
+			ShaderDataTypeToOpenGLBaseType(element.Type),
+			element.Normalized ? GL_TRUE : GL_FALSE,
+			(GLsizei)stride,
+			(const void*)element.Offset);
+
+		index++;
+	}
+	
 	uint32_t indices[3] = { 0, 1, 2 };
 	m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
