@@ -5,6 +5,8 @@
 #include "LayerStack.h"
 #include "Window.h"
 
+class IndexBuffer;
+class VertexBuffer;
 class Shader;
 class ImGuiLayer;
 class Layer;
@@ -35,8 +37,8 @@ private:
 	ImGuiLayer* m_ImGuiLayer;
 
 	unsigned int m_VertexArray;
-	unsigned int m_VertexBuffer;
-	unsigned int m_IndexBuffer;
+	std::unique_ptr<VertexBuffer> m_VertexBuffer;
+	std::unique_ptr<IndexBuffer> m_IndexBuffer;
 	std::unique_ptr<Shader> m_Shader;
 
 	std::string vertexSrc;
