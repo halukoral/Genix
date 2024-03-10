@@ -153,7 +153,7 @@ void Window_GLFW::Init(const WindowAttributes& attributes)
 	if (!s_GLFWInitialized)
 	{
 		int success = glfwInit();
-		GX_CORE_ASSERT(success, "Could not intialize GLFW!")
+		ASSERT_CORE(success, "Could not intialize GLFW!")
 
 		glfwSetErrorCallback(GLFWErrorCallback);
 		s_GLFWInitialized = true;

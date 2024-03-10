@@ -93,7 +93,7 @@ bool Shader::CheckCompileErrors(unsigned shader, const std::string& type)
 		{
 			glGetShaderInfoLog(shader, 1024, nullptr, infoLog);
 			LOG_CORE_ERROR("{0}", infoLog);
-			GX_CORE_ASSERT(false, "Shader compilation failure!")
+			ASSERT_CORE(false, "Shader compilation failure!")
 			return true;
 		}
 	}
@@ -104,7 +104,7 @@ bool Shader::CheckCompileErrors(unsigned shader, const std::string& type)
 		{
 			glGetProgramInfoLog(shader, 1024, nullptr, infoLog);
 			LOG_CORE_ERROR("{0}", infoLog);
-			GX_CORE_ASSERT(false, "Shader linking failure!")
+			ASSERT_CORE(false, "Shader linking failure!")
 			return true;
 		}
 	}

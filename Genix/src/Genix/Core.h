@@ -15,11 +15,11 @@
 #endif
 
 #ifdef GX_ENABLE_ASSERTS
-	#define GX_ASSERT(x, ...) { if(!(x)) { LOG_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define GX_CORE_ASSERT(x, ...) { if(!(x)) { LOG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define ASSERT(x, ...)		{ if(!(x)) { LOG_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define ASSERT_CORE(x, ...) { if(!(x)) { LOG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
-	#define GX_ASSERT(x, ...)
-	#define GX_CORE_ASSERT(x, ...)
+	#define ASSERT(x, ...)
+	#define ASSERT_CORE(x, ...)
 #endif
 
 #define BIT(x) (1 << x)
