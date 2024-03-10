@@ -7,6 +7,7 @@
 
 #include "Renderer/Buffer.h"
 #include "Renderer/Shader.h"
+#include "Renderer/VertexArray.h"
 
 class IndexBuffer;
 class VertexBuffer;
@@ -38,13 +39,11 @@ private:
 	std::unique_ptr<Window> m_Window;
 	ImGuiLayer* m_ImGuiLayer;
 
-	unsigned int m_VertexArray;
-	std::unique_ptr<VertexBuffer> m_VertexBuffer;
-	std::unique_ptr<IndexBuffer> m_IndexBuffer;
-	std::unique_ptr<Shader> m_Shader;
+	std::shared_ptr<Shader> m_Shader;
+	std::shared_ptr<VertexArray> m_VertexArray;
 
-	std::string vertexSrc;
-	std::string fragmentSrc;
+	std::shared_ptr<Shader> m_BlueShader;
+	std::shared_ptr<VertexArray> m_SquareVA;
 	
 	static Application* s_Instance;
 };
