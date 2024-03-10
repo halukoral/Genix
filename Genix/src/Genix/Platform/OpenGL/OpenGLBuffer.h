@@ -5,25 +5,25 @@ class OpenGLVertexBuffer : public VertexBuffer
 {
 public:
 	OpenGLVertexBuffer(float* vertices, uint32_t size);
-	virtual ~OpenGLVertexBuffer();
+	~OpenGLVertexBuffer() override;
 
-	virtual void Bind() const;
-	virtual void Unbind() const;
+	void Bind() const override;
+	void Unbind() const override;
 private:
-	uint32_t m_RendererID;
+	uint32_t m_Id;
 };
 
 class OpenGLIndexBuffer : public IndexBuffer
 {
 public:
 	OpenGLIndexBuffer(uint32_t* indices, uint32_t count);
-	virtual ~OpenGLIndexBuffer();
+	~OpenGLIndexBuffer() override;
 
-	virtual void Bind() const;
-	virtual void Unbind() const;
+	void Bind() const override;
+	void Unbind() const override;
 
-	virtual uint32_t GetCount() const { return m_Count; }
+	uint32_t GetCount() const override { return m_Count; }
 private:
-	uint32_t m_RendererID;
+	uint32_t m_Id;
 	uint32_t m_Count;
 };
