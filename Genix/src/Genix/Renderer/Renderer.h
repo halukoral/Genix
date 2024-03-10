@@ -7,7 +7,7 @@ enum class RendererAPI
 	DirectX = 2
 };
 
-class Renderer
+class GENIX_API Renderer
 {
 public:
 	static RendererAPI GetAPI() { return s_RendererAPI; }

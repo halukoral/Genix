@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Genix/Renderer/Buffer.h"
 
-class OpenGLVertexBuffer : public VertexBuffer
+class GENIX_API OpenGLVertexBuffer : public VertexBuffer
 {
 public:
 	OpenGLVertexBuffer(float* vertices, uint32_t size);
@@ -18,7 +18,7 @@ private:
 	BufferLayout m_Layout;
 };
 
-class OpenGLIndexBuffer : public IndexBuffer
+class GENIX_API OpenGLIndexBuffer : public IndexBuffer
 {
 public:
 	OpenGLIndexBuffer(uint32_t* indices, uint32_t count);

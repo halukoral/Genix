@@ -44,7 +44,7 @@ struct BufferElement
 	bool			Normalized;
 };
 
-class BufferLayout
+class GENIX_API BufferLayout
 {
 public:
 	BufferLayout() = default;
@@ -65,7 +65,7 @@ private:
 	uint32_t m_Stride = 0;
 };
 
-class VertexBuffer
+class GENIX_API VertexBuffer
 {
 public:
 	VertexBuffer() = default;
@@ -80,7 +80,7 @@ public:
 	static VertexBuffer* Create(float* vertices, uint32_t size);
 };
 
-class IndexBuffer
+class GENIX_API IndexBuffer
 {
 public:
 	IndexBuffer() = default;

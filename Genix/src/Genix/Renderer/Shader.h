@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-class Shader
+class GENIX_API Shader
 {
 public:
 	Shader(const std::string& vertexSrc, const std::string& fragmentSrc);

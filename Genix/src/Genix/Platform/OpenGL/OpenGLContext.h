@@ -3,7 +3,7 @@
 
 struct GLFWwindow;
 
-class OpenGLContext : public RendererContext
+class GENIX_API OpenGLContext : public RendererContext
 {
 public:
 	OpenGLContext(GLFWwindow* windowHandle);
