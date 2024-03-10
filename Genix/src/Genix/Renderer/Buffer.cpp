@@ -2,6 +2,7 @@
 #include "Buffer.h"
 
 #include "Renderer.h"
+#include "RendererAPI.h"
 #include "Genix/Platform/OpenGL/OpenGLBuffer.h"
 
 uint32_t BufferElement::GetComponentCount() const
@@ -47,14 +48,14 @@ VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 {
 	switch (Renderer::GetAPI())
 	{
-	case RendererAPI::None:
+	case RendererAPI::API::None:
 		ASSERT_CORE(false, "RendererAPI::None is currently not supported!")
 		return nullptr;
 		
-	case RendererAPI::OpenGL:
+	case RendererAPI::API::OpenGL:
 		return new OpenGLVertexBuffer(vertices, size);
 		
-	case RendererAPI::DirectX:
+	case RendererAPI::API::DirectX:
 		ASSERT_CORE(false, "RendererAPI::DirectX is currently not supported!")
 		break;
 	}
@@ -67,14 +68,14 @@ IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
 {
 	switch (Renderer::GetAPI())
 	{
-	case RendererAPI::None:
+	case RendererAPI::API::None:
 		ASSERT_CORE(false, "RendererAPI::None is currently not supported!")
 		return nullptr;
 		
-	case RendererAPI::OpenGL:
+	case RendererAPI::API::OpenGL:
 		return new OpenGLIndexBuffer(indices, size);
 		
-	case RendererAPI::DirectX:
+	case RendererAPI::API::DirectX:
 		ASSERT_CORE(false, "RendererAPI::DirectX is currently not supported!")
 		break;
 	}

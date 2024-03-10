@@ -1,17 +1,13 @@
 ﻿#pragma once
-
-enum class RendererAPI
-{
-	None	= 0,
-	OpenGL	= 1,
-	DirectX = 2
-};
+#include "RenderCommand.h"
 
 class GENIX_API Renderer
 {
 public:
-	static RendererAPI GetAPI() { return s_RendererAPI; }
+	static void BeginScene();
+	static void EndScene();
 
-private:
-	static RendererAPI s_RendererAPI;
+	static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+
+	static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 };
