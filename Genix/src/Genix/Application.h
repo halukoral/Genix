@@ -5,9 +5,11 @@
 #include "LayerStack.h"
 #include "Window.h"
 
+#include "Renderer/Buffer.h"
+#include "Renderer/Shader.h"
+
 class IndexBuffer;
 class VertexBuffer;
-class Shader;
 class ImGuiLayer;
 class Layer;
 class WindowCloseEvent;

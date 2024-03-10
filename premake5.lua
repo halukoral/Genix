@@ -117,6 +117,7 @@ project "Sandbox"
     includedirs
     {
         "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}",
         "%{IncludeDir.spdlog}",
         "%{IncludeDir.glm}",
         "Genix/src",
