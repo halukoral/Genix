@@ -6,7 +6,7 @@
 // ------------------------------------Vertex Buffer-------------------------------
 // --------------------------------------------------------------------------------
 
-OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
+OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32 size)
 {
 	glCreateBuffers(1, &m_Id);
 	glBindBuffer(GL_ARRAY_BUFFER, m_Id);
@@ -31,11 +31,11 @@ void OpenGLVertexBuffer::Unbind() const
 // ------------------------------------Index Buffer--------------------------------
 // --------------------------------------------------------------------------------
 
-OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indices, uint32_t count) : m_Count(count)
+OpenGLIndexBuffer::OpenGLIndexBuffer(uint32* indices, uint32 count) : m_Count(count)
 {
 	glCreateBuffers(1, &m_Id);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Id);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32_t), indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32), indices, GL_STATIC_DRAW);
 }
 
 OpenGLIndexBuffer::~OpenGLIndexBuffer()

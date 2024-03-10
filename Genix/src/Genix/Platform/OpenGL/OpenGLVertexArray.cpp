@@ -56,7 +56,7 @@ void OpenGLVertexArray::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& ver
 	glBindVertexArray(m_Id);
 	vertexBuffer->Bind();
 
-	uint32_t index = 0;
+	uint32 index = 0;
 	const auto& layout = vertexBuffer->GetLayout();
 	for (const auto& element : layout)
 	{

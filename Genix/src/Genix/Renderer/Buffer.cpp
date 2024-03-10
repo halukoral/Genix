@@ -5,7 +5,7 @@
 #include "RendererAPI.h"
 #include "Genix/Platform/OpenGL/OpenGLBuffer.h"
 
-uint32_t BufferElement::GetComponentCount() const
+uint32 BufferElement::GetComponentCount() const
 {
 	switch (Type)
 	{
@@ -34,7 +34,7 @@ BufferLayout::BufferLayout(const std::initializer_list<BufferElement>& elements)
 void BufferLayout::CalculateOffsetsAndStride()
 {
 	m_Stride = 0;
-	uint32_t offset = 0;
+	uint32 offset = 0;
 
 	for (auto& element : m_Elements)
 	{
@@ -44,7 +44,7 @@ void BufferLayout::CalculateOffsetsAndStride()
 	}
 }
 
-VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
+VertexBuffer* VertexBuffer::Create(float* vertices, uint32 size)
 {
 	switch (Renderer::GetAPI())
 	{
@@ -64,7 +64,7 @@ VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 	return nullptr;
 }
 
-IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
+IndexBuffer* IndexBuffer::Create(uint32* indices, uint32 size)
 {
 	switch (Renderer::GetAPI())
 	{

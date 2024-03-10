@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <glad/glad.h>
+#include "Genix/Common/PrimitiveTypes.h"
 
 class GENIX_API Shader
 {
@@ -15,5 +16,5 @@ private:
 	void Compile(std::unordered_map<GLenum, std::string> shaderSources);
 	bool CheckCompileErrors(unsigned int shader, const std::string& type);
 	
-	uint32_t m_RendererID;
+	uint32 m_RendererID;
 };

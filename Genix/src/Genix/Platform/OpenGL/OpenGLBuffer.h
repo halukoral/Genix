@@ -4,7 +4,7 @@
 class GENIX_API OpenGLVertexBuffer : public VertexBuffer
 {
 public:
-	OpenGLVertexBuffer(float* vertices, uint32_t size);
+	OpenGLVertexBuffer(float* vertices, uint32 size);
 	~OpenGLVertexBuffer() override;
 
 	void Bind() const override;
@@ -14,21 +14,21 @@ public:
 	void SetLayout(const BufferLayout& layout) override { m_Layout = layout; }
 	
 private:
-	uint32_t m_Id;
+	uint32 m_Id;
 	BufferLayout m_Layout;
 };
 
 class GENIX_API OpenGLIndexBuffer : public IndexBuffer
 {
 public:
-	OpenGLIndexBuffer(uint32_t* indices, uint32_t count);
+	OpenGLIndexBuffer(uint32* indices, uint32 count);
 	~OpenGLIndexBuffer() override;
 
 	void Bind() const override;
 	void Unbind() const override;
 
-	uint32_t GetCount() const override { return m_Count; }
+	uint32 GetCount() const override { return m_Count; }
 private:
-	uint32_t m_Id;
-	uint32_t m_Count;
+	uint32 m_Id;
+	uint32 m_Count;
 };

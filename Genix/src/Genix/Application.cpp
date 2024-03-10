@@ -4,6 +4,7 @@
 #include "Layer.h"
 #include "Log.h"
 
+#include "Common/PrimitiveTypes.h"
 #include "Events/ApplicationEvent.h"
 #include "ImGui/ImGuiLayer.h"
 #include "Renderer/Renderer.h"
@@ -44,9 +45,9 @@ Application::Application()
 	vertexBuffer->SetLayout(layout);
 	m_VertexArray->AddVertexBuffer(vertexBuffer);
 	
-	uint32_t indices[3] = { 0, 1, 2 };
+	uint32 indices[3] = { 0, 1, 2 };
 	std::shared_ptr<IndexBuffer> indexBuffer;
-	indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+	indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32)));
 	m_VertexArray->SetIndexBuffer(indexBuffer);
 	m_SquareVA.reset(VertexArray::Create());
 	
@@ -64,9 +65,9 @@ Application::Application()
 	});
 	m_SquareVA->AddVertexBuffer(squareVB);
 
-	uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+	uint32 squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 	std::shared_ptr<IndexBuffer> squareIB;
-	squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+	squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32)));
 	m_SquareVA->SetIndexBuffer(squareIB);
 
 	m_Shader.reset(new Shader("Assets/Shaders/shader.vert", "Assets/Shaders/shader.frag"));

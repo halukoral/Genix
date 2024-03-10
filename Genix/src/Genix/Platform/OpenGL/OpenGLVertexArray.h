@@ -17,7 +17,7 @@ public:
 	const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const override { return m_IndexBuffer; }
 	
 private:
-	uint32_t m_Id;
+	uint32 m_Id;
 	std::vector<std::shared_ptr<VertexBuffer>> m_VertexBuffers;
 	std::shared_ptr<IndexBuffer> m_IndexBuffer;
 };

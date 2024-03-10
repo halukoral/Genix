@@ -1,11 +1,12 @@
 #pragma once
+#include "Genix/Common/PrimitiveTypes.h"
 
 enum class ShaderDataType
 {
 	None = 0, Float, Float2, Float3, Float4, Mat3, Mat4, Int, Int2, Int3, Int4, Bool
 };
 
-static uint32_t ShaderDataTypeSize(const ShaderDataType type)
+static uint32 ShaderDataTypeSize(const ShaderDataType type)
 {
 	switch (type)
 	{
@@ -35,12 +36,12 @@ struct BufferElement
 	{
 	}
 
-	uint32_t GetComponentCount() const;
+	uint32 GetComponentCount() const;
 
 	std::string		Name;
 	ShaderDataType	Type;
-	uint32_t 		Size;
-	uint32_t 		Offset;
+	uint32 			Size;
+	uint32	 		Offset;
 	bool			Normalized;
 };
 
@@ -50,7 +51,7 @@ public:
 	BufferLayout() = default;
 	BufferLayout(const std::initializer_list<BufferElement>& elements);
 
-	uint32_t GetStride() const { return m_Stride; }
+	uint32 GetStride() const { return m_Stride; }
 	const std::vector<BufferElement>& GetElements() const { return m_Elements; }
 
 	std::vector<BufferElement>::iterator begin() { return m_Elements.begin(); }
@@ -62,7 +63,7 @@ private:
 	void CalculateOffsetsAndStride();
 
 	std::vector<BufferElement> m_Elements;
-	uint32_t m_Stride = 0;
+	uint32 m_Stride = 0;
 };
 
 class GENIX_API VertexBuffer
@@ -77,7 +78,7 @@ public:
 	virtual const BufferLayout& GetLayout() const = 0;
 	virtual void SetLayout(const BufferLayout& layout) = 0;
 	
-	static VertexBuffer* Create(float* vertices, uint32_t size);
+	static VertexBuffer* Create(float* vertices, uint32 size);
 };
 
 class GENIX_API IndexBuffer
@@ -89,7 +90,7 @@ public:
 	virtual void Bind() const = 0;
 	virtual void Unbind() const = 0;
 
-	virtual uint32_t GetCount() const = 0;
+	virtual uint32 GetCount() const = 0;
 
-	static IndexBuffer* Create(uint32_t* indices, uint32_t size);
+	static IndexBuffer* Create(uint32* indices, uint32 size);
 };
