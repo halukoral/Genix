@@ -4,6 +4,12 @@
 class GENIX_API RenderCommand
 {
 public:
+
+	static void SetViewport(uint32 x, uint32 y, uint32 width, uint32 height)
+	{
+		s_RendererAPI->SetViewport(x, y, width, height);
+	}
+	
 	static void SetClearColor(const glm::vec4& color)
 	{
 		s_RendererAPI->SetClearColor(color);

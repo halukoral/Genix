@@ -9,6 +9,7 @@
 #include "Renderer/Shader.h"
 #include "Renderer/VertexArray.h"
 
+class WindowResizeEvent;
 class IndexBuffer;
 class VertexBuffer;
 class ImGuiLayer;
@@ -32,9 +33,12 @@ public:
 	static Application& Get() { return *s_Instance; }
 	
 private:
+	bool OnWindowResize(WindowResizeEvent& e);
 	bool OnWindowClose(WindowCloseEvent& e);
 
+	bool m_Minimized = false;
 	bool m_Running = true;
+	
 	LayerStack m_LayerStack;
 	std::unique_ptr<Window> m_Window;
 	ImGuiLayer* m_ImGuiLayer;

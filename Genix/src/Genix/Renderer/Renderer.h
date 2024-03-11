@@ -4,6 +4,9 @@
 class GENIX_API Renderer
 {
 public:
+
+	static void OnWindowResize(uint32 width, uint32 height);
+	
 	static void BeginScene();
 	static void EndScene();
 

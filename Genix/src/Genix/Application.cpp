@@ -90,10 +90,13 @@ void Application::Run()
 		Renderer::Submit(m_VertexArray);
 
 		Renderer::EndScene();
-		
-		for (Layer* layer : m_LayerStack)
+
+		if (!m_Minimized)
 		{
-			layer->OnUpdate();
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnUpdate();
+			}
 		}
 
 		m_ImGuiLayer->Begin();
@@ -111,6 +114,7 @@ void Application::OnEvent(Event& e)
 {
 	EventDispatcher dispatcher(e);
 	dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+	dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 
 	for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 	{
@@ -130,6 +134,20 @@ void Application::PushLayer(Layer* layer)
 void Application::PushOverlay(Layer* layer)
 {
 	m_LayerStack.PushOverlay(layer);
+}
+
+bool Application::OnWindowResize(WindowResizeEvent& e)
+{
+	if (e.GetWidth() == 0 || e.GetHeight() == 0)
+	{
+		m_Minimized = true;
+		return false;
+	}
+
+	m_Minimized = false;
+	Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+
+	return false;
 }
 
 bool Application::OnWindowClose(WindowCloseEvent& e)
