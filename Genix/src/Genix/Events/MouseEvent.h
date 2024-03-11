@@ -18,6 +18,7 @@ class GENIX_API MouseMovedEvent : public Event
 
 		EVENT_CLASS_TYPE(MouseMoved)
 		EVENT_CLASS_CATEGORY(EventCategory::Mouse | EventCategory::Input)
+	
 	private:
 		float m_MouseX;
 		float m_MouseY;
@@ -40,6 +41,7 @@ class GENIX_API MouseMovedEvent : public Event
 
 		EVENT_CLASS_TYPE(MouseScrolled)
 		EVENT_CLASS_CATEGORY(EventCategory::Mouse | EventCategory::Input)
+		
 	private:
 		float m_XOffset;
 		float m_YOffset;
@@ -51,6 +53,7 @@ class GENIX_API MouseMovedEvent : public Event
 		int GetMouseButton() const { return m_Button; }
 
 		EVENT_CLASS_CATEGORY(EventCategory::Mouse | EventCategory::Input)
+		
 	protected:
 		MouseButtonEvent(int button) : m_Button(button) {}
 

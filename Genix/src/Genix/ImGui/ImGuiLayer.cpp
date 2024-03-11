@@ -8,21 +8,10 @@
 
 #include "Genix/Application.h"
 
-#include "Genix/Events/ApplicationEvent.h"
-#include "Genix/Events/KeyEvent.h"
-#include "Genix/Events/MouseEvent.h"
-
 #include <GLFW/glfw3.h>
-#include <glad/glad.h>
-
 
 ImGuiLayer::ImGuiLayer() : Layer("ImGuiLayer")
-{
-	
-}
-
-ImGuiLayer::~ImGuiLayer()
-{
+{	
 }
 
 void ImGuiLayer::OnAttach()

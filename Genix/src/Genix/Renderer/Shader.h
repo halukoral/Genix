@@ -16,5 +16,5 @@ private:
 	void Compile(std::unordered_map<GLenum, std::string> shaderSources);
 	bool CheckCompileErrors(unsigned int shader, const std::string& type);
 	
-	uint32 m_RendererID;
+	uint32 m_ID;
 };

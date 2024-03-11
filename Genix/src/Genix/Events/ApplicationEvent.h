@@ -18,6 +18,7 @@ public:
 
 	EVENT_CLASS_TYPE(WindowResize)
 	EVENT_CLASS_CATEGORY(EventCategory::Application)
+	
 private:
 	unsigned int m_Width;
 	unsigned int m_Height;

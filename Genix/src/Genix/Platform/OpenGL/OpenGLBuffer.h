@@ -28,6 +28,7 @@ public:
 	void Unbind() const override;
 
 	uint32 GetCount() const override { return m_Count; }
+	
 private:
 	uint32 m_Id;
 	uint32 m_Count;

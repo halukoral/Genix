@@ -1,22 +1,24 @@
 ﻿#pragma once
 #include "gxpch.h"
 #include "Genix/Core.h"
+#include "Genix/Common/PrimitiveTypes.h"
 
 template <typename E>
-struct FEnableBitmaskOperators {
+struct FEnableBitmaskOperators
+{
 	static constexpr bool enable = false;
 };
 
 template <typename E>
-std::enable_if_t<FEnableBitmaskOperators<E>::enable, E> operator|(
-	E Lhs, E Rhs) {
+std::enable_if_t<FEnableBitmaskOperators<E>::enable, E> operator|(E Lhs, E Rhs)
+{
 	return static_cast<E>(static_cast<std::underlying_type_t<E>>(Lhs) |
 						  static_cast<std::underlying_type_t<E>>(Rhs));
 }
 
 template <typename E>
-std::enable_if_t<FEnableBitmaskOperators<E>::enable, E> operator&(
-	E Lhs, E Rhs) {
+std::enable_if_t<FEnableBitmaskOperators<E>::enable, E> operator&(E Lhs, E Rhs)
+{
 	return static_cast<E>(static_cast<std::underlying_type_t<E>>(Lhs) &
 						  static_cast<std::underlying_type_t<E>>(Rhs));
 }
@@ -30,7 +32,7 @@ enum class EventType
 	MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 };
 
-enum class EventCategory : uint8_t
+enum class EventCategory : uint8
 {
 	None = 0,
 	Application    = BIT(0),
@@ -41,11 +43,12 @@ enum class EventCategory : uint8_t
 };
 
 template <>
-struct FEnableBitmaskOperators<EventCategory> {
+struct FEnableBitmaskOperators<EventCategory>
+{
 	static constexpr bool enable = true;
 };
 
-#define EVENT_CLASS_TYPE(type)  static  EventType   GetStaticType() { return EventType::##type; }\
+#define EVENT_CLASS_TYPE(type)  static  EventType   GetStaticType() { return EventType::type; }\
 								virtual EventType   GetEventType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type; }
 

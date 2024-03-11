@@ -31,12 +31,12 @@ Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc)
 
 Shader::~Shader()
 {
-	glDeleteProgram(m_RendererID);
+	glDeleteProgram(m_ID);
 }
 
 void Shader::Bind() const
 {
-	glUseProgram(m_RendererID);
+	glUseProgram(m_ID);
 }
 
 void Shader::Unbind() const
@@ -69,7 +69,7 @@ void Shader::Compile(std::unordered_map<GLenum, std::string> shaderSources)
 		glShaderIDs.push_back(shader);
 	}
 		
-	m_RendererID = program;
+	m_ID = program;
 
 	// Link our program
 	glLinkProgram(program);

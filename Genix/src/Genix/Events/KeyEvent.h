@@ -7,6 +7,7 @@ public:
 	int GetKeyCode() const { return m_KeyCode; }
 
 	EVENT_CLASS_CATEGORY(EventCategory::Keyboard | EventCategory::Input)
+	
 protected:
 	KeyEvent(int keycode) : m_KeyCode(keycode) {}
 
@@ -28,6 +29,7 @@ public:
 	}
 
 	EVENT_CLASS_TYPE(KeyPressed)
+	
 private:
 	int m_RepeatCount;
 };
