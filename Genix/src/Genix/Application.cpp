@@ -1,12 +1,12 @@
 #include "gxpch.h"
 
 #include "Application.h"
-#include "Layer.h"
 #include "Log.h"
 
 #include "Common/PrimitiveTypes.h"
 #include "Events/ApplicationEvent.h"
 #include "ImGui/ImGuiLayer.h"
+#include "Layer/Layer.h"
 #include "Renderer/Renderer.h"
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
