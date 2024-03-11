@@ -10,8 +10,8 @@ protected:
 public:
 	Input(const Input&) = delete;
 	Input& operator=(const Input&) = delete;
-	
 	virtual ~Input() = default;
+	
 	static bool IsKeyPressed(int keycode) { return s_Instance->IsKeyPressedImpl(keycode); }
 	static bool IsMouseButtonPressed(int button) { return s_Instance->IsMouseButtonPressedImpl(button); }
 

@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Genix/Input.h"
+#include "Genix/Input/Input.h"
 
 class GENIX_API Input_GLFW : public Input
 {

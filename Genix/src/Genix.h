@@ -4,9 +4,9 @@
 #include "Genix/Layer.h"
 #include "Genix/Log.h"
 
-#include "Genix/Input.h"
-#include "Genix/KeyCodes.h"
-#include "Genix/MouseButtonCodes.h"
+#include "Genix/Input/Input.h"
+#include "Genix/Input/KeyCodes.h"
+#include "Genix/Input/MouseButtonCodes.h"
 
 #include "Genix/Common/PrimitiveTypes.h"
 
