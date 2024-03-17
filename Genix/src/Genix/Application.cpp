@@ -84,10 +84,10 @@ void Application::Run()
 		Renderer::BeginScene();
 		
 		m_BlueShader->Bind();
-		Renderer::Submit(m_SquareVA);
+		Renderer::SubmitVAO(m_SquareVA);
 		
 		m_Shader->Bind();
-		Renderer::Submit(m_VertexArray);
+		Renderer::SubmitVAO(m_VertexArray);
 
 		Renderer::EndScene();
 
