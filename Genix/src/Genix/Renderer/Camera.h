@@ -24,6 +24,9 @@ public:
 	// returns the view matrix calculated using Euler Angles and the LookAt Matrix
 	glm::mat4 GetViewMatrix() const;
 	glm::mat4 GetViewProjectionMatrix() const;
+
+	const glm::vec3& GetPosition() const { return Position; }
+	void SetPosition(const glm::vec3& position) { Position = position; }
 	
 	// camera Attributes
 	glm::vec3 Position;
@@ -45,4 +48,5 @@ private:
 
 	// calculates the front vector from the Camera's (updated) Euler Angles
 	void UpdateCameraVectors();
+
 };

@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "Genix/Core.h"
+#include "Genix/Common/TimeStep.h"
 #include "Genix/Events/Event.h"
 
 class GENIX_API Layer
@@ -11,7 +12,7 @@ public:
 
 	virtual void OnAttach() {}
 	virtual void OnDetach() {}
-	virtual void OnUpdate() {}
+	virtual void OnUpdate(Timestep ts) {}
 	virtual void OnImGuiRender() {}
 	virtual void OnEvent(Event& event) {}
 	

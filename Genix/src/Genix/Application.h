@@ -1,14 +1,8 @@
 #pragma once
 
 #include "Core.h"
-
-#include "Layer/LayerStack.h"
 #include "Window.h"
-
-#include "Renderer/Buffer.h"
-#include "Renderer/Camera.h"
-#include "Renderer/Shader.h"
-#include "Renderer/VertexArray.h"
+#include "Layer/LayerStack.h"
 
 class WindowResizeEvent;
 class IndexBuffer;
@@ -40,17 +34,11 @@ private:
 	bool m_Minimized = false;
 	bool m_Running = true;
 	
+	float m_LastFrameTime = 0.0f;
+	
 	LayerStack m_LayerStack;
 	std::unique_ptr<Window> m_Window;
 	ImGuiLayer* m_ImGuiLayer;
-
-	std::shared_ptr<Shader> m_Shader;
-	std::shared_ptr<VertexArray> m_VertexArray;
-
-	std::shared_ptr<Shader> m_BlueShader;
-	std::shared_ptr<VertexArray> m_SquareVA;
-
-	Camera m_Camera;
 	
 	static Application* s_Instance;
 };
