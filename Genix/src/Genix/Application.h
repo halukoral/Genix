@@ -6,6 +6,7 @@
 #include "Window.h"
 
 #include "Renderer/Buffer.h"
+#include "Renderer/Camera.h"
 #include "Renderer/Shader.h"
 #include "Renderer/VertexArray.h"
 
@@ -48,6 +49,8 @@ private:
 
 	std::shared_ptr<Shader> m_BlueShader;
 	std::shared_ptr<VertexArray> m_SquareVA;
+
+	Camera m_Camera;
 	
 	static Application* s_Instance;
 };

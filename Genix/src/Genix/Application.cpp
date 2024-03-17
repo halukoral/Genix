@@ -13,7 +13,7 @@
 
 Application* Application::s_Instance = nullptr;
 
-Application::Application()
+Application::Application() : m_Camera()
 {
 	ASSERT_CORE(!s_Instance, "Application already exists!");
 	s_Instance = this;
@@ -81,13 +81,10 @@ void Application::Run()
 		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		RenderCommand::Clear();
 
-		Renderer::BeginScene();
-		
-		m_BlueShader->Bind();
-		Renderer::SubmitVAO(m_SquareVA);
-		
-		m_Shader->Bind();
-		Renderer::SubmitVAO(m_VertexArray);
+		Renderer::BeginScene(m_Camera);
+
+		Renderer::Submit(m_BlueShader, m_SquareVA);
+		Renderer::Submit(m_Shader, m_VertexArray);
 
 		Renderer::EndScene();
 

@@ -1,6 +1,8 @@
 ﻿#include "gxpch.h"
 #include "Shader.h"
 
+#include "glm/gtc/type_ptr.hpp"
+
 std::string ReadFileAsString(const std::string& filepath)
 {
 	std::string result;
@@ -42,6 +44,66 @@ void Shader::Bind() const
 void Shader::Unbind() const
 {
 	glUseProgram(0);
+}
+
+void Shader::UploadUniform_Bool(const std::string& name, const bool value) const
+{
+	glUniform1i(glGetUniformLocation(m_ID, name.c_str()), (int)value);
+}
+
+void Shader::UploadUniform_Int(const std::string& name, const int value) const
+{
+	glUniform1i(glGetUniformLocation(m_ID, name.c_str()), value);
+}
+
+void Shader::UploadUniform_Float(const std::string& name, float value) const
+{
+	glUniform1f(glGetUniformLocation(m_ID, name.c_str()), value);
+}
+
+void Shader::UploadUniform_Vec2(const std::string& name, glm::vec2& value) const
+{
+	glUniform2fv(glGetUniformLocation(m_ID, name.c_str()), 1, glm::value_ptr(value));
+}
+
+void Shader::UploadUniform_Vec2(const std::string& name, const float x, const float y) const
+{
+	glUniform2f(glGetUniformLocation(m_ID, name.c_str()), x, y);
+}
+
+void Shader::UploadUniform_Vec3(const std::string& name, glm::vec3& value) const
+{
+	glUniform3fv(glGetUniformLocation(m_ID, name.c_str()), 1, glm::value_ptr(value));
+}
+
+void Shader::UploadUniform_Vec3(const std::string& name, const float x, const float y, const float z) const
+{
+	glUniform3f(glGetUniformLocation(m_ID, name.c_str()), x, y, z);
+}
+
+void Shader::UploadUniform_Vec4(const std::string& name, glm::vec4& value) const
+{
+	glUniform4fv(glGetUniformLocation(m_ID, name.c_str()), 1, glm::value_ptr(value));
+}
+
+void Shader::UploadUniform_Vec4(const std::string& name, const float x, const float y, const float z, const float w) const
+{
+	glUniform4f(glGetUniformLocation(m_ID, name.c_str()), x, y, z, w);
+}
+
+void Shader::UploadUniform_Mat2(const std::string& name, glm::mat2& matrix) const
+{
+	glUniformMatrix2fv(glGetUniformLocation(m_ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
+}
+
+void Shader::UploadUniform_Mat3(const std::string& name, glm::mat3& matrix) const
+{
+	glUniformMatrix3fv(glGetUniformLocation(m_ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
+}
+
+void Shader::UploadUniform_Mat4(const std::string& name, glm::mat4& matrix) const
+{
+	glUniformMatrix4fv(glGetUniformLocation(m_ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 void Shader::Compile(std::unordered_map<GLenum, std::string> shaderSources)
