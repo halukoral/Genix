@@ -22,6 +22,7 @@ IncludeDir["Glad"] = "Genix/ThirdParty/glad/include"
 IncludeDir["glm"] = "Genix/ThirdParty/glm"
 IncludeDir["spdlog"] = "Genix/ThirdParty/spdlog/include"
 IncludeDir["ImGui"] = "Genix/ThirdParty/imgui"
+IncludeDir["stb_image"] = "Genix/ThirdParty/stb_image"
 
 group "Dependencies"
     include "Genix/ThirdParty/glad"
@@ -46,6 +47,8 @@ project "Genix"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
+        "%{prj.name}/ThirdParty/stb_image/**.h",
+        "%{prj.name}/ThirdParty/stb_image/**.cpp",
         "%{prj.name}/ThirdParty/glm/glm/**.hpp",
         "%{prj.name}/ThirdParty/glm/glm/**.inl"
     }
@@ -62,7 +65,8 @@ project "Genix"
         "%{IncludeDir.Glad}",
         "%{IncludeDir.glm}",
         "%{IncludeDir.spdlog}",
-        "%{IncludeDir.ImGui}"
+        "%{IncludeDir.ImGui}",
+        "%{IncludeDir.stb_image}"
 	}
 
 	links 
