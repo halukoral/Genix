@@ -1,9 +1,9 @@
 #pragma once
 
-class GENIX_API Timestep
+class GENIX_API TimeStep
 {
 public:
-	Timestep(float time = 0.0f): m_Time(time) { }
+	TimeStep(float time = 0.0f): m_Time(time) { }
 
 	operator float() const { return m_Time; }
 

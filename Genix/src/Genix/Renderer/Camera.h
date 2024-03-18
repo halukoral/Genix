@@ -1,52 +1,80 @@
 ﻿#pragma once
+
+#include "Genix/Events/ApplicationEvent.h"
+#include "Genix/Events/MouseEvent.h"
+#include "Genix/Common/TimeStep.h"
+
 #include <glm/glm.hpp>
 
 // Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods
-enum Camera_Movement {
-	FORWARD,
-	BACKWARD,
-	LEFT,
-	RIGHT
+enum class CameraMovement
+{
+	Forward,
+	Backward,
+	Left,
+	Right
 };
 
-// Default camera values
-const float YAW = -90.0f;
-const float PITCH = 0.0f;
-const float SPEED = 2.5f;
-const float SENSITIVITY = 0.1f;
-const float ZOOM = 45.0f;
+enum class CameraType
+{
+	Perspective,
+	Orthographic
+};
 
 class GENIX_API Camera
 {
 public:
-	Camera(glm::vec3 InPosition = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 InUp = glm::vec3(0.0f, 1.0f, 0.0f), float InYaw = YAW, float InPitch = PITCH);
+	Camera();
+	Camera(glm::vec3 position);
 
+	void OnUpdate(TimeStep ts);
+	void OnEvent(Event& e);
+
+	void OnMove(CameraMovement direction, TimeStep ts);
+	
 	// returns the view matrix calculated using Euler Angles and the LookAt Matrix
 	glm::mat4 GetViewMatrix() const;
+	glm::mat4 GetProjectionMatrix(CameraType cameraType) const;
 	glm::mat4 GetViewProjectionMatrix() const;
 
-	const glm::vec3& GetPosition() const { return Position; }
-	void SetPosition(const glm::vec3& position) { Position = position; }
-	
-	// camera Attributes
-	glm::vec3 Position;
-	glm::vec3 Front;
-	glm::vec3 Up;
-	glm::vec3 Right;
-	glm::vec3 WorldUp;
-
-	// euler Angles
-	float Yaw;
-	float Pitch;
-
-	// camera options
-	float MovementSpeed;
-	float MouseSensitivity;
-	float Zoom;
+	const glm::vec3& GetPosition() const { return m_Position; }
+	void SetPosition(const glm::vec3& position);
 
 private:
+	void SetYaw(float yaw);
+	void SetPitch(float pitch);
 
+	bool OnMouseMoved(MouseMovedEvent& e);
+	bool OnMouseScrolled(MouseScrolledEvent& e);
+	bool OnWindowResized(WindowResizeEvent& e);
+	
 	// calculates the front vector from the Camera's (updated) Euler Angles
 	void UpdateCameraVectors();
+	
+	// camera Attributes
+	glm::vec3 m_Position = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 m_Front;
+	glm::vec3 m_Up;
+	glm::vec3 m_Right;
+	
+	glm::vec3 m_WorldUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
+	CameraType m_CameraType = CameraType::Perspective;
+
+	bool  m_FirstMouseMove = true;
+	float m_LastMouseX;
+	float m_LastMouseY;
+	
+	// camera options
+	float m_Fov = 45.0f;
+	float m_AspectRatio = 1920.f / 1080.f;
+	float m_MovementSpeed = 2.5f;
+	float m_MouseSensitivity = 0.1f;
+
+	float m_zNear = 0.1f;
+	float m_zFar  = 100.f;
+	
+	// euler Angles
+	float m_Yaw = -90.0f;
+	float m_Pitch = 0.f;
 };

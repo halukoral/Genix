@@ -23,6 +23,8 @@ public:
 	void PushLayer(Layer* layer);
 	void PushOverlay(Layer* layer);
 
+	void OnClose() { m_Running = false; }
+	
 	Window& GetWindow() const { return *m_Window; }
 
 	static Application& Get() { return *s_Instance; }

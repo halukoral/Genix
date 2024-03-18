@@ -38,6 +38,8 @@ public:
 	unsigned int GetWidth() const { return m_Data.Width; }
 	unsigned int GetHeight() const { return m_Data.Height; }
 
+	const WindowAttributes& GetWindowAttributes() const { return m_Data; }
+	
 	// Window attributes
 	virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 	virtual void SetVSync(bool enabled) = 0;

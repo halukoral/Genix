@@ -12,6 +12,9 @@
 
 #include <glfw/glfw3.h>
 
+#include "Events/KeyEvent.h"
+#include "Input/KeyCodes.h"
+
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 Application* Application::s_Instance = nullptr;
@@ -32,12 +35,12 @@ void Application::Run()
 {
 	while (m_Running)
 	{
+		const float time = (float)glfwGetTime();
+		const TimeStep timeStep = time - m_LastFrameTime;
+		m_LastFrameTime = time;
+
 		if (!m_Minimized)
 		{
-			const float time = (float)glfwGetTime();
-			const Timestep timeStep = time - m_LastFrameTime;
-			m_LastFrameTime = time;
-			
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate(timeStep);
@@ -98,5 +101,5 @@ bool Application::OnWindowResize(WindowResizeEvent& e)
 bool Application::OnWindowClose(WindowCloseEvent& e)
 {
 	m_Running = false;
-	return true;
+	return false;
 }

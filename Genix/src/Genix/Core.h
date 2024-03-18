@@ -24,4 +24,4 @@
 
 #define BIT(x) (1 << x)
 
-#define GX_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+#define GX_BIND(fn) std::bind(&fn, this, std::placeholders::_1)
