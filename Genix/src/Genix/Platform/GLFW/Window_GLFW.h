@@ -25,5 +25,5 @@ private:
 	virtual void Shutdown();
 
 	GLFWwindow* m_Window;
-	RendererContext* m_Context;
+	Scope<RendererContext> m_Context;
 };

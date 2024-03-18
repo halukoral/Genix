@@ -4,7 +4,7 @@
 #include "Genix/Application.h"
 #include "GLFW/glfw3.h"
 
-Input* Input::s_Instance = new Input_GLFW();
+Scope<Input> Input::s_Instance = CreateScope<Input_GLFW>();
 
 bool Input_GLFW::IsKeyPressedImpl(int keycode)
 {

@@ -3,7 +3,7 @@
 
 #include "Genix/Platform/OpenGL/OpenGLRendererAPI.h"
 
-RendererAPI* RenderCommand::s_RendererAPI = new OpenGLRendererAPI;
+Scope<RendererAPI> RenderCommand::s_RendererAPI = CreateScope<OpenGLRendererAPI>();
 
 void RenderCommand::SetViewport(uint32 x, uint32 y, uint32 width, uint32 height)
 {

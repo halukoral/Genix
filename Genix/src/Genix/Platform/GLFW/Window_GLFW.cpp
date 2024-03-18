@@ -12,9 +12,9 @@
 
 static bool s_GLFWInitialized = false;
 
-Window* Window::Create(const WindowAttributes& attributes)
+Scope<Window> Window::Create(const WindowAttributes& attributes)
 {
-	return new Window_GLFW(attributes);
+	return CreateScope<Window_GLFW>(attributes);
 }
 
 static void GLFWErrorCallback(int error, const char* description)
@@ -161,7 +161,7 @@ void Window_GLFW::Init(const WindowAttributes& attributes)
 
 	m_Window = glfwCreateWindow((int)attributes.Width, (int)attributes.Height, m_Data.Title.c_str(), nullptr, nullptr);
 
-	m_Context = new OpenGLContext(m_Window);
+	m_Context = CreateScope<OpenGLContext>(m_Window);
 	m_Context->Init();
 	
 	SetVSync(true);

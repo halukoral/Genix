@@ -39,7 +39,7 @@ private:
 	float m_LastFrameTime = 0.0f;
 	
 	LayerStack m_LayerStack;
-	std::unique_ptr<Window> m_Window;
+	Scope<Window> m_Window;
 	ImGuiLayer* m_ImGuiLayer;
 	
 	static Application* s_Instance;

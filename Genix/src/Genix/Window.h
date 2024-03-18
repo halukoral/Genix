@@ -29,7 +29,7 @@ class GENIX_API Window
 public:
 	using EventCallbackFn = std::function<void(Event&)>;
 
-	static Window* Create(const WindowAttributes& props = WindowAttributes());
+	static Scope<Window> Create(const WindowAttributes& props = WindowAttributes());
 
 	virtual ~Window() {}
 

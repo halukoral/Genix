@@ -11,5 +11,5 @@ public:
 	static void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray);
 
 private:
-	static RendererAPI* s_RendererAPI;
+	static Scope<RendererAPI> s_RendererAPI;
 };
