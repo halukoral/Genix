@@ -18,6 +18,7 @@
 
 #include "Genix/Renderer/Buffer.h"
 #include "Genix/Renderer/Shader.h"
+#include "Genix/Renderer/Texture.h"
 #include "Genix/Renderer/VertexArray.h"
 
 #include "Genix/Renderer/Camera.h"

@@ -1,5 +1,6 @@
 #include <Genix.h>
 
+#include "Genix/Platform/OpenGL/OpenGLShader.h"
 #include "Genix/Renderer/Camera.h"
 #include "glm/ext/matrix_transform.hpp"
 #include "imgui/imgui.h"
@@ -9,32 +10,34 @@ class ExampleLayer : public Layer
 public:
 	ExampleLayer() : Layer("Example")
 	{
-		m_VertexArray.reset(VertexArray::Create());
-
-		float vertices[3 * 7] = {
-			// Vertices			// Color
-			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
-			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		std::shared_ptr<VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-	
-		const BufferLayout layout =
+		m_SquareVA.reset(VertexArray::Create());
+		
+		Ref<VertexBuffer> squareVB;
+		squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB->SetLayout(
 		{
 			{ ShaderDataType::Float3, "a_Position" },
-			{ ShaderDataType::Float4, "a_Color" }
-		};
-	
-		vertexBuffer->SetLayout(layout);
-		m_VertexArray->AddVertexBuffer(vertexBuffer);
-	
-		uint32 indices[3] = { 0, 1, 2 };
-		std::shared_ptr<IndexBuffer> indexBuffer;
-		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32)));
-		m_VertexArray->SetIndexBuffer(indexBuffer);
+			{ ShaderDataType::Float2, "a_TexCoord" }
+		});
+		m_SquareVA->AddVertexBuffer(squareVB);
+
+		uint32 squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+		Ref<IndexBuffer> squareIB;
+		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32)));
+		m_SquareVA->SetIndexBuffer(squareIB);
+		
 		m_Shader.reset(Shader::Create("Assets/Shaders/shader.vert", "Assets/Shaders/shader.frag"));
+		m_Texture = Texture::Create("Assets/Textures/bricks2.jpg");
+		
+		std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->Bind();
+		std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->UploadUniform_Int("u_Texture", 0);
 	}
 
 	void OnUpdate(TimeStep ts) override
@@ -46,17 +49,8 @@ public:
 
 		Renderer::BeginScene(m_Camera);
 
-		const glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-
-		for (int y = 0; y < 20; y++)
-		{
-			for (int x = 0; x < 20; x++)
-			{
-				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
-				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				Renderer::Submit(m_Shader, m_VertexArray, transform);
-			}
-		}
+		m_Texture->Bind();
+		Renderer::Submit(m_Shader, m_SquareVA);
 		
 		Renderer::EndScene();
 	}
@@ -71,9 +65,10 @@ public:
 	}
 
 private:
-	std::shared_ptr<Shader> m_Shader;
-	std::shared_ptr<VertexArray> m_VertexArray;
-
+	Ref<Shader> m_Shader;
+	Ref<VertexArray> m_SquareVA;
+	Ref<Texture> m_Texture;
+	
 	Camera m_Camera;
 };
 
