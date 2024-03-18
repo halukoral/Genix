@@ -4,7 +4,7 @@
 #include "Genix/Common/TimeStep.h"
 #include "Genix/Events/Event.h"
 
-class GENIX_API Layer
+class Layer
 {
 public:
 	Layer(const std::string& name = "Layer");

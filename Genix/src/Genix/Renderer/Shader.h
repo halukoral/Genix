@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-class GENIX_API Shader
+class Shader
 {
 public:
 	virtual ~Shader() = default;

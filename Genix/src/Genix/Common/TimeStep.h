@@ -1,6 +1,6 @@
 #pragma once
 
-class GENIX_API TimeStep
+class TimeStep
 {
 public:
 	TimeStep(float time = 0.0f): m_Time(time) { }

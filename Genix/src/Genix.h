@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include "Genix/Core.h"
+
 #include "Genix/Application.h"
 #include "Genix/Log.h"
 

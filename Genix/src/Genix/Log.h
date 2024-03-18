@@ -1,9 +1,10 @@
 ﻿#pragma once
 #include "Core.h"
-#include "spdlog/spdlog.h"
-#include "spdlog/fmt/ostr.h"
 
-class GENIX_API Log
+#include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
+
+class Log
 {
 public:
 	static void Init();

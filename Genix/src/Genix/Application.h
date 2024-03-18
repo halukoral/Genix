@@ -4,18 +4,18 @@
 #include "Window.h"
 #include "Layer/LayerStack.h"
 
-class WindowResizeEvent;
-class IndexBuffer;
-class VertexBuffer;
 class ImGuiLayer;
+class IndexBuffer;
 class Layer;
+class VertexBuffer;
 class WindowCloseEvent;
+class WindowResizeEvent;
 
-class GENIX_API Application
+class Application
 {
 public:
 	Application();
-	virtual ~Application() = default;
+	virtual ~Application();
 
 	void Run();
 	void OnEvent(Event& e);

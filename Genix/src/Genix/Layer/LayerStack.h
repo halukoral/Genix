@@ -3,7 +3,7 @@
 #include "Layer.h"
 #include <vector>
 
-class GENIX_API LayerStack
+class LayerStack
 {
 public:
 	LayerStack() = default;

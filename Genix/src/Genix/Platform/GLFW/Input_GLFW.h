@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Genix/Input/Input.h"
 
-class GENIX_API Input_GLFW : public Input
+class Input_GLFW : public Input
 {
 protected:
 	bool IsKeyPressedImpl(int keycode) override;

@@ -1,9 +1,9 @@
 #include <Genix.h>
 
 #include "Genix/Platform/OpenGL/OpenGLShader.h"
-#include "Genix/Renderer/Camera.h"
-#include "glm/ext/matrix_transform.hpp"
-#include "imgui/imgui.h"
+
+#include <imgui/imgui.h>
+#include <glm/ext/matrix_transform.hpp>
 
 class ExampleLayer : public Layer
 {

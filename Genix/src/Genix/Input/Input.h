@@ -2,7 +2,7 @@
 
 #include "Genix/Core.h"
 
-class GENIX_API Input
+class Input
 {
 protected:
 	Input() = default;

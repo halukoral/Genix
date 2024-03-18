@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Genix/Common/PrimitiveTypes.h"
 
-class GENIX_API Texture
+class Texture
 {
 public:
 	virtual ~Texture() = default;

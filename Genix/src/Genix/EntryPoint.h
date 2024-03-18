@@ -1,5 +1,8 @@
 ﻿#pragma once
+#include "Core.h"
 #include "Application.h"
+
+#ifdef HZ_PLATFORM_WINDOWS
 
 extern Application* CreateApplication();
 
@@ -11,3 +14,5 @@ int main(int argc, char** argv)
 	app->Run();
 	delete app;
 }
+
+#endif

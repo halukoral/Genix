@@ -5,7 +5,7 @@
 class RendererContext;
 struct GLFWwindow;
 
-class GENIX_API Window_GLFW : public Window
+class Window_GLFW : public Window
 {
 public:
 	Window_GLFW(const WindowAttributes& attributes);

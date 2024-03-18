@@ -43,15 +43,6 @@
 	#error "Unknown platform!"
 #endif // End of platform detection
 
-#if GX_DYNAMIC_LINK
-	#ifdef GX_BUILD_DLL
-		#define GENIX_API __declspec(dllexport)
-	#else
-		#define GENIX_API __declspec(dllimport)
-	#endif
-#else
-	#define GENIX_API
-#endif
 
 #ifdef GX_DEBUG
 	#define GX_ENABLE_ASSERTS

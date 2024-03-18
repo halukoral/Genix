@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Genix/Renderer/Texture.h"
 
-class GENIX_API OpenGLTexture : public Texture
+class OpenGLTexture : public Texture
 {
 public:
 	OpenGLTexture(const std::string& path);

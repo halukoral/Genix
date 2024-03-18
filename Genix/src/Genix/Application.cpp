@@ -15,8 +15,6 @@
 #include "Events/KeyEvent.h"
 #include "Input/KeyCodes.h"
 
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
-
 Application* Application::s_Instance = nullptr;
 
 Application::Application()
@@ -24,11 +22,16 @@ Application::Application()
 	ASSERT_CORE(!s_Instance, "Application already exists!")
 	s_Instance = this;
 	
-	m_Window = Scope<Window>(Window::Create());
-	m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+	m_Window = Window::Create();
+	m_Window->SetEventCallback(GX_BIND(Application::OnEvent));
 
 	m_ImGuiLayer = new ImGuiLayer();
 	PushOverlay(m_ImGuiLayer);
+}
+
+Application::~Application()
+{
+	Renderer::Shutdown();
 }
 
 void Application::Run()
@@ -61,8 +64,8 @@ void Application::Run()
 void Application::OnEvent(Event& e)
 {
 	EventDispatcher dispatcher(e);
-	dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-	dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
+	dispatcher.Dispatch<WindowCloseEvent>(GX_BIND(Application::OnWindowClose));
+	dispatcher.Dispatch<WindowResizeEvent>(GX_BIND(Application::OnWindowResize));
 
 	for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 	{

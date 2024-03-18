@@ -21,7 +21,7 @@ enum class CameraType
 	Orthographic
 };
 
-class GENIX_API Camera
+class Camera
 {
 public:
 	Camera();

@@ -54,7 +54,7 @@ struct FEnableBitmaskOperators<EventCategory>
 
 #define EVENT_CLASS_CATEGORY(category) virtual EventCategory GetCategory() const override { return category; }
 
-class GENIX_API Event
+class Event
 {
 public:
 	friend class EventDispatcher;

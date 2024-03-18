@@ -1,6 +1,7 @@
 ﻿#include "gxpch.h"
 #include "Log.h"
-#include "spdlog/sinks/stdout_color_sinks.h"
+
+#include <spdlog/sinks/stdout_color_sinks.h>
 
 Ref<spdlog::logger> Log::s_CoreLogger;
 Ref<spdlog::logger> Log::s_ClientLogger;
