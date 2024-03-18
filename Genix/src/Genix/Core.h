@@ -25,3 +25,9 @@
 #define BIT(x) (1 << x)
 
 #define GX_BIND(fn) std::bind(&fn, this, std::placeholders::_1)
+
+template<typename T>
+using Scope = std::unique_ptr<T>;
+
+template<typename T>
+using Ref = std::shared_ptr<T>;
