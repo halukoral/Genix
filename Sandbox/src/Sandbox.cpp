@@ -1,6 +1,7 @@
 #include <Genix.h>
 
 #include "Genix/Renderer/Camera.h"
+#include "glm/ext/matrix_transform.hpp"
 #include "imgui/imgui.h"
 
 class ExampleLayer : public Layer
@@ -45,8 +46,18 @@ public:
 
 		Renderer::BeginScene(m_Camera);
 
-		Renderer::Submit(m_Shader, m_VertexArray);
+		const glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		for (int y = 0; y < 20; y++)
+		{
+			for (int x = 0; x < 20; x++)
+			{
+				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				Renderer::Submit(m_Shader, m_VertexArray, transform);
+			}
+		}
+		
 		Renderer::EndScene();
 	}
 	
