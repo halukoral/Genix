@@ -44,7 +44,7 @@ void BufferLayout::CalculateOffsetsAndStride()
 	}
 }
 
-VertexBuffer* VertexBuffer::Create(float* vertices, uint32 size)
+Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32 size)
 {
 	switch (Renderer::GetAPI())
 	{
@@ -53,7 +53,7 @@ VertexBuffer* VertexBuffer::Create(float* vertices, uint32 size)
 		return nullptr;
 		
 	case RendererAPI::API::OpenGL:
-		return new OpenGLVertexBuffer(vertices, size);
+		return std::make_shared<OpenGLVertexBuffer>(vertices, size);
 		
 	case RendererAPI::API::DirectX:
 		ASSERT_CORE(false, "RendererAPI::DirectX is currently not supported!")
@@ -64,7 +64,7 @@ VertexBuffer* VertexBuffer::Create(float* vertices, uint32 size)
 	return nullptr;
 }
 
-IndexBuffer* IndexBuffer::Create(uint32* indices, uint32 size)
+Ref<IndexBuffer> IndexBuffer::Create(uint32* indices, uint32 size)
 {
 	switch (Renderer::GetAPI())
 	{
@@ -73,7 +73,7 @@ IndexBuffer* IndexBuffer::Create(uint32* indices, uint32 size)
 		return nullptr;
 		
 	case RendererAPI::API::OpenGL:
-		return new OpenGLIndexBuffer(indices, size);
+		return std::make_shared<OpenGLIndexBuffer>(indices, size);
 		
 	case RendererAPI::API::DirectX:
 		ASSERT_CORE(false, "RendererAPI::DirectX is currently not supported!")

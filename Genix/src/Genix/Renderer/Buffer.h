@@ -78,7 +78,7 @@ public:
 	virtual const BufferLayout& GetLayout() const = 0;
 	virtual void SetLayout(const BufferLayout& layout) = 0;
 	
-	static VertexBuffer* Create(float* vertices, uint32 size);
+	static Ref<VertexBuffer> Create(float* vertices, uint32 size);
 };
 
 class GENIX_API IndexBuffer
@@ -92,5 +92,5 @@ public:
 
 	virtual uint32 GetCount() const = 0;
 
-	static IndexBuffer* Create(uint32* indices, uint32 size);
+	static Ref<IndexBuffer> Create(uint32* indices, uint32 size);
 };

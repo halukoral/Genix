@@ -17,10 +17,10 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		m_SquareVA.reset(VertexArray::Create());
+		m_SquareVA = VertexArray::Create();
 		
 		Ref<VertexBuffer> squareVB;
-		squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB = VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout(
 		{
 			{ ShaderDataType::Float3, "a_Position" },
@@ -30,10 +30,10 @@ public:
 
 		uint32 squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		Ref<IndexBuffer> squareIB;
-		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32)));
+		squareIB = IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32));
 		m_SquareVA->SetIndexBuffer(squareIB);
 		
-		m_Shader.reset(Shader::Create("Assets/Shaders/shader.vert", "Assets/Shaders/shader.frag"));
+		m_Shader = Shader::Create("Assets/Shaders/shader.vert", "Assets/Shaders/shader.frag");
 		m_Texture = Texture::Create("Assets/Textures/bricks2.jpg");
 		
 		std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->Bind();
