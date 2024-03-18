@@ -34,7 +34,7 @@ public:
 		std::shared_ptr<IndexBuffer> indexBuffer;
 		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
-		m_Shader.reset(new Shader("Assets/Shaders/shader.vert", "Assets/Shaders/shader.frag"));
+		m_Shader.reset(Shader::Create("Assets/Shaders/shader.vert", "Assets/Shaders/shader.frag"));
 	}
 
 	void OnUpdate(TimeStep ts) override
