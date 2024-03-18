@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #if GX_DYNAMIC_LINK
 	#ifdef GX_BUILD_DLL
 		#define GENIX_API __declspec(dllexport)
