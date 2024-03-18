@@ -1,12 +1,16 @@
 [submodule "Genix/ThirdParty/spdlog"]
 	path = Genix/ThirdParty/spdlog
-	url = https://github.com/gabime/spdlog
+	url = https://github.com/gabime/
+	branch = v1.x
 [submodule "Genix/ThirdParty/imgui"]
 	path = Genix/ThirdParty/imgui
 	url = https://github.com/ocornut/imgui
+	branch = docking
 [submodule "Genix/ThirdParty/GLFW"]
 	path = Genix/ThirdParty/GLFW
 	url = https://github.com/glfw/glfw.git
+	branch = master
 [submodule "Genix/ThirdParty/glm"]
 	path = Genix/ThirdParty/glm
 	url = https://github.com/g-truc/glm.git
+	branch = master
