@@ -10,9 +10,11 @@
 #include "Genix/Input/MouseCodes.h"
 
 #include "Genix/Common/PrimitiveTypes.h"
+#include "Genix/Common/TimeStep.h"
 #include "Genix/Events/KeyEvent.h"
-#include "Genix/ImGui/ImGuiLayer.h"
 #include "Genix/Layer/Layer.h"
+
+#include "Genix/ImGui/ImGuiLayer.h"
 
 // ---Renderer------------------------
 #include "Genix/Renderer/Renderer.h"
@@ -25,6 +27,3 @@
 
 #include "Genix/Renderer/Camera.h"
 // -----------------------------------
-
-// ---Entry Point---------------------
-#include "Genix/EntryPoint.h"
