@@ -67,9 +67,9 @@ void Application::OnEvent(Event& e)
 	dispatcher.Dispatch<WindowCloseEvent>(GX_BIND(Application::OnWindowClose));
 	dispatcher.Dispatch<WindowResizeEvent>(GX_BIND(Application::OnWindowResize));
 
-	for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+	for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
 	{
-		(*--it)->OnEvent(e);
+		(*it)->OnEvent(e);
 		if (e.GetHandled() == true)
 		{
 			 break;
