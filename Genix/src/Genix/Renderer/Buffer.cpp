@@ -34,7 +34,7 @@ BufferLayout::BufferLayout(const std::initializer_list<BufferElement>& elements)
 void BufferLayout::CalculateOffsetsAndStride()
 {
 	m_Stride = 0;
-	uint32 offset = 0;
+	size_t  offset = 0;
 
 	for (auto& element : m_Elements)
 	{
