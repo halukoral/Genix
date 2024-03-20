@@ -10,7 +10,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-static bool s_GLFWInitialized = false;
+static uint8_t s_GLFWWindowCount = 0;
 
 static void GLFWErrorCallback(int error, const char* description)
 {
@@ -145,17 +145,18 @@ void Window_GLFW::Init(const WindowAttributes& attributes)
 
 	LOG_CORE_INFO("Creating window {0} ({1}, {2})", attributes.Title, attributes.Width, attributes.Height);
 
-	if (!s_GLFWInitialized)
+	if (s_GLFWWindowCount == 0)
 	{
+		LOG_CORE_INFO("Initializing GLFW");
 		int success = glfwInit();
 		ASSERT_CORE(success, "Could not intialize GLFW!")
 
 		glfwSetErrorCallback(GLFWErrorCallback);
-		s_GLFWInitialized = true;
 	}
 
 	m_Window = glfwCreateWindow((int)attributes.Width, (int)attributes.Height, m_Data.Title.c_str(), nullptr, nullptr);
-
+	++s_GLFWWindowCount;
+	
 	m_Context = CreateScope<OpenGLContext>(m_Window);
 	m_Context->Init();
 	
@@ -183,4 +184,10 @@ void Window_GLFW::OnUpdate()
 void Window_GLFW::Shutdown()
 {
 	glfwDestroyWindow(m_Window);
+	
+	if (--s_GLFWWindowCount == 0)
+	{
+		LOG_CORE_INFO("Terminating GLFW");
+		glfwTerminate();	
+	}
 }
