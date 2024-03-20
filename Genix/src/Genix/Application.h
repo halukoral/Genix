@@ -11,13 +11,14 @@ class VertexBuffer;
 class WindowCloseEvent;
 class WindowResizeEvent;
 
+int main(int argc, char** argv);
+
 class Application
 {
 public:
 	Application();
 	virtual ~Application();
 
-	void Run();
 	void OnEvent(Event& e);
 
 	void PushLayer(Layer* layer);
@@ -30,6 +31,8 @@ public:
 	static Application& Get() { return *s_Instance; }
 	
 private:
+	void Run();
+
 	bool OnWindowResize(WindowResizeEvent& e);
 	bool OnWindowClose(WindowCloseEvent& e);
 
@@ -43,6 +46,7 @@ private:
 	ImGuiLayer* m_ImGuiLayer;
 	
 	static Application* s_Instance;
+	friend int ::main(int argc, char** argv);
 };
 
 // For CLIENT
