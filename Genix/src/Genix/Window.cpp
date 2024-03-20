@@ -10,7 +10,7 @@ Scope<Window> Window::Create(const WindowAttributes& props)
 #ifdef GX_PLATFORM_WINDOWS
 	return CreateScope<Window_GLFW>(props);
 #else
-	GX_CORE_ASSERT(false, "Unknown platform!");
+	ASSERT_CORE(false, "Unknown platform!");
 	return nullptr;
 #endif
 }

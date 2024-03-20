@@ -10,6 +10,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "Genix/Renderer/Renderer.h"
+
 static uint8 s_GLFWWindowCount = 0;
 
 static void GLFWErrorCallback(int error, const char* description)
@@ -154,10 +156,17 @@ void Window_GLFW::Init(const WindowAttributes& attributes)
 		glfwSetErrorCallback(GLFWErrorCallback);
 	}
 
+#if defined(GX_DEBUG)
+	if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+	{
+		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+	}
+#endif
+	
 	m_Window = glfwCreateWindow((int)attributes.Width, (int)attributes.Height, m_Data.Title.c_str(), nullptr, nullptr);
 	++s_GLFWWindowCount;
 	
-	m_Context = CreateScope<OpenGLContext>(m_Window);
+	m_Context = OpenGLContext::Create(m_Window);
 	m_Context->Init();
 	
 	SetVSync(true);
@@ -184,8 +193,9 @@ void Window_GLFW::OnUpdate()
 void Window_GLFW::Shutdown()
 {
 	glfwDestroyWindow(m_Window);
+	--s_GLFWWindowCount;
 	
-	if (--s_GLFWWindowCount == 0)
+	if (s_GLFWWindowCount == 0)
 	{
 		LOG_CORE_INFO("Terminating GLFW");
 		glfwTerminate();	

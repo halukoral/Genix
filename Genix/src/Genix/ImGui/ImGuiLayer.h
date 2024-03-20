@@ -20,11 +20,15 @@ public:
 	void OnDetach() override;
 	void OnEvent(Event& e) override;
 	
-	void OnImGuiRender() override;
-
 	void Begin();
 	void End();
-	
+
+	void BlockEvents(bool block) { m_BlockEvents = block; }
+		
+	void SetDarkThemeColors();
+
+	uint32 GetActiveWidgetID() const;
+
 private:
-	float m_Time = 0.0f;
+	bool m_BlockEvents = true;
 };

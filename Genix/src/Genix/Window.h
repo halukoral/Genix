@@ -1,9 +1,8 @@
 ﻿#pragma once
 
 #include "gxpch.h"
-
-#include "Events/Event.h"
 #include "Genix/Core.h"
+#include "Events/Event.h"
 
 using EventCallbackFn = std::function<void(Event&)>;
 
@@ -24,6 +23,7 @@ struct WindowAttributes
 	}
 };
 
+// Interface representing a desktop system based Window
 class Window
 {
 public:
