@@ -12,11 +12,6 @@
 
 static bool s_GLFWInitialized = false;
 
-Scope<Window> Window::Create(const WindowAttributes& attributes)
-{
-	return CreateScope<Window_GLFW>(attributes);
-}
-
 static void GLFWErrorCallback(int error, const char* description)
 {
 	LOG_CORE_ERROR("GLFW Error ({0}): {1}", error, description);

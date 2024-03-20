@@ -2,7 +2,7 @@
 #include "Core.h"
 #include "Application.h"
 
-#ifdef HZ_PLATFORM_WINDOWS
+#ifdef GX_PLATFORM_WINDOWS
 
 extern Application* CreateApplication();
 
