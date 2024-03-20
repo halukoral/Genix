@@ -109,7 +109,7 @@ void OpenGLShader::UploadUniform_Mat4(const std::string& name, glm::mat4& matrix
 void OpenGLShader::Compile(std::unordered_map<GLenum, std::string> shaderSources)
 {
 	GLuint program = glCreateProgram();
-	std::vector<GLenum> glShaderIDs(shaderSources.size());
+	std::vector<GLenum> glShaderIDs;
 	for (auto& kv : shaderSources)
 	{
 		GLenum type = kv.first;
