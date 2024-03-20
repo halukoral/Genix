@@ -35,6 +35,7 @@ public:
 		
 		m_Shader = Shader::Create("Assets/Shaders/shader.vert", "Assets/Shaders/shader.frag");
 		m_Texture = Texture::Create("Assets/Textures/bricks2.jpg");
+		m_AwesomeFaceTexture = Texture::Create("Assets/Textures/awesomeface.png");
 		
 		std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->Bind();
 		std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->UploadUniform_Int("u_Texture", 0);
@@ -50,6 +51,8 @@ public:
 		Renderer::BeginScene(m_Camera);
 
 		m_Texture->Bind();
+		Renderer::Submit(m_Shader, m_SquareVA);
+		m_AwesomeFaceTexture->Bind();
 		Renderer::Submit(m_Shader, m_SquareVA);
 		
 		Renderer::EndScene();
@@ -68,6 +71,7 @@ private:
 	Ref<Shader> m_Shader;
 	Ref<VertexArray> m_SquareVA;
 	Ref<Texture> m_Texture;
+	Ref<Texture> m_AwesomeFaceTexture;
 	
 	Camera m_Camera;
 };

@@ -1,6 +1,5 @@
 #include "gxpch.h"
 #include "Application.h"
-
 #include "Log.h"
 
 #include "Common/PrimitiveTypes.h"
@@ -10,10 +9,7 @@
 #include "Layer/Layer.h"
 #include "Renderer/Renderer.h"
 
-#include <glfw/glfw3.h>
-
-#include "Events/KeyEvent.h"
-#include "Input/KeyCodes.h"
+#include <GLFW/glfw3.h>
 
 Application* Application::s_Instance = nullptr;
 
@@ -25,6 +21,8 @@ Application::Application()
 	m_Window = Window::Create();
 	m_Window->SetEventCallback(GX_BIND(Application::OnEvent));
 
+	Renderer::Init();
+	
 	m_ImGuiLayer = new ImGuiLayer();
 	PushOverlay(m_ImGuiLayer);
 }

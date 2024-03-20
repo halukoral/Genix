@@ -8,6 +8,7 @@ Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneDa
 
 void Renderer::Init()
 {
+	RenderCommand::Init();
 }
 
 void Renderer::Shutdown()
