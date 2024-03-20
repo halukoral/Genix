@@ -53,6 +53,15 @@ void ImGuiLayer::OnDetach()
 	ImGui::DestroyContext();
 }
 
+void ImGuiLayer::OnEvent(Event& e)
+{
+	ImGuiIO& io = ImGui::GetIO();
+	bool handled = e.GetHandled();
+	handled |= e.IsInCategory(EventCategory::Mouse) & io.WantCaptureMouse;
+	handled |= e.IsInCategory(EventCategory::Keyboard) & io.WantCaptureKeyboard;
+	e.SetHandled(handled);
+}
+
 void ImGuiLayer::OnImGuiRender()
 {
 	static bool show = true;
