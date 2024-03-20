@@ -85,6 +85,11 @@ void Application::PushOverlay(Layer* layer)
 	m_LayerStack.PushOverlay(layer);
 }
 
+void Application::Close()
+{
+	m_Running = false;
+}
+
 bool Application::OnWindowResize(WindowResizeEvent& e)
 {
 	if (e.GetWidth() == 0 || e.GetHeight() == 0)

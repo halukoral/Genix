@@ -25,6 +25,8 @@ public:
 	void PushOverlay(Layer* layer);
 
 	void OnClose() { m_Running = false; }
+
+	void Close();
 	
 	Window& GetWindow() const { return *m_Window; }
 
