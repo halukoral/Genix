@@ -34,6 +34,8 @@ void OpenGLVertexBuffer::Unbind() const
 OpenGLIndexBuffer::OpenGLIndexBuffer(uint32* indices, uint32 count) : m_Count(count)
 {
 	glCreateBuffers(1, &m_Id);
+	// GL_ELEMENT_ARRAY_BUFFER is not valid without an actively bound VAO
+	// Binding with GL_ARRAY_BUFFER allows the data to be loaded regardless of VAO state. 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Id);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32), indices, GL_STATIC_DRAW);
 }
