@@ -1,24 +1,24 @@
 ﻿#include "gxpch.h"
-#include "Input_GLFW.h"
-
 #include "Genix/Application.h"
-#include "GLFW/glfw3.h"
+#include "Genix/Input/Input.h"
 
-bool Input_GLFW::IsKeyPressedImpl(int keycode)
+#include <GLFW/glfw3.h>
+
+bool Input::IsKeyPressed(KeyCode  keycode)
 {
 	const auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-	const auto state = glfwGetKey(window, keycode);
+	const auto state = glfwGetKey(window,(int)keycode);
 	return state == GLFW_PRESS || state == GLFW_REPEAT;
 }
 
-bool Input_GLFW::IsMouseButtonPressedImpl(int button)
+bool Input::IsMouseButtonPressed(MouseCode  button)
 {
 	const auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-	const auto state = glfwGetMouseButton(window, button);
+	const auto state = glfwGetMouseButton(window, (int)button);
 	return state == GLFW_PRESS;
 }
 
-std::pair<float, float> Input_GLFW::GetMousePositionImpl()
+std::pair<float, float> Input::GetMousePosition()
 {
 	const auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 	double xpos, ypos;
@@ -27,14 +27,14 @@ std::pair<float, float> Input_GLFW::GetMousePositionImpl()
 	return { (float)xpos, (float)ypos };
 }
 
-float Input_GLFW::GetMouseXImpl()
+float Input::GetMouseX()
 {
-	auto[x, y] = GetMousePositionImpl();
+	auto[x, y] = GetMousePosition();
 	return x;
 }
 
-float Input_GLFW::GetMouseYImpl()
+float Input::GetMouseY()
 {
-	auto[x, y] = GetMousePositionImpl();
+	auto[x, y] = GetMousePosition();
 	return y;
 }

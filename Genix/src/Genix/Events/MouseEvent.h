@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Event.h"
+#include "Genix/Input/Input.h"
 
 class MouseMovedEvent : public Event
 {
@@ -50,20 +51,20 @@ private:
 class MouseButtonEvent : public Event
 {
 public:
-	int GetMouseButton() const { return m_Button; }
+	MouseCode  GetMouseButton() const { return m_Button; }
 
 	EVENT_CLASS_CATEGORY(EventCategory::Mouse | EventCategory::Input)
 	
 protected:
-	MouseButtonEvent(int button) : m_Button(button) {}
+	MouseButtonEvent(MouseCode  button) : m_Button(button) {}
 
-	int m_Button;
+	MouseCode  m_Button;
 };
 
 class MouseButtonPressedEvent : public MouseButtonEvent
 {
 public:
-	MouseButtonPressedEvent(int button) : MouseButtonEvent(button) {}
+	MouseButtonPressedEvent(MouseCode  button) : MouseButtonEvent(button) {}
 
 	std::string ToString() const override
 	{
@@ -78,7 +79,7 @@ public:
 class MouseButtonReleasedEvent : public MouseButtonEvent
 {
 public:
-	MouseButtonReleasedEvent(int button) : MouseButtonEvent(button) {}
+	MouseButtonReleasedEvent(MouseCode  button) : MouseButtonEvent(button) {}
 
 	std::string ToString() const override
 	{

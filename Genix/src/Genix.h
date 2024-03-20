@@ -7,7 +7,7 @@
 
 #include "Genix/Input/Input.h"
 #include "Genix/Input/KeyCodes.h"
-#include "Genix/Input/MouseButtonCodes.h"
+#include "Genix/Input/MouseCodes.h"
 
 #include "Genix/Common/PrimitiveTypes.h"
 #include "Genix/Events/KeyEvent.h"

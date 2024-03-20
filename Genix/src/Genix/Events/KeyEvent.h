@@ -1,23 +1,24 @@
 ﻿#pragma once
 #include "Event.h"
+#include "Genix/Input/Input.h"
 
 class KeyEvent : public Event
 {
 public:
-	int GetKeyCode() const { return m_KeyCode; }
+	KeyCode  GetKeyCode() const { return m_KeyCode; }
 
 	EVENT_CLASS_CATEGORY(EventCategory::Keyboard | EventCategory::Input)
 	
 protected:
-	KeyEvent(int keycode) : m_KeyCode(keycode) {}
+	KeyEvent(KeyCode  keycode) : m_KeyCode(keycode) {}
 
-	int m_KeyCode;
+	KeyCode  m_KeyCode;
 };
 
 class KeyPressedEvent : public KeyEvent
 {
 public:
-	KeyPressedEvent(int keycode, int repeatCount) : KeyEvent(keycode), m_RepeatCount(repeatCount) {}
+	KeyPressedEvent(KeyCode  keycode, int repeatCount) : KeyEvent(keycode), m_RepeatCount(repeatCount) {}
 
 	int GetRepeatCount() const { return m_RepeatCount; }
 
@@ -37,7 +38,7 @@ private:
 class KeyReleasedEvent : public KeyEvent
 {
 public:
-	KeyReleasedEvent(int keycode) : KeyEvent(keycode) {}
+	KeyReleasedEvent(KeyCode  keycode) : KeyEvent(keycode) {}
 
 	std::string ToString() const override
 	{
@@ -52,7 +53,7 @@ public:
 class KeyTypedEvent : public KeyEvent
 {
 public:
-	KeyTypedEvent(int keycode) : KeyEvent(keycode) {}
+	KeyTypedEvent(KeyCode  keycode) : KeyEvent(keycode) {}
 
 	std::string ToString() const override
 	{

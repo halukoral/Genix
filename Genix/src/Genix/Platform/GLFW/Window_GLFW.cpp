@@ -42,13 +42,13 @@ void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 	{
 		case GLFW_PRESS:
 		{
-			MouseButtonPressedEvent event(button);
+			MouseButtonPressedEvent event((MouseCode)button);
 			data.EventCallback(event);
 			break;
 		}
 		case GLFW_RELEASE:
 		{
-			MouseButtonReleasedEvent event(button);
+			MouseButtonReleasedEvent event((MouseCode)button);
 			data.EventCallback(event);
 			break;
 		}
@@ -79,19 +79,19 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 	{
 	case GLFW_PRESS:
 	{
-		KeyPressedEvent event(key, 0);
+		KeyPressedEvent event((KeyCode)(KeyCode)key, 0);
 		data.EventCallback(event);
 		break;
 	}
 	case GLFW_RELEASE:
 	{
-		KeyReleasedEvent event(key);
+		KeyReleasedEvent event((KeyCode)key);
 		data.EventCallback(event);
 		break;
 	}
 	case GLFW_REPEAT:
 	{
-		KeyPressedEvent event(key, 1);
+		KeyPressedEvent event((KeyCode)key, 1);
 		data.EventCallback(event);
 		break;
 	}
@@ -104,7 +104,7 @@ void CharCallback(GLFWwindow* window, unsigned int keycode)
 {
 	WindowAttributes& data = *(WindowAttributes*)glfwGetWindowUserPointer(window);
 
-	KeyTypedEvent event(keycode);
+	KeyTypedEvent event((KeyCode)keycode);
 	data.EventCallback(event);
 }
 
