@@ -4,7 +4,8 @@
 class OpenGLVertexBuffer : public VertexBuffer
 {
 public:
-	OpenGLVertexBuffer(float* vertices, uint32 size);
+	OpenGLVertexBuffer(const float* vertices, uint32 size);
+	OpenGLVertexBuffer(const std::vector<VertexData>& vertices, uint32 size);
 	~OpenGLVertexBuffer() override;
 
 	void Bind() const override;

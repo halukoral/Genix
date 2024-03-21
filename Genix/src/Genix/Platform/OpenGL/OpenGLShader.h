@@ -14,6 +14,8 @@ public:
 	void Bind() const override;
 	void Unbind() const override;
 
+	uint32 GetId() const { return m_ID; }
+	
 	// utility uniform functions
 	// ------------------------------------------------------------------------
 	void UploadUniform_Bool(const std::string& name, bool value) const;

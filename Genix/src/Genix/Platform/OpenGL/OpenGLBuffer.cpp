@@ -6,11 +6,18 @@
 // ------------------------------------Vertex Buffer-------------------------------
 // --------------------------------------------------------------------------------
 
-OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32 size)
+OpenGLVertexBuffer::OpenGLVertexBuffer(const float* vertices, const uint32 size)
 {
 	glCreateBuffers(1, &m_Id);
 	glBindBuffer(GL_ARRAY_BUFFER, m_Id);
 	glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
+}
+
+OpenGLVertexBuffer::OpenGLVertexBuffer(const std::vector<VertexData>& vertices, const uint32 size)
+{
+	glCreateBuffers(1, &m_Id);
+	glBindBuffer(GL_ARRAY_BUFFER, m_Id);
+	glBufferData(GL_ARRAY_BUFFER, size, &vertices, GL_STATIC_DRAW);
 }
 
 OpenGLVertexBuffer::~OpenGLVertexBuffer()

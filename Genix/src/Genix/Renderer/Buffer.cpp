@@ -64,6 +64,26 @@ Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32 size)
 	return nullptr;
 }
 
+Ref<VertexBuffer> VertexBuffer::Create(std::vector<VertexData> vertices, uint32 size)
+{
+	switch (Renderer::GetAPI())
+	{
+	case RendererAPI::API::None:
+		ASSERT_CORE(false, "RendererAPI::None is currently not supported!")
+		return nullptr;
+		
+	case RendererAPI::API::OpenGL:
+		return CreateRef<OpenGLVertexBuffer>(vertices, size);
+		
+	case RendererAPI::API::DirectX:
+		ASSERT_CORE(false, "RendererAPI::DirectX is currently not supported!")
+		break;
+	}
+
+	ASSERT_CORE(false, "Unknown RendererAPI!")
+	return nullptr;
+}
+
 Ref<IndexBuffer> IndexBuffer::Create(uint32* indices, uint32 size)
 {
 	switch (Renderer::GetAPI())

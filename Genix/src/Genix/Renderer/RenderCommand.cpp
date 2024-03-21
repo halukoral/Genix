@@ -20,6 +20,11 @@ void RenderCommand::Clear()
 	s_RendererAPI->Clear();
 }
 
+void RenderCommand::SetActiveTexture(const uint8 slot)
+{
+	s_RendererAPI->SetActiveTexture(slot);
+}
+
 void RenderCommand::DrawIndexed(const Ref<VertexArray>& vertexArray)
 {
 	s_RendererAPI->DrawIndexed(vertexArray);

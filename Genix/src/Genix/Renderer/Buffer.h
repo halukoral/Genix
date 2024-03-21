@@ -66,6 +66,19 @@ private:
 	uint32 m_Stride = 0;
 };
 
+#define MAX_BONE_INFLUENCE 4
+
+struct VertexData {
+	glm::vec3 m_Position;
+	glm::vec3 m_Normal;
+	glm::vec2 m_TexCoords;
+	glm::vec3 m_Tangent;
+	glm::vec3 m_Bitangent;
+
+	int m_BoneIDs[MAX_BONE_INFLUENCE];
+	float m_Weights[MAX_BONE_INFLUENCE];
+};
+
 class VertexBuffer
 {
 public:
@@ -79,6 +92,7 @@ public:
 	virtual void SetLayout(const BufferLayout& layout) = 0;
 	
 	static Ref<VertexBuffer> Create(float* vertices, uint32 size);
+	static Ref<VertexBuffer> Create(std::vector<VertexData> vertices, uint32 size);
 };
 
 class IndexBuffer
