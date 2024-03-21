@@ -19,7 +19,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Genix/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "Genix/ThirdParty/glad/include"
-IncludeDir["assimp"] = "Genix/ThirdParty/assimp"
+IncludeDir["assimp"] = "Genix/ThirdParty/assimp/include"
 IncludeDir["glm"] = "Genix/ThirdParty/glm"
 IncludeDir["spdlog"] = "Genix/ThirdParty/spdlog/include"
 IncludeDir["ImGui"] = "Genix/ThirdParty/imgui"
@@ -124,6 +124,7 @@ project "Sandbox"
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.spdlog}",
+        "%{IncludeDir.assimp}",
         "%{IncludeDir.glm}",
         "Genix/src",
         "Genix/ThirdParty"
