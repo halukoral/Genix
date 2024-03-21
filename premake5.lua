@@ -19,6 +19,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Genix/ThirdParty/GLFW/include"
 IncludeDir["Glad"] = "Genix/ThirdParty/glad/include"
+IncludeDir["assimp"] = "Genix/ThirdParty/assimp"
 IncludeDir["glm"] = "Genix/ThirdParty/glm"
 IncludeDir["spdlog"] = "Genix/ThirdParty/spdlog/include"
 IncludeDir["ImGui"] = "Genix/ThirdParty/imgui"
@@ -26,7 +27,6 @@ IncludeDir["stb_image"] = "Genix/ThirdParty/stb_image"
 
 group "Dependencies"
     include "Genix/ThirdParty/glad"
-
 group ""
 
 
@@ -65,6 +65,7 @@ project "Genix"
         "%{IncludeDir.Glad}",
         "%{IncludeDir.glm}",
         "%{IncludeDir.spdlog}",
+        "%{IncludeDir.assimp}",
         "%{IncludeDir.ImGui}",
         "%{IncludeDir.stb_image}"
 	}
