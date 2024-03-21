@@ -1,7 +1,7 @@
 [submodule "Genix/ThirdParty/spdlog"]
 	path = Genix/ThirdParty/spdlog
-	url = https://github.com/gabime/
-	branch = v1.x
+	url = https://github.com/gabime/spdlog.git
+	branch = v2.x
 [submodule "Genix/ThirdParty/imgui"]
 	path = Genix/ThirdParty/imgui
 	url = https://github.com/ocornut/imgui
