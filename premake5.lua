@@ -70,6 +70,11 @@ project "Genix"
         "%{IncludeDir.stb_image}"
 	}
 
+    libdirs 
+    {
+        "%{prj.name}/Libs"
+    }
+
 	links 
 	{ 
         "opengl32.lib",
@@ -92,16 +97,20 @@ project "Genix"
         defines "GX_DEBUG"
         runtime "Debug"
         symbols "on"
+        links { "assimp-vc143-mtd.lib" }
         
     filter "configurations:Release"
         defines "GX_RELEASE"
         runtime "Release"
         optimize "on"
+        links { "assimp-vc143-mt.lib" }
+
             
     filter "configurations:Dist"
         defines "GX_DIST"
         runtime "Release"
         optimize "on"
+        links { "assimp-vc143-mt.lib" }
 
 project "Sandbox"
     location "Sandbox"
@@ -116,7 +125,8 @@ project "Sandbox"
     files
     {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/Assets/**"
     }
     
     includedirs
@@ -129,7 +139,7 @@ project "Sandbox"
         "Genix/src",
         "Genix/ThirdParty"
     }
-    
+
     links
     {
         "Genix"
@@ -142,16 +152,28 @@ project "Sandbox"
         defines "GX_DEBUG"
         runtime "Debug"
         symbols "on"
-        
+        postbuildcommands
+        {
+            ("{COPY} ../DLL/Debug \"../bin/" .. outputdir .. "/Sandbox/\"")
+        }
+
     filter "configurations:Release"
         defines "GX_RELEASE"
         runtime "Release"
         optimize "on"
+        postbuildcommands
+        {
+            ("{COPY} ../DLL/Release \"../bin/" .. outputdir .. "/Sandbox/\"")
+        }
             
     filter "configurations:Dist"
         defines "GX_DIST"
         runtime "Release"
         optimize "on"
+        postbuildcommands
+        {
+            ("{COPY} ../DLL/Release \"../bin/" .. outputdir .. "/Sandbox/\"")
+        }
 
 project "ImGui"
 	kind "StaticLib"
