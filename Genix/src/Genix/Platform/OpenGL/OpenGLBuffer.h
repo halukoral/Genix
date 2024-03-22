@@ -5,7 +5,7 @@ class OpenGLVertexBuffer : public VertexBuffer
 {
 public:
 	OpenGLVertexBuffer(const float* vertices, uint32 size);
-	OpenGLVertexBuffer(const std::vector<VertexData>& vertices, uint32 size);
+	OpenGLVertexBuffer(const std::vector<VertexData>& vertices);
 	~OpenGLVertexBuffer() override;
 
 	void Bind() const override;
@@ -23,6 +23,7 @@ class OpenGLIndexBuffer : public IndexBuffer
 {
 public:
 	OpenGLIndexBuffer(uint32* indices, uint32 count);
+	OpenGLIndexBuffer(const std::vector<uint32>& indices);
 	~OpenGLIndexBuffer() override;
 
 	void Bind() const override;

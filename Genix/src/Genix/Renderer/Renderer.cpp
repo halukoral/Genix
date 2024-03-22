@@ -1,6 +1,7 @@
 ﻿#include "gxpch.h"
 #include "Renderer.h"
 #include "Shader.h"
+#include "Model.h"
 
 #include "Genix/Platform/OpenGL/OpenGLShader.h"
 
@@ -23,6 +24,7 @@ void Renderer::OnWindowResize(const uint32 width, const uint32 height)
 void Renderer::BeginScene(const Camera& camera)
 {
 	s_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 void Renderer::EndScene()
@@ -37,4 +39,13 @@ void Renderer::Submit(const Ref<Shader>& shader,const Ref<VertexArray>& vertexAr
 	
 	vertexArray->Bind();
 	RenderCommand::DrawIndexed(vertexArray);
+}
+
+void Renderer::Submit(const Ref<Shader>& shader, const Ref<Model>& Model, glm::mat4& transform)
+{
+	shader->Bind();
+	std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniform_Mat4("u_ViewProjection", s_SceneData->ViewProjectionMatrix);
+	std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniform_Mat4("u_Transform", transform);
+
+	Model->Draw(shader);
 }

@@ -24,6 +24,11 @@ OpenGLTexture::OpenGLTexture(const std::string& path) : m_Path(path)
 		internalFormat = GL_RGB8;
 		dataFormat = GL_RGB;
 	}
+	else if (channels == 1)
+	{
+		internalFormat = GL_RGB8;
+		dataFormat = GL_RED;
+	}
 
 	ASSERT_CORE(internalFormat & dataFormat, "Format not supported!");
 	

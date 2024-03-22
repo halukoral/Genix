@@ -4,7 +4,7 @@
 class OpenGLMesh : public Mesh
 {
 public:
-	OpenGLMesh(const std::vector<VertexData>& vertices, uint32*& indices, const std::vector<Ref<Texture>>& textures);
+	OpenGLMesh(const std::vector<VertexData>& vertices, std::vector<uint32>& indices, const std::vector<Ref<Texture>>& textures);
 	void Draw(const Ref<Shader>& shader) override;
 
 protected:

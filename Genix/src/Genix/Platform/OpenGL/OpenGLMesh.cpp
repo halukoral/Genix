@@ -6,7 +6,7 @@
 #include "Genix/Renderer/Texture.h"
 #include "Genix/Renderer/VertexArray.h"
 
-OpenGLMesh::OpenGLMesh(const std::vector<VertexData>& vertices, uint32*& indices, const std::vector<Ref<Texture>>& textures)
+OpenGLMesh::OpenGLMesh(const std::vector<VertexData>& vertices, std::vector<uint32>& indices, const std::vector<Ref<Texture>>& textures)
 {
 	m_Vertices = vertices;
 	m_Indices = indices;
@@ -45,15 +45,17 @@ void OpenGLMesh::Draw(const Ref<Shader>& shader)
 			break;
 		}
 
+		const Ref<OpenGLShader> openGLShader = std::dynamic_pointer_cast<OpenGLShader>(shader);
+		ASSERT_CORE(openGLShader, "openGLShader is nullptr!")
+		
 		// now set the sampler to the correct texture unit
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniform_Int(Name,i);
+		openGLShader->UploadUniform_Int(Name,i);
 		// and finally bind the texture
 		m_Textures[i]->Bind(i);
 	}
 
 	m_VertexArray->Bind();
 	RenderCommand::DrawIndexed(m_VertexArray);
-	m_VertexArray->Unbind();
 
 	// always good practice to set everything back to defaults once configured.
 	RenderCommand::SetActiveTexture(0);
@@ -61,9 +63,11 @@ void OpenGLMesh::Draw(const Ref<Shader>& shader)
 
 void OpenGLMesh::SetupMesh()
 {
+	// VAO
 	m_VertexArray = VertexArray::Create();
-	
-	m_VertexBuffer = VertexBuffer::Create(m_Vertices,sizeof(m_Vertices));
+
+	// VBO
+	m_VertexBuffer = VertexBuffer::Create(m_Vertices);
 	m_VertexBuffer->SetLayout(
 	{
 		{ ShaderDataType::Float3, "a_Position" },
@@ -71,12 +75,14 @@ void OpenGLMesh::SetupMesh()
 		{ ShaderDataType::Float2, "a_TexCoord" },
 		{ ShaderDataType::Float3, "a_Tangent" },
 		{ ShaderDataType::Float3, "a_Bitangent" },
-		{ ShaderDataType::Int, "a_BoneId" },
-		{ ShaderDataType::Float, "a_Weight" }
-	});
+		{ ShaderDataType::Int4, "a_BoneId" },
+		{ ShaderDataType::Float4, "a_Weight" }
+	});	
 	m_VertexArray->AddVertexBuffer(m_VertexBuffer);
-	
-	m_IndexBuffer = IndexBuffer::Create(m_Indices, sizeof(m_Indices));
 
+	// EBO
+	m_IndexBuffer = IndexBuffer::Create(m_Indices);
+	m_VertexArray->SetIndexBuffer(m_IndexBuffer);
+	
 	m_VertexArray->Unbind();
 }

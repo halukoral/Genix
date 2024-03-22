@@ -92,7 +92,7 @@ public:
 	virtual void SetLayout(const BufferLayout& layout) = 0;
 	
 	static Ref<VertexBuffer> Create(float* vertices, uint32 size);
-	static Ref<VertexBuffer> Create(std::vector<VertexData> vertices, uint32 size);
+	static Ref<VertexBuffer> Create(std::vector<VertexData> vertices);
 };
 
 class IndexBuffer
@@ -107,4 +107,5 @@ public:
 	virtual uint32 GetCount() const = 0;
 
 	static Ref<IndexBuffer> Create(uint32* indices, uint32 size);
+	static Ref<IndexBuffer> Create(std::vector<uint32> indices);
 };

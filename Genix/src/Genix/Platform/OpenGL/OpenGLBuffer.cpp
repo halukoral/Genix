@@ -13,11 +13,11 @@ OpenGLVertexBuffer::OpenGLVertexBuffer(const float* vertices, const uint32 size)
 	glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
 }
 
-OpenGLVertexBuffer::OpenGLVertexBuffer(const std::vector<VertexData>& vertices, const uint32 size)
+OpenGLVertexBuffer::OpenGLVertexBuffer(const std::vector<VertexData>& vertices)
 {
 	glCreateBuffers(1, &m_Id);
 	glBindBuffer(GL_ARRAY_BUFFER, m_Id);
-	glBufferData(GL_ARRAY_BUFFER, size, &vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(VertexData), vertices.data(), GL_STATIC_DRAW);
 }
 
 OpenGLVertexBuffer::~OpenGLVertexBuffer()
@@ -44,7 +44,16 @@ OpenGLIndexBuffer::OpenGLIndexBuffer(uint32* indices, uint32 count) : m_Count(co
 	// GL_ELEMENT_ARRAY_BUFFER is not valid without an actively bound VAO
 	// Binding with GL_ARRAY_BUFFER allows the data to be loaded regardless of VAO state. 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Id);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(uint32), indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Count * sizeof(uint32), indices, GL_STATIC_DRAW);	
+}
+
+OpenGLIndexBuffer::OpenGLIndexBuffer(const std::vector<uint32>& indices) : m_Count(indices.size())
+{
+	glCreateBuffers(1, &m_Id);
+	// GL_ELEMENT_ARRAY_BUFFER is not valid without an actively bound VAO
+	// Binding with GL_ARRAY_BUFFER allows the data to be loaded regardless of VAO state. 
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_Id);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_Count * sizeof(uint32), indices.data(), GL_STATIC_DRAW);
 }
 
 OpenGLIndexBuffer::~OpenGLIndexBuffer()
