@@ -4,6 +4,7 @@
 class OpenGLTexture : public Texture
 {
 public:
+	OpenGLTexture(const uint32 width, const uint32 height);
 	OpenGLTexture(const std::string& path);
 	~OpenGLTexture() override;
 
@@ -18,4 +19,6 @@ private:
 	uint32 m_Width;
 	uint32 m_Height;
 	uint32 m_ID;
+	uint32 m_InternalFormat = 0;
+	uint32 m_DataFormat = 0;
 };
