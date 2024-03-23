@@ -29,7 +29,8 @@ public:
 	void Close();
 	
 	Window& GetWindow() const { return *m_Window; }
-
+	ImGuiLayer* GetImGuiLayer() const { return m_ImGuiLayer; }
+	
 	static Application& Get() { return *s_Instance; }
 	
 private:

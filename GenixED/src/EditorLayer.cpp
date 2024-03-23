@@ -24,7 +24,10 @@ void EditorLayer::OnDetach()
 
 void EditorLayer::OnUpdate(TimeStep ts)
 {
-	m_Camera.OnUpdate(ts);
+	if (m_ViewportFocused)
+	{
+		m_Camera.OnUpdate(ts);
+	}
 
 	m_Framebuffer->Bind();
 	RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
@@ -102,6 +105,12 @@ void EditorLayer::OnImGuiRender()
 
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 	ImGui::Begin("Viewport");
+
+	m_ViewportFocused = ImGui::IsWindowFocused();
+	m_ViewportHovered = ImGui::IsWindowHovered();
+	Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+
+	
 	ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 	if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize))
 	{

@@ -15,6 +15,9 @@ public:
 	void OnEvent(Event& e) override;
 	
 private:
+	bool m_ViewportFocused = false;
+	bool m_ViewportHovered = false;
+	
 	Camera m_Camera;
 	Ref<Framebuffer> m_Framebuffer;
 	glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
