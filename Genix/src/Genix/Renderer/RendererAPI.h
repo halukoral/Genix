@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "VertexArray.h"
+#include "Genix/Renderer/VertexArray.h"
 #include <glm/glm.hpp>
 
 class RendererAPI

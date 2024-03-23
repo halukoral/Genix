@@ -1,13 +1,12 @@
 ﻿#include "gxpch.h"
-#include "ImGuiLayer.h"
+#include "Genix/ImGui/ImGuiLayer.h"
+#include "Genix/Core/Application.h"
 
 #include <imgui.h>
 #include <imgui_internal.h>
 
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl3.h>
-
-#include "Genix/Application.h"
 
 #include <GLFW/glfw3.h>
 

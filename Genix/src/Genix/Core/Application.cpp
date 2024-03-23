@@ -1,13 +1,13 @@
 #include "gxpch.h"
-#include "Application.h"
-#include "Log.h"
+#include "Genix/Core/Application.h"
+#include "Genix/Core/Log.h"
 
-#include "Common/PrimitiveTypes.h"
-#include "Common/TimeStep.h"
-#include "Events/ApplicationEvent.h"
-#include "ImGui/ImGuiLayer.h"
-#include "Layer/Layer.h"
-#include "Renderer/Renderer.h"
+#include "Genix/Common/PrimitiveTypes.h"
+#include "Genix/Common/TimeStep.h"
+#include "Genix/Events/ApplicationEvent.h"
+#include "Genix/ImGui/ImGuiLayer.h"
+#include "Genix/Layer/Layer.h"
+#include "Genix/Renderer/Renderer.h"
 
 #include <GLFW/glfw3.h>
 

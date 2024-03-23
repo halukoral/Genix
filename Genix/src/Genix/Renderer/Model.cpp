@@ -1,8 +1,9 @@
 ﻿#include "gxpch.h"
-#include "Model.h"
+#include "Genix/Renderer/Model.h"
 
-#include "Buffer.h"
-#include "Mesh.h"
+#include "Genix/Renderer/Buffer.h"
+#include "Genix/Renderer/Mesh.h"
+#include "Genix/Renderer/Texture.h"
 
 #include <assimp/postprocess.h>
 

@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "Genix/PlatformDetection.h"
+#include "Genix/Core/PlatformDetection.h"
 
 #ifdef GX_DEBUG
 	#define GX_ENABLE_ASSERTS

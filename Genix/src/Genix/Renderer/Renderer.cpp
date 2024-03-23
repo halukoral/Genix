@@ -1,7 +1,10 @@
 ﻿#include "gxpch.h"
-#include "Renderer.h"
-#include "Shader.h"
-#include "Model.h"
+#include "Genix/Renderer/Renderer.h"
+
+#include "Genix/Renderer/Camera.h"
+#include "Genix/Renderer/Model.h"
+#include "Genix/Renderer/RenderCommand.h"
+#include "Genix/Renderer/Shader.h"
 
 #include "Genix/Platform/OpenGL/OpenGLShader.h"
 

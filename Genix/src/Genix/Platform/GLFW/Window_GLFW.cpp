@@ -1,16 +1,15 @@
 ﻿#include "gxpch.h"
-#include "Window_GLFW.h"
+#include "Genix/Platform/GLFW/Window_GLFW.h"
+#include "Genix/Platform/OpenGL/OpenGLContext.h"
 
 #include "Genix/Events/ApplicationEvent.h"
 #include "Genix/Events/KeyEvent.h"
 #include "Genix/Events/MouseEvent.h"
 
-#include "Genix/Platform/OpenGL/OpenGLContext.h"
+#include "Genix/Renderer/Renderer.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-
-#include "Genix/Renderer/Renderer.h"
 
 static uint8 s_GLFWWindowCount = 0;
 
@@ -19,7 +18,7 @@ static void GLFWErrorCallback(int error, const char* description)
 	LOG_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 }
 
-void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
+void FramebufferSizeCallback(GLFWwindow* window, int32 width, int32 height)
 {
 	WindowAttributes& data = *(WindowAttributes*)glfwGetWindowUserPointer(window);
 	data.Width = width;
@@ -36,7 +35,7 @@ void WindowCloseCallback(GLFWwindow* window)
 	data.EventCallback(event);
 }
 
-void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+void MouseButtonCallback(GLFWwindow* window, int32 button, int32 action, int32 mods)
 {
 	const WindowAttributes& data = *(WindowAttributes*)glfwGetWindowUserPointer(window);
 
@@ -73,7 +72,7 @@ void ScrollCallback(GLFWwindow* window, double xOffset, double yOffset)
 	data.EventCallback(event);	
 }
 
-void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void KeyCallback(GLFWwindow* window, int32 key, int32 scancode, int32 action, int32 mods)
 {
 	WindowAttributes& data = *(WindowAttributes*)glfwGetWindowUserPointer(window);
 
@@ -102,7 +101,7 @@ void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 	}	
 }
 
-void CharCallback(GLFWwindow* window, unsigned int keycode)
+void CharCallback(GLFWwindow* window, uint32 keycode)
 {
 	WindowAttributes& data = *(WindowAttributes*)glfwGetWindowUserPointer(window);
 
@@ -163,7 +162,7 @@ void Window_GLFW::Init(const WindowAttributes& attributes)
 	}
 #endif
 	
-	m_Window = glfwCreateWindow((int)attributes.Width, (int)attributes.Height, m_Data.Title.c_str(), nullptr, nullptr);
+	m_Window = glfwCreateWindow((int32)attributes.Width, (int32)attributes.Height, m_Data.Title.c_str(), nullptr, nullptr);
 	++s_GLFWWindowCount;
 	
 	m_Context = OpenGLContext::Create(m_Window);

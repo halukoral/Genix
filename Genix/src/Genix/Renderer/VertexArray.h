@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Buffer.h"
+#include "Genix/Renderer/Buffer.h"
 
 class VertexArray
 {

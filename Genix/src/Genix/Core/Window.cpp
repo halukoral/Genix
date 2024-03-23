@@ -1,8 +1,8 @@
 #include "gxpch.h"
-#include "Window.h"
+#include "Genix/Core/Window.h"
 
 #ifdef GX_PLATFORM_WINDOWS
-	#include "Platform/GLFW/Window_GLFW.h"
+	#include "Genix/Platform/GLFW/Window_GLFW.h"
 #endif
 
 Scope<Window> Window::Create(const WindowAttributes& props)

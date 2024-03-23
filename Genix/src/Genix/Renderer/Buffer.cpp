@@ -1,8 +1,8 @@
 #include "gxpch.h"
-#include "Buffer.h"
+#include "Genix/Renderer/Buffer.h"
 
-#include "Renderer.h"
-#include "RendererAPI.h"
+#include "Genix/Renderer/Renderer.h"
+#include "Genix/Renderer/RendererAPI.h"
 #include "Genix/Platform/OpenGL/OpenGLBuffer.h"
 
 uint32 BufferElement::GetComponentCount() const

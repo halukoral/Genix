@@ -1,8 +1,8 @@
 ﻿#include "gxpch.h"
-#include "VertexArray.h"
+#include "Genix/Renderer/VertexArray.h"
 
-#include "Renderer.h"
-#include "RendererAPI.h"
+#include "Genix/Renderer/Renderer.h"
+#include "Genix/Renderer/RendererAPI.h"
 #include "Genix/Platform/OpenGL/OpenGLVertexArray.h"
 
 Ref<VertexArray> VertexArray::Create()

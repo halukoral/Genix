@@ -1,8 +1,8 @@
 #include "gxpch.h"
-#include "RendererContext.h"
+#include "Genix/Renderer/RendererContext.h"
+#include "Genix/Renderer/Renderer.h"
 
-#include "Renderer.h"
-#include "Genix/Core.h"
+#include "Genix/Core/Core.h"
 #include "Genix/Platform/OpenGL/OpenGLContext.h"
 
 Scope<RendererContext> RendererContext::Create(void* window)

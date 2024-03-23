@@ -3,8 +3,7 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 
-#include "Texture.h"
-
+enum class TextureType;
 class Mesh;
 class Shader;
 class Texture;

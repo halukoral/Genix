@@ -1,5 +1,5 @@
 ﻿#include "gxpch.h"
-#include "OpenGLTexture.h"
+#include "Genix/Platform/OpenGL/OpenGLTexture.h"
 
 #include <stb_image.h>
 #include <glad/glad.h>

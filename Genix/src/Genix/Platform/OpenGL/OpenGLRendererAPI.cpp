@@ -1,5 +1,5 @@
 ﻿#include "gxpch.h"
-#include "OpenGLRendererAPI.h"
+#include "Genix/Platform/OpenGL/OpenGLRendererAPI.h"
 
 #include <glad/glad.h>
 

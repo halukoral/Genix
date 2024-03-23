@@ -1,7 +1,7 @@
 ﻿#include "gxpch.h"
-#include "Shader.h"
+#include "Genix/Renderer/Shader.h"
 
-#include "Renderer.h"
+#include "Genix/Renderer/Renderer.h"
 #include "Genix/Platform/OpenGL/OpenGLShader.h"
 
 Ref<Shader> Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)

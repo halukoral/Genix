@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "KeyCodes.h"
-#include "MouseCodes.h"
+#include "Genix/Input/KeyCodes.h"
+#include "Genix/Input/MouseCodes.h"
 
 class Input
 {

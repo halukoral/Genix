@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include "Genix/Core.h"
 #include "Genix/Common/TimeStep.h"
 #include "Genix/Events/Event.h"
 

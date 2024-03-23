@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Genix/Window.h"
+#include "Genix/Core/Window.h"
 
 class RendererContext;
 struct GLFWwindow;

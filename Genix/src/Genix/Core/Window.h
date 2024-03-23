@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 #include "gxpch.h"
-#include "Genix/Core.h"
-#include "Events/Event.h"
+#include "Genix/Core/Core.h"
+#include "Genix/Events/Event.h"
 
 using EventCallbackFn = std::function<void(Event&)>;
 
@@ -10,14 +10,14 @@ struct WindowAttributes
 {
 	bool VSync;
 	std::string Title;
-	unsigned int Width;
-	unsigned int Height;
+	uint32 Width;
+	uint32 Height;
 	EventCallbackFn EventCallback;
 
 	WindowAttributes(bool vSync = true,
 					 const std::string& title = "Genix Engine",
-					 unsigned int width = 1920,
-					 unsigned int height = 1080)
+					 uint32 width = 1920,
+					 uint32 height = 1080)
 		: Title(title), Width(width), Height(height), VSync(vSync)
 	{
 	}
@@ -35,8 +35,8 @@ public:
 
 	virtual void OnUpdate() = 0;
 
-	unsigned int GetWidth() const { return m_Data.Width; }
-	unsigned int GetHeight() const { return m_Data.Height; }
+	uint32 GetWidth() const { return m_Data.Width; }
+	uint32 GetHeight() const { return m_Data.Height; }
 
 	const WindowAttributes& GetWindowAttributes() const { return m_Data; }
 	

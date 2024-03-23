@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Event.h"
+#include "Genix/Events/Event.h"
 #include "Genix/Input/Input.h"
 
 class MouseMovedEvent : public Event

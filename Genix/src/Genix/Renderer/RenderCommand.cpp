@@ -1,5 +1,5 @@
 ﻿#include "gxpch.h"
-#include "RenderCommand.h"
+#include "Genix/Renderer/RenderCommand.h"
 
 #include "Genix/Platform/OpenGL/OpenGLRendererAPI.h"
 

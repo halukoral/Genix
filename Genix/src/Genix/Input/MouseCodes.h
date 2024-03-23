@@ -22,7 +22,7 @@ typedef enum class MouseCode : uint16
 
 inline std::ostream& operator<<(std::ostream& os, MouseCode mouseCode)
 {
-	os << static_cast<int32_t>(mouseCode);
+	os << static_cast<int32>(mouseCode);
 	return os;
 }
 

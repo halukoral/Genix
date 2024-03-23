@@ -1,7 +1,7 @@
 ﻿#include "gxpch.h"
-#include "OpenGLContext.h"
+#include "Genix/Platform/OpenGL/OpenGLContext.h"
 
-#include "Genix/Log.h"
+#include "Genix/Core/Log.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

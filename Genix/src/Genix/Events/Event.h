@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "gxpch.h"
-#include "Genix/Core.h"
+#include "Genix/Core/Core.h"
 #include "Genix/Common/PrimitiveTypes.h"
 
 template <typename E>
@@ -58,6 +58,7 @@ class Event
 {
 public:
 	friend class EventDispatcher;
+	virtual ~Event() = default;
 
 	virtual EventType		GetEventType() const = 0;
 	virtual EventCategory	GetCategory() const = 0;

@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "Core.h"
-#include "Application.h"
+#include "Genix/Core/Core.h"
+#include "Genix/Core/Application.h"
 
 #ifdef GX_PLATFORM_WINDOWS
 

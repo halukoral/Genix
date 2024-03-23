@@ -1,13 +1,13 @@
 ﻿#pragma once
-#include "Event.h"
+#include "Genix/Events/Event.h"
 
 class WindowResizeEvent : public Event
 {
 public:
-	WindowResizeEvent(unsigned int width, unsigned int height) : m_Width(width), m_Height(height) {}
+	WindowResizeEvent(uint32 width, uint32 height) : m_Width(width), m_Height(height) {}
 
-	unsigned int GetWidth() const { return m_Width; }
-	unsigned int GetHeight() const { return m_Height; }
+	uint32 GetWidth() const { return m_Width; }
+	uint32 GetHeight() const { return m_Height; }
 
 	std::string ToString() const override
 	{
@@ -20,8 +20,8 @@ public:
 	EVENT_CLASS_CATEGORY(EventCategory::Application)
 	
 private:
-	unsigned int m_Width;
-	unsigned int m_Height;
+	uint32 m_Width;
+	uint32 m_Height;
 };
 
 class WindowCloseEvent : public Event

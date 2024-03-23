@@ -1,7 +1,7 @@
 ﻿#include "gxpch.h"
-#include "Texture.h"
+#include "Genix/Renderer/Texture.h"
 
-#include "Renderer.h"
+#include "Genix/Renderer/Renderer.h"
 #include "Genix/Platform/OpenGL/OpenGLTexture.h"
 
 Ref<Texture> Texture::Create(const std::string& path)

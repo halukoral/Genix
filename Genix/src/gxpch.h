@@ -21,7 +21,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Genix/Log.h"
+#include "Genix/Core/Log.h"
 
 #ifdef GX_PLATFORM_WINDOWS
 #include <Windows.h>

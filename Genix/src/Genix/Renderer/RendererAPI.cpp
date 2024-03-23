@@ -1,6 +1,5 @@
 ﻿#include "gxpch.h"
-#include "RendererAPI.h"
-
+#include "Genix/Renderer/RendererAPI.h"
 #include "Genix/Platform/OpenGL/OpenGLRendererAPI.h"
 
 RendererAPI::API RendererAPI::s_API = API::OpenGL;

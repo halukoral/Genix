@@ -1,9 +1,9 @@
 ﻿#pragma once
 
-#include "Genix/Core.h"
+#include "Genix/Core/Core.h"
 
-#include "Genix/Application.h"
-#include "Genix/Log.h"
+#include "Genix/Core/Application.h"
+#include "Genix/Core/Log.h"
 
 #include "Genix/Input/Input.h"
 #include "Genix/Input/KeyCodes.h"

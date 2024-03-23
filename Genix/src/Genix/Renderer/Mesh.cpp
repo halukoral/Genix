@@ -1,7 +1,7 @@
 ﻿#include "gxpch.h"
-#include "Mesh.h"
+#include "Genix/Renderer/Mesh.h"
 
-#include "Renderer.h"
+#include "Genix/Renderer/Renderer.h"
 #include "Genix/Platform/OpenGL/OpenGLMesh.h"
 
 Ref<Mesh> Mesh::Create(std::vector<VertexData> vertices, std::vector<uint32> indices, std::vector<Ref<Texture>> textures)

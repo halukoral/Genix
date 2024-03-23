@@ -139,7 +139,7 @@ typedef enum class KeyCode : uint16
 
 inline std::ostream& operator<<(std::ostream& os, KeyCode keyCode)
 {
-	os << static_cast<int32_t>(keyCode);
+	os << static_cast<int32>(keyCode);
 	return os;
 }
 

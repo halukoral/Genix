@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Core.h"
-#include "Window.h"
-#include "Layer/LayerStack.h"
+#include "Genix/Core/Core.h"
+#include "Genix/Core/Window.h"
+#include "Genix/Layer/LayerStack.h"
 
 class ImGuiLayer;
 class IndexBuffer;

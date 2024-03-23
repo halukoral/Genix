@@ -1,5 +1,5 @@
 ﻿#include "gxpch.h"
-#include "OpenGLShader.h"
+#include "Genix/Platform/OpenGL/OpenGLShader.h"
 
 #include "Genix/Renderer/Renderer.h"
 #include "glm/gtc/type_ptr.hpp"

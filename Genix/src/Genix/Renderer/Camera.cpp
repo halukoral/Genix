@@ -1,5 +1,5 @@
 ﻿#include "gxpch.h"
-#include "Camera.h"
+#include "Genix/Renderer/Camera.h"
 
 #include "Genix/Input/Input.h"
 #include "Genix/Input/KeyCodes.h"

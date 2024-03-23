@@ -1,5 +1,5 @@
 ﻿#include "gxpch.h"
-#include "Genix/Application.h"
+#include "Genix/Core/Application.h"
 #include "Genix/Input/Input.h"
 
 #include <GLFW/glfw3.h>

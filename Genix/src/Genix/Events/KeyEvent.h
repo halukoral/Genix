@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Event.h"
+#include "Genix/Events/Event.h"
 #include "Genix/Input/Input.h"
 
 class KeyEvent : public Event
@@ -18,9 +18,9 @@ protected:
 class KeyPressedEvent : public KeyEvent
 {
 public:
-	KeyPressedEvent(KeyCode  keycode, int repeatCount) : KeyEvent(keycode), m_RepeatCount(repeatCount) {}
+	KeyPressedEvent(KeyCode  keycode, int32 repeatCount) : KeyEvent(keycode), m_RepeatCount(repeatCount) {}
 
-	int GetRepeatCount() const { return m_RepeatCount; }
+	int32 GetRepeatCount() const { return m_RepeatCount; }
 
 	std::string ToString() const override
 	{
@@ -32,7 +32,7 @@ public:
 	EVENT_CLASS_TYPE(KeyPressed)
 	
 private:
-	int m_RepeatCount;
+	int32 m_RepeatCount;
 };
 
 class KeyReleasedEvent : public KeyEvent

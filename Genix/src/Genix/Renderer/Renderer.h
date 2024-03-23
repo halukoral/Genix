@@ -1,9 +1,11 @@
 ﻿#pragma once
-#include "Camera.h"
-#include "RenderCommand.h"
+#include "Genix/Renderer/RendererAPI.h"
+#include "Genix/Common/PrimitiveTypes.h"
 
+class Camera;
 class Model;
 class Shader;
+class VertexArray;
 
 class Renderer
 {

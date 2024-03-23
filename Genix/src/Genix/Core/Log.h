@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Core.h"
+#include "Genix/Core/Core.h"
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include "glm/gtx/string_cast.hpp"

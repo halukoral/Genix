@@ -1,6 +1,6 @@
 ﻿#include "gxpch.h"
-#include "OpenGLMesh.h"
-#include "OpenGLShader.h"
+#include "Genix/Platform/OpenGL/OpenGLMesh.h"
+#include "Genix/Platform/OpenGL/OpenGLShader.h"
 
 #include "Genix/Renderer/RenderCommand.h"
 #include "Genix/Renderer/Texture.h"

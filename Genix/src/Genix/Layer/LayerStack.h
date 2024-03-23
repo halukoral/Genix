@@ -1,7 +1,6 @@
 ﻿#pragma once
 
-#include "Layer.h"
-#include <vector>
+#include "Genix/Layer/Layer.h"
 
 class LayerStack
 {

@@ -1,5 +1,5 @@
 #include <Genix.h>
-#include <Genix/EntryPoint.h>
+#include <Genix/Core/EntryPoint.h>
 
 #include "ExampleLayer.h"
 #include "ModelLayer.h"
