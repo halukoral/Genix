@@ -21,6 +21,7 @@
 #include "Genix/Renderer/RenderCommand.h"
 
 #include "Genix/Renderer/Buffer.h"
+#include "Genix/Renderer/FrameBuffer.h"
 #include "Genix/Renderer/Model.h"
 #include "Genix/Renderer/Shader.h"
 #include "Genix/Renderer/Texture.h"

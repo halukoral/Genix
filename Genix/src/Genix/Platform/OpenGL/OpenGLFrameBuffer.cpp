@@ -11,10 +11,19 @@ OpenGLFramebuffer::OpenGLFramebuffer(const FramebufferSpecification& spec) : m_S
 OpenGLFramebuffer::~OpenGLFramebuffer()
 {
 	glDeleteFramebuffers(1, &m_ID);
+	glDeleteTextures(1, &m_ColorAttachment);
+	glDeleteTextures(1, &m_DepthAttachment);
 }
 
 void OpenGLFramebuffer::Invalidate()
 {
+	if (m_ID)
+	{
+		glDeleteFramebuffers(1, &m_ID);
+		glDeleteTextures(1, &m_ColorAttachment);
+		glDeleteTextures(1, &m_DepthAttachment);
+	}
+	
 	glCreateFramebuffers(1, &m_ID);
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ID);
 
@@ -29,11 +38,9 @@ void OpenGLFramebuffer::Invalidate()
 	glCreateTextures(GL_TEXTURE_2D, 1, &m_DepthAttachment);
 	glBindTexture(GL_TEXTURE_2D, m_DepthAttachment);
 	glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, m_Specification.Width, m_Specification.Height);
-	// glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, m_Specification.Width, m_Specification.Height, 0,
-	// 	GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthAttachment, 0);
 
-	ASSERT_CORE(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is incomplete!");
+	ASSERT_CORE(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is incomplete!")
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
@@ -41,9 +48,18 @@ void OpenGLFramebuffer::Invalidate()
 void OpenGLFramebuffer::Bind()
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, m_ID);
+	glViewport(0, 0, m_Specification.Width, m_Specification.Height);
 }
 
 void OpenGLFramebuffer::Unbind()
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+void OpenGLFramebuffer::Resize(uint32 width, uint32 height)
+{
+	m_Specification.Width = width;
+	m_Specification.Height = height;
+
+	Invalidate();
 }

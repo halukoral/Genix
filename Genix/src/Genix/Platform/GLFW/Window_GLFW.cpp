@@ -183,7 +183,7 @@ void Window_GLFW::Init(const WindowAttributes& attributes)
 	glfwSetCursorPosCallback(m_Window, MouseCallback);
 
 	// Tell GLFW to capture our mouse
-	glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	// glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 void Window_GLFW::OnUpdate()

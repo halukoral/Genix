@@ -13,12 +13,12 @@
 
 Application* Application::s_Instance = nullptr;
 
-Application::Application()
+Application::Application(const std::string& name)
 {
 	ASSERT_CORE(!s_Instance, "Application already exists!")
 	s_Instance = this;
 	
-	m_Window = Window::Create();
+	m_Window = Window::Create(WindowAttributes(name));
 	m_Window->SetEventCallback(GX_BIND(Application::OnEvent));
 
 	Renderer::Init();

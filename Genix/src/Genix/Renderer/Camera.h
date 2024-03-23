@@ -29,6 +29,7 @@ public:
 
 	void OnUpdate(TimeStep ts);
 	void OnEvent(Event& e);
+	void OnResize(float width, float height);
 
 	void OnMove(CameraMovement direction, TimeStep ts);
 	

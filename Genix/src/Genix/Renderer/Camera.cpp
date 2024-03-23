@@ -46,6 +46,11 @@ void Camera::OnEvent(Event& e)
 	dispatcher.Dispatch<WindowResizeEvent>(GX_BIND(Camera::OnWindowResized));
 }
 
+void Camera::OnResize(float width, float height)
+{
+	m_AspectRatio = width / height;
+}
+
 void Camera::OnMove(const CameraMovement direction, const TimeStep ts)
 {
 	const float velocity = m_MovementSpeed * ts;

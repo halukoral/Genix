@@ -14,8 +14,8 @@ struct WindowAttributes
 	uint32 Height;
 	EventCallbackFn EventCallback;
 
-	WindowAttributes(bool vSync = true,
-					 const std::string& title = "Genix Engine",
+	WindowAttributes(const std::string& title = "Genix Engine",
+					 bool vSync = true,
 					 uint32 width = 1920,
 					 uint32 height = 1080)
 		: Title(title), Width(width), Height(height), VSync(vSync)

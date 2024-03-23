@@ -16,7 +16,7 @@ int main(int argc, char** argv);
 class Application
 {
 public:
-	Application();
+	Application(const std::string& name = "Genix App");
 	virtual ~Application();
 
 	void OnEvent(Event& e);
