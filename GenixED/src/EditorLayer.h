@@ -21,4 +21,7 @@ private:
 	Camera m_Camera;
 	Ref<Framebuffer> m_Framebuffer;
 	glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
+
+	Ref<Shader> m_ModelShader;
+	Ref<Model> m_Model;
 };

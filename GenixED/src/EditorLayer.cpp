@@ -3,6 +3,8 @@
 
 EditorLayer::EditorLayer() : Layer("EditorLayer")
 {
+	m_Model = CreateRef<Model>("Assets/Models/Backpack/backpack.obj");
+	m_ModelShader = Shader::Create("Assets/Shaders/ModelShader.vert", "Assets/Shaders/ModelShader.frag");
 }
 
 EditorLayer::~EditorLayer()
@@ -24,6 +26,17 @@ void EditorLayer::OnDetach()
 
 void EditorLayer::OnUpdate(TimeStep ts)
 {
+	// Resize
+	FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+	if (m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f ) // zero sized framebuffer is invalid
+	{
+		if (spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y)
+		{
+			m_Framebuffer->Resize((uint32)m_ViewportSize.x, (uint32)m_ViewportSize.y);
+			m_Camera.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+		}
+	}
+
 	if (m_ViewportFocused)
 	{
 		m_Camera.OnUpdate(ts);
@@ -35,7 +48,7 @@ void EditorLayer::OnUpdate(TimeStep ts)
 
 	Renderer::BeginScene(m_Camera);
 
-	//Renderer::Submit(m_ModelShader, m_Model);
+	Renderer::Submit(m_ModelShader, m_Model);
 		
 	Renderer::EndScene();
 	m_Framebuffer->Unbind();
@@ -112,14 +125,9 @@ void EditorLayer::OnImGuiRender()
 
 	
 	ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-	if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize))
-	{
-		m_Framebuffer->Resize((uint32)viewportPanelSize.x, (uint32)viewportPanelSize.y);
-		m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
+	m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 
-		m_Camera.OnResize(viewportPanelSize.x, viewportPanelSize.y);
-	}
-	uint32 textureID = m_Framebuffer->GetColorAttachmentRendererID();
+	const uint32 textureID = m_Framebuffer->GetColorAttachmentRendererID();
 	ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 	ImGui::End();
 	ImGui::PopStyleVar();
