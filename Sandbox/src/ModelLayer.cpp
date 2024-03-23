@@ -1,7 +1,5 @@
 ﻿#include "ModelLayer.h"
 
-#include "Genix/Platform/OpenGL/OpenGLShader.h"
-
 ModelLayer::ModelLayer()
 {
 	m_Model = CreateRef<Model>("Assets/Models/Backpack/backpack.obj");

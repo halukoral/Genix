@@ -49,7 +49,7 @@ void OpenGLMesh::Draw(const Ref<Shader>& shader)
 		ASSERT_CORE(openGLShader, "openGLShader is nullptr!")
 		
 		// now set the sampler to the correct texture unit
-		openGLShader->UploadUniform_Int(Name,i);
+		openGLShader->GLSetUniform_Int(Name,i);
 		// and finally bind the texture
 		m_Textures[i]->Bind(i);
 	}

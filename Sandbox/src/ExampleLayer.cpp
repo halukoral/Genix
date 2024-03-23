@@ -1,9 +1,5 @@
 ﻿#include "ExampleLayer.h"
 
-#include <imgui/imgui.h>
-#include <glm/ext/matrix_transform.hpp>
-#include "Genix/Platform/OpenGL/OpenGLShader.h"
-
 ExampleLayer::ExampleLayer(): Layer("Example")
 {
 	float squareVertices[5 * 4] = {
@@ -33,8 +29,8 @@ ExampleLayer::ExampleLayer(): Layer("Example")
 	m_Texture = Texture::Create("Assets/Textures/bricks2.jpg");
 	m_AwesomeFaceTexture = Texture::Create("Assets/Textures/awesomeface.png");
 		
-	std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->Bind();
-	std::dynamic_pointer_cast<OpenGLShader>(m_Shader)->UploadUniform_Int("u_Texture", 0);
+	m_Shader->Bind();
+	m_Shader->GLSetUniform_Int("u_Texture", 0);
 }
 
 void ExampleLayer::OnAttach()

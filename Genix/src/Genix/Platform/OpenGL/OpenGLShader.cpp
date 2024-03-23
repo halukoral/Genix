@@ -1,6 +1,7 @@
 ﻿#include "gxpch.h"
 #include "OpenGLShader.h"
 
+#include "Genix/Renderer/Renderer.h"
 #include "glm/gtc/type_ptr.hpp"
 
 std::string ReadFileAsString(const std::string& filepath)
@@ -46,63 +47,75 @@ void OpenGLShader::Unbind() const
 	glUseProgram(0);
 }
 
-void OpenGLShader::UploadUniform_Bool(const std::string& name, const bool value) const
+void OpenGLShader::GLSetUniform_Bool(const std::string& name, const bool value) const
 {
+	CheckOpenGLRendererAPI();
 	glUniform1i(glGetUniformLocation(m_ID, name.c_str()), (int)value);
 }
 
-void OpenGLShader::UploadUniform_Int(const std::string& name, const int value) const
+void OpenGLShader::GLSetUniform_Int(const std::string& name, const int value) const
 {
+	CheckOpenGLRendererAPI();
 	glUniform1i(glGetUniformLocation(m_ID, name.c_str()), value);
 }
 
-void OpenGLShader::UploadUniform_Float(const std::string& name, float value) const
+void OpenGLShader::GLSetUniform_Float(const std::string& name, float value) const
 {
+	CheckOpenGLRendererAPI();
 	glUniform1f(glGetUniformLocation(m_ID, name.c_str()), value);
 }
 
-void OpenGLShader::UploadUniform_Vec2(const std::string& name, glm::vec2& value) const
+void OpenGLShader::GLSetUniform_Vec2(const std::string& name, glm::vec2& value) const
 {
+	CheckOpenGLRendererAPI();
 	glUniform2fv(glGetUniformLocation(m_ID, name.c_str()), 1, glm::value_ptr(value));
 }
 
-void OpenGLShader::UploadUniform_Vec2(const std::string& name, const float x, const float y) const
+void OpenGLShader::GLSetUniform_Vec2(const std::string& name, const float x, const float y) const
 {
+	CheckOpenGLRendererAPI();
 	glUniform2f(glGetUniformLocation(m_ID, name.c_str()), x, y);
 }
 
-void OpenGLShader::UploadUniform_Vec3(const std::string& name, glm::vec3& value) const
+void OpenGLShader::GLSetUniform_Vec3(const std::string& name, glm::vec3& value) const
 {
+	CheckOpenGLRendererAPI();
 	glUniform3fv(glGetUniformLocation(m_ID, name.c_str()), 1, glm::value_ptr(value));
 }
 
-void OpenGLShader::UploadUniform_Vec3(const std::string& name, const float x, const float y, const float z) const
+void OpenGLShader::GLSetUniform_Vec3(const std::string& name, const float x, const float y, const float z) const
 {
+	CheckOpenGLRendererAPI();
 	glUniform3f(glGetUniformLocation(m_ID, name.c_str()), x, y, z);
 }
 
-void OpenGLShader::UploadUniform_Vec4(const std::string& name, glm::vec4& value) const
+void OpenGLShader::GLSetUniform_Vec4(const std::string& name, glm::vec4& value) const
 {
+	CheckOpenGLRendererAPI();
 	glUniform4fv(glGetUniformLocation(m_ID, name.c_str()), 1, glm::value_ptr(value));
 }
 
-void OpenGLShader::UploadUniform_Vec4(const std::string& name, const float x, const float y, const float z, const float w) const
+void OpenGLShader::GLSetUniform_Vec4(const std::string& name, const float x, const float y, const float z, const float w) const
 {
+	CheckOpenGLRendererAPI();
 	glUniform4f(glGetUniformLocation(m_ID, name.c_str()), x, y, z, w);
 }
 
-void OpenGLShader::UploadUniform_Mat2(const std::string& name, glm::mat2& matrix) const
+void OpenGLShader::GLSetUniform_Mat2(const std::string& name, glm::mat2& matrix) const
 {
+	CheckOpenGLRendererAPI();
 	glUniformMatrix2fv(glGetUniformLocation(m_ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
-void OpenGLShader::UploadUniform_Mat3(const std::string& name, glm::mat3& matrix) const
+void OpenGLShader::GLSetUniform_Mat3(const std::string& name, glm::mat3& matrix) const
 {
+	CheckOpenGLRendererAPI();
 	glUniformMatrix3fv(glGetUniformLocation(m_ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
-void OpenGLShader::UploadUniform_Mat4(const std::string& name, glm::mat4& matrix) const
+void OpenGLShader::GLSetUniform_Mat4(const std::string& name, glm::mat4& matrix) const
 {
+	CheckOpenGLRendererAPI();
 	glUniformMatrix4fv(glGetUniformLocation(m_ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
@@ -170,6 +183,16 @@ bool OpenGLShader::CheckCompileErrors(unsigned shader, const std::string& type)
 			return true;
 		}
 	}
+	return false;
+}
+
+bool OpenGLShader::CheckOpenGLRendererAPI()
+{
+	if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+	{
+		return true;
+	}
+	ASSERT_CORE(false, "Renderer API is not OpenGL!")
 	return false;
 }
 
