@@ -13,6 +13,12 @@ Model::Model(std::string const& path, bool gamma) : m_GammaCorrection(gamma)
 	LoadModel(path);
 }
 
+void Model::Init(std::string const& path, bool gamma)
+{
+	m_GammaCorrection = gamma;
+	LoadModel(path);
+}
+
 void Model::Draw(const Ref<Shader>& shader)
 {
 	for (const auto& Mesh : m_Meshes)

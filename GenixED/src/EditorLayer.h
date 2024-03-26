@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "Genix.h"
 
+class Actor;
+
 class EditorLayer : public Layer
 {
 public:
@@ -22,6 +24,6 @@ private:
 	Ref<Framebuffer> m_Framebuffer;
 	glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
 
-	Ref<Shader> m_ModelShader;
-	Ref<Model> m_Model;
+	Ref<Actor> m_Actor01;
+	Ref<Actor> m_Actor02;
 };

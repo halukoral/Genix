@@ -23,6 +23,8 @@ public:
 
 	static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 
+	static glm::mat4 GetViewProjectionMatrix() { return s_SceneData->ViewProjectionMatrix; } 
+	
 private:
 	struct SceneData
 	{

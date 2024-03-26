@@ -6,8 +6,6 @@
 #include "Genix/Renderer/RenderCommand.h"
 #include "Genix/Renderer/Shader.h"
 
-#include "Genix/Platform/OpenGL/OpenGLShader.h"
-
 Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneData>();
 
 void Renderer::Init()

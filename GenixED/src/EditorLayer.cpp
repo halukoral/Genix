@@ -1,10 +1,19 @@
 ﻿#include "EditorLayer.h"
 #include <imgui/imgui.h>
 
+#include "Genix/Actors/Actor.h"
+#include "Genix/ECS/EntityManager.h"
+
 EditorLayer::EditorLayer() : Layer("EditorLayer")
 {
-	m_Model = CreateRef<Model>("Assets/Models/Backpack/backpack.obj");
-	m_ModelShader = Shader::Create("Assets/Shaders/ModelShader.vert", "Assets/Shaders/ModelShader.frag");
+	m_Actor01 = CreateRef<Actor>();
+	m_Actor01->SetPosition({-2.f, 0.f, 0.f});
+	m_Actor01->SetScale({0.5f, 0.5f, 0.5f});
+
+	m_Actor02 = CreateRef<Actor>();
+	m_Actor02->SetPosition({2.f, 0.f, 0.f});
+
+	m_Camera.SetPosition({0.f, 0.f, 5.f});
 }
 
 EditorLayer::~EditorLayer()
@@ -48,7 +57,7 @@ void EditorLayer::OnUpdate(TimeStep ts)
 
 	Renderer::BeginScene(m_Camera);
 
-	Renderer::Submit(m_ModelShader, m_Model);
+	EntityManager::Get()->Render();
 		
 	Renderer::EndScene();
 	m_Framebuffer->Unbind();
