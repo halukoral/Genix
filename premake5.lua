@@ -1,3 +1,5 @@
+include "./ThirdParty/premake/premake_customization/solution_items.lua"
+
 workspace "Genix"
     architecture "x86_64"
     startproject "GenixED"
@@ -18,222 +20,21 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["GLFW"] = "Genix/ThirdParty/GLFW/include"
-IncludeDir["Glad"] = "Genix/ThirdParty/glad/include"
-IncludeDir["glm"] = "Genix/ThirdParty/glm"
-IncludeDir["assimp"] = "Genix/ThirdParty/assimp/include"
-IncludeDir["spdlog"] = "Genix/ThirdParty/spdlog/include"
-IncludeDir["ImGui"] = "Genix/ThirdParty/imgui"
-IncludeDir["stb_image"] = "Genix/ThirdParty/stb_image"
+IncludeDir["GLFW"] = "%{wks.location}/Genix/ThirdParty/GLFW/include"
+IncludeDir["Glad"] = "%{wks.location}/Genix/ThirdParty/glad/include"
+IncludeDir["glm"] = "%{wks.location}/Genix/ThirdParty/glm"
+IncludeDir["assimp"] = "%{wks.location}/Genix/ThirdParty/assimp/include"
+IncludeDir["spdlog"] = "%{wks.location}/Genix/ThirdParty/spdlog/include"
+IncludeDir["ImGui"] = "%{wks.location}/Genix/ThirdParty/imgui"
+IncludeDir["stb_image"] = "%{wks.location}/Genix/ThirdParty/stb_image"
 
 group "Dependencies"
     include "Genix/ThirdParty/glad"
 group ""
 
-
-project "Genix"
-    location "Genix"
-    kind "StaticLib"
-    language "C++"
-    cppdialect "C++17"
-    staticruntime "on"
-
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-        
-    pchheader "gxpch.h"
-    pchsource "Genix/src/gxpch.cpp"
-       
-    files
-    {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp",
-        "%{prj.name}/ThirdParty/stb_image/**.h",
-        "%{prj.name}/ThirdParty/stb_image/**.cpp",
-        "%{prj.name}/ThirdParty/glm/glm/**.hpp",
-        "%{prj.name}/ThirdParty/glm/glm/**.inl"
-    }
-
-    defines
-    {
-        "_CRT_SECURE_NO_WARNINGS",
-    }
-         
-    includedirs
-    {
-        "%{prj.name}/src",
-        "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Glad}",
-        "%{IncludeDir.glm}",
-        "%{IncludeDir.spdlog}",
-        "%{IncludeDir.assimp}",
-        "%{IncludeDir.ImGui}",
-        "%{IncludeDir.stb_image}"
-	}
-
-    libdirs 
-    {
-        "%{prj.name}/Libs"
-    }
-
-	links 
-	{ 
-        "opengl32.lib",
-		"GLFW",
-		"Glad",
-        "ImGui"
-	}
-    
-    filter "system:windows"
-        cppdialect "C++17"
-        systemversion "latest"
-        
-        defines
-        {
-			"GX_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
-		}
-        
-    filter "configurations:Debug"
-        defines "GX_DEBUG"
-        runtime "Debug"
-        symbols "on"
-        links { "assimp-vc143-mtd.lib" }
-        
-    filter "configurations:Release"
-        defines "GX_RELEASE"
-        runtime "Release"
-        optimize "on"
-        links { "assimp-vc143-mt.lib" }
-
-            
-    filter "configurations:Dist"
-        defines "GX_DIST"
-        runtime "Release"
-        optimize "on"
-        links { "assimp-vc143-mt.lib" }
-
-project "Sandbox"
-    location "Sandbox"
-    kind "ConsoleApp"
-    language "C++"
-    cppdialect "C++17"
-    staticruntime "on"
-
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-    
-    files
-    {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp",
-        "%{prj.name}/Assets/**"
-    }
-    
-    includedirs
-    {
-        "%{IncludeDir.spdlog}",
-        "%{IncludeDir.glm}",
-        "%{IncludeDir.assimp}",
-        "Genix/src",
-        "Genix/ThirdParty"
-    }
-
-    links
-    {
-        "Genix"
-    }
-    
-    filter "system:windows"
-        systemversion "latest"
-        
-    filter "configurations:Debug"
-        defines "GX_DEBUG"
-        runtime "Debug"
-        symbols "on"
-        postbuildcommands
-        {
-            ("{COPY} ../DLL/Debug \"../bin/" .. outputdir .. "/Sandbox/\"")
-        }
-
-    filter "configurations:Release"
-        defines "GX_RELEASE"
-        runtime "Release"
-        optimize "on"
-        postbuildcommands
-        {
-            ("{COPY} ../DLL/Release \"../bin/" .. outputdir .. "/Sandbox/\"")
-        }
-            
-    filter "configurations:Dist"
-        defines "GX_DIST"
-        runtime "Release"
-        optimize "on"
-        postbuildcommands
-        {
-            ("{COPY} ../DLL/Release \"../bin/" .. outputdir .. "/Sandbox/\"")
-        }
-
-project "GenixED"
-    location "GenixED"
-    kind "ConsoleApp"
-    language "C++"
-    cppdialect "C++17"
-    staticruntime "on"
-
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-    files
-    {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp",
-        "%{prj.name}/Assets/**"
-    }
-
-    includedirs
-    {
-        "%{IncludeDir.spdlog}",
-        "%{IncludeDir.glm}",
-        "%{IncludeDir.assimp}",
-        "Genix/src",
-        "Genix/ThirdParty"
-    }
-
-    links
-    {
-        "Genix"
-    }
-
-    filter "system:windows"
-        systemversion "latest"
-        
-    filter "configurations:Debug"
-        defines "GX_DEBUG"
-        runtime "Debug"
-        symbols "on"
-        postbuildcommands
-        {
-            ("{COPY} ../DLL/Debug \"../bin/" .. outputdir .. "/GenixED/\"")
-        }
-
-    filter "configurations:Release"
-        defines "GX_RELEASE"
-        runtime "Release"
-        optimize "on"
-        postbuildcommands
-        {
-            ("{COPY} ../DLL/Release \"../bin/" .. outputdir .. "/GenixED/\"")
-        }
-
-    filter "configurations:Dist"
-        defines "GX_DIST"
-        runtime "Release"
-        optimize "on"
-        postbuildcommands
-        {
-            ("{COPY} ../DLL/Release \"../bin/" .. outputdir .. "/GenixED/\"")
-        }
+include "Genix"
+include "GenixED"
+include "Sandbox"
 
 project "ImGui"
 	kind "StaticLib"
