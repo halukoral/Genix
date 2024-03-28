@@ -1,7 +1,7 @@
 ﻿#include "gxpch.h"
 #include "Genix/ECS/Entity.h"
 #include "Genix/ECS/EntityComponent.h"
-
+#include "Genix/ECS/Components/TransformComponent.h"
 #include "Genix/Common/TimeStep.h"
 
 Entity::Entity(SEntitySpawnParams& params)
@@ -30,6 +30,17 @@ void Entity::Destroy()
 		component->Destroy();
 	}
 	m_Components.clear();
+}
+
+glm::mat4 Entity::GetTransform() const
+{
+	if (IsComponentExist(ComponentType::Transform))
+	{
+		Ref<EntityComponent> cmp = GetComponent(ComponentType::Transform);
+		return std::dynamic_pointer_cast<TransformComponent>(cmp)->GetTransform();
+	}
+	LOG_CORE_WARN("Entity does not have transform!");
+	return {};
 }
 
 bool Entity::AddComponent(const Ref<EntityComponent>& component)

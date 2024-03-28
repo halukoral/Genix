@@ -7,7 +7,7 @@ class Actor
 {
 public:
 	Actor();
-	~Actor();
+	~Actor() = default;
 
 	void SetPosition(glm::vec3 position) const;
 	void SetRotation(glm::vec3 rotation) const;

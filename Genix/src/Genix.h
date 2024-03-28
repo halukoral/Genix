@@ -9,10 +9,13 @@
 #include "Genix/Input/KeyCodes.h"
 #include "Genix/Input/MouseCodes.h"
 
+#include "Genix/Actors/Actor.h"
 #include "Genix/Common/PrimitiveTypes.h"
 #include "Genix/Common/TimeStep.h"
+#include "Genix/ECS/EntityManager.h"
 #include "Genix/Events/KeyEvent.h"
 #include "Genix/Layer/Layer.h"
+#include "Genix/Scene/Scene.h"
 
 #include "Genix/ImGui/ImGuiLayer.h"
 

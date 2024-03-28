@@ -1,17 +1,16 @@
 ﻿#include "EditorLayer.h"
-#include "Genix/Actors/Actor.h"
-#include "Genix/ECS/EntityManager.h"
 
 #include <imgui/imgui.h>
 
 EditorLayer::EditorLayer() : Layer("EditorLayer")
 {
-	m_Actor01 = CreateRef<Actor>();
-	m_Actor01->SetPosition({-2.f, 0.f, 0.f});
-	m_Actor01->SetScale({0.5f, 0.5f, 0.5f});
-
-	m_Actor02 = CreateRef<Actor>();
-	m_Actor02->SetPosition({2.f, 0.f, 0.f});
+	m_Scene = CreateRef<Scene>();
+	m_Scene->CreateActor({2.f, 0.f, 0.f});
+	m_Scene->CreateActor(
+		{-2.f, 0.f, 0.f},
+		{0.f, 0.f, 0.f},
+		{0.5f, 0.5f, 0.5f}
+	);
 
 	m_Camera.SetPosition({0.f, 0.f, 5.f});
 }
@@ -57,7 +56,7 @@ void EditorLayer::OnUpdate(TimeStep deltaTime)
 
 	Renderer::BeginScene(m_Camera);
 
-	EntityManager::Get()->Update(deltaTime);
+	m_Scene->Update(deltaTime);
 		
 	Renderer::EndScene();
 	m_Framebuffer->Unbind();

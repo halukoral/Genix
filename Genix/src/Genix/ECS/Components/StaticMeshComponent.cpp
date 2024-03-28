@@ -21,8 +21,7 @@ void StaticMeshComponent::Update(TimeStep deltaTime)
 	{
 		auto viewProj = Renderer::GetViewProjectionMatrix();
 
-		Ref<EntityComponent> cmp = m_Entity->GetComponent(ComponentType::Transform);
-		glm::mat4 transform = std::dynamic_pointer_cast<TransformComponent>(cmp)->GetTransform();
+		glm::mat4 transform = m_Entity->GetTransform();
 
 		m_Shader->Bind();
 		m_Shader->GLSetUniform_Mat4("u_ViewProjection", viewProj );

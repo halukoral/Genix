@@ -23,10 +23,6 @@ Actor::Actor()
 	entity->AddComponent(m_StaticMeshComponent);
 }
 
-Actor::~Actor()
-{
-}
-
 void Actor::SetPosition(const glm::vec3 position) const
 {
 	m_TransformComponent->SetPosition(position);

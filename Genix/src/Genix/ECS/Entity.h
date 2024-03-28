@@ -29,25 +29,24 @@ public:
 
 	void Update(TimeStep deltaTime) const;
 	void Destroy();
-	
-	uint32 GetId() const { return m_Id; }
 
+	// Retrieves the entity transformation matrix in the world space.
+	glm::mat4 GetTransform() const;
+
+	uint32 GetId() const { return m_Id; }
 	std::string GetName() const { return m_Name; }
 	void SetName(const std::string& name) { m_Name = name; }
 
 	//! Different from hide in that the entity is not updated
-	void SetInvisible(bool invisible) { m_Invisible = invisible; }
+	void SetInvisible(const bool invisible) { m_Invisible = invisible; }
 	bool IsInvisible() const { return m_Invisible; }
 
 	virtual bool AddComponent(const Ref<EntityComponent>& component);
 	virtual void RemoveComponent(const Ref<EntityComponent>& component);
 
 	bool IsComponentExist(ComponentType type) const;
-
 	Ref<EntityComponent> GetComponent(ComponentType type) const;
-	
 	virtual Components& GetComponents() { return m_Components; }
-
 	size_t GetComponentsCount() const { return m_Components.size(); }
 
 private:
