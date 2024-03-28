@@ -1,5 +1,6 @@
 ﻿#include "gxpch.h"
 #include "Genix/ECS/Entity.h"
+#include "Genix/ECS/EntityComponent.h"
 
 #include "Genix/Common/TimeStep.h"
 
@@ -19,14 +20,6 @@ void Entity::Update(TimeStep deltaTime) const
 	for(const auto& component : m_Components)
 	{
 		component->Update(deltaTime);
-	}
-}
-
-void Entity::Render() const
-{
-	for(const auto& component : m_Components)
-	{
-		component->Render();
 	}
 }
 

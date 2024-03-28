@@ -27,11 +27,11 @@ public:
 	Camera();
 	Camera(glm::vec3 position);
 
-	void OnUpdate(TimeStep ts);
+	void OnUpdate(TimeStep deltaTime);
 	void OnEvent(Event& e);
 	void OnResize(float width, float height);
 
-	void OnMove(CameraMovement direction, TimeStep ts);
+	void OnMove(CameraMovement direction, TimeStep deltaTime);
 	
 	// returns the view matrix calculated using Euler Angles and the LookAt Matrix
 	glm::mat4 GetViewMatrix() const;

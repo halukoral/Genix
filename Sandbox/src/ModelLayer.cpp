@@ -15,9 +15,9 @@ void ModelLayer::OnDetach()
 	
 }
 
-void ModelLayer::OnUpdate(TimeStep ts)
+void ModelLayer::OnUpdate(TimeStep deltaTime)
 {
-	m_Camera.OnUpdate(ts);
+	m_Camera.OnUpdate(deltaTime);
 		
 	RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 	RenderCommand::Clear();

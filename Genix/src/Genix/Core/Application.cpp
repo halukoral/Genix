@@ -37,14 +37,14 @@ void Application::Run()
 	while (m_Running)
 	{
 		const float time = (float)glfwGetTime();
-		const TimeStep timeStep = time - m_LastFrameTime;
+		const TimeStep deltaTime = time - m_LastFrameTime;
 		m_LastFrameTime = time;
 
 		if (!m_Minimized)
 		{
 			for (Layer* layer : m_LayerStack)
 			{
-				layer->OnUpdate(timeStep);
+				layer->OnUpdate(deltaTime);
 			}
 		}
 

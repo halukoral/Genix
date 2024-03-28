@@ -1,5 +1,5 @@
 ﻿#include "gxpch.h"
-#include "Actor.h"
+#include "Genix/Actors/Actor.h"
 
 #include "Genix/ECS/EntityManager.h"
 #include "Genix/ECS/Components/StaticMeshComponent.h"

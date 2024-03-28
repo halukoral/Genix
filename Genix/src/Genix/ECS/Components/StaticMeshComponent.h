@@ -17,7 +17,7 @@ public:
 	StaticMeshComponent() = delete;
 	StaticMeshComponent(const SStaticMeshSpawnParams& params);
 
-	void Render() override;
+	void Update(TimeStep deltaTime) override;
 	
 	void SetHide(bool hide) { m_Hide = hide; } 
 	bool IsHidden() const { return m_Hide; }

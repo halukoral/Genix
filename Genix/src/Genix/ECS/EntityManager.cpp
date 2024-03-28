@@ -1,7 +1,6 @@
 ﻿#include "gxpch.h"
-#include "EntityManager.h"
-
-#include "Entity.h"
+#include "Genix/ECS/EntityManager.h"
+#include "Genix/ECS/Entity.h"
 #include "Genix/Common/TimeStep.h"
 
 Ref<EntityManager> EntityManager::s_Instance = CreateRef<EntityManager>();
@@ -11,14 +10,6 @@ void EntityManager::Update(TimeStep deltaTime)
 	for (auto entity : m_Entities)
 	{
 		entity->Update(deltaTime);
-	}
-}
-
-void EntityManager::Render()
-{
-	for (auto entity : m_Entities)
-	{
-		entity->Render();
 	}
 }
 

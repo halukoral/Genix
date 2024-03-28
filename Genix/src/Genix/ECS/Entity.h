@@ -1,5 +1,4 @@
 ﻿#pragma once
-#include "EntityComponent.h"
 #include "Genix/Common/PrimitiveTypes.h"
 
 enum class ComponentType;
@@ -29,7 +28,6 @@ public:
 	void ShutDown();
 
 	void Update(TimeStep deltaTime) const;
-	void Render() const;
 	void Destroy();
 	
 	uint32 GetId() const { return m_Id; }

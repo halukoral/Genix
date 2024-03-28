@@ -15,7 +15,7 @@ StaticMeshComponent::StaticMeshComponent(const SStaticMeshSpawnParams& params)
 }
 
 
-void StaticMeshComponent::Render()
+void StaticMeshComponent::Update(TimeStep deltaTime)
 {
 	if (m_Hide == false)
 	{

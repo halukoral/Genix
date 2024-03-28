@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "Entity.h"
+#include "Genix/ECS/Entity.h"
 #include "Genix/Common/TimeStep.h"
 
 enum class ComponentType
@@ -19,7 +19,6 @@ public:
 	virtual ~EntityComponent() = default;
 	
 	virtual void Update(TimeStep deltaTime) {}
-	virtual void Render() {}
 	virtual void Destroy() {}
 
 	ComponentType GetType() const { return m_Type; }

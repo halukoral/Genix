@@ -11,7 +11,7 @@ public:
 	void OnAttach() override;
 	void OnDetach() override;
 	
-	void OnUpdate(TimeStep ts) override;
+	void OnUpdate(TimeStep deltaTime) override;
 	void OnImGuiRender() override;
 	void OnEvent(Event& e) override;
 

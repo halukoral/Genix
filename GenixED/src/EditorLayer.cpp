@@ -1,8 +1,8 @@
 ﻿#include "EditorLayer.h"
-#include <imgui/imgui.h>
-
 #include "Genix/Actors/Actor.h"
 #include "Genix/ECS/EntityManager.h"
+
+#include <imgui/imgui.h>
 
 EditorLayer::EditorLayer() : Layer("EditorLayer")
 {
@@ -33,10 +33,10 @@ void EditorLayer::OnDetach()
 	
 }
 
-void EditorLayer::OnUpdate(TimeStep ts)
+void EditorLayer::OnUpdate(TimeStep deltaTime)
 {
 	// Resize
-	FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+	const FramebufferSpecification spec = m_Framebuffer->GetSpecification();
 	if (m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f ) // zero sized framebuffer is invalid
 	{
 		if (spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y)
@@ -48,7 +48,7 @@ void EditorLayer::OnUpdate(TimeStep ts)
 
 	if (m_ViewportFocused)
 	{
-		m_Camera.OnUpdate(ts);
+		m_Camera.OnUpdate(deltaTime);
 	}
 
 	m_Framebuffer->Bind();
@@ -57,7 +57,7 @@ void EditorLayer::OnUpdate(TimeStep ts)
 
 	Renderer::BeginScene(m_Camera);
 
-	EntityManager::Get()->Render();
+	EntityManager::Get()->Update(deltaTime);
 		
 	Renderer::EndScene();
 	m_Framebuffer->Unbind();

@@ -17,24 +17,24 @@ Camera::Camera(glm::vec3 position) : m_Position(position)
 	UpdateCameraVectors();
 }
 
-void Camera::OnUpdate(TimeStep ts)
+void Camera::OnUpdate(TimeStep deltaTime)
 {
 	if (Input::IsKeyPressed(GX_KEY_A))
 	{
-		OnMove(CameraMovement::Left, ts);
+		OnMove(CameraMovement::Left, deltaTime);
 	}
 	else if (Input::IsKeyPressed(GX_KEY_D))
 	{
-		OnMove(CameraMovement::Right, ts);
+		OnMove(CameraMovement::Right, deltaTime);
 	}
 
 	if (Input::IsKeyPressed(GX_KEY_W))
 	{
-		OnMove(CameraMovement::Forward, ts);
+		OnMove(CameraMovement::Forward, deltaTime);
 	}
 	else if (Input::IsKeyPressed(GX_KEY_S))
 	{
-		OnMove(CameraMovement::Backward, ts);
+		OnMove(CameraMovement::Backward, deltaTime);
 	}
 }
 
@@ -51,9 +51,9 @@ void Camera::OnResize(float width, float height)
 	m_AspectRatio = width / height;
 }
 
-void Camera::OnMove(const CameraMovement direction, const TimeStep ts)
+void Camera::OnMove(const CameraMovement direction, const TimeStep deltaTime)
 {
-	const float velocity = m_MovementSpeed * ts;
+	const float velocity = m_MovementSpeed * deltaTime;
 	if (direction == CameraMovement::Forward)
 	{
 		m_Position += m_Front * velocity;
