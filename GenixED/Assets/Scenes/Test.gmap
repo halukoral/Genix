@@ -1,0 +1,22 @@
+Scene: Untitled
+Entities:
+  - Entity: 14990674415743113882
+    Name: StaticMeshActor_0
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    StaticMeshComponent:
+      ModelPath: Assets/Models/Backpack/backpack.obj
+      VertexShaderPath: Assets/Shaders/ModelShader.vert
+      FragmentShaderPath: Assets/Shaders/ModelShader.frag
+  - Entity: 15416026487483053261
+    Name: StaticMeshActor_1
+    TransformComponent:
+      Translation: [-4.19999981, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    StaticMeshComponent:
+      ModelPath: Assets/Models/Backpack/backpack.obj
+      VertexShaderPath: Assets/Shaders/ModelShader.vert
+      FragmentShaderPath: Assets/Shaders/ModelShader.frag

@@ -1,0 +1,22 @@
+#Directories
+.idea/
+.vs/
+bin/
+bin-int/
+
+#Files
+*.user
+*.log
+GenixED/*.json
+
+# Visual Studio files and folder
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+**.csproj
+
+# Directories
+Genix/ThirdParty/VulkanSDK
+GenixED/Assets/cache
+scripts/__pycache__
