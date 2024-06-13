@@ -1,5 +1,5 @@
 #include "gxpch.h"
-#include "Genix/Renderer/Buffer.h"
+#include "Genix/Renderer/VertexBuffer.h"
 
 #include "Genix/Renderer/Renderer.h"
 #include "Genix/Renderer/RendererAPI.h"

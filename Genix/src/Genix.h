@@ -45,7 +45,7 @@
 #include "Genix/Renderer/Renderer.h"
 #include "Genix/Renderer/RenderCommand.h"
 
-#include "Genix/Renderer/Buffer.h"
+#include "Genix/Renderer/VertexBuffer.h"
 #include "Genix/Renderer/FrameBuffer.h"
 #include "Genix/Renderer/Mesh.h"
 #include "Genix/Renderer/Shader.h"

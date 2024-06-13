@@ -1,6 +1,6 @@
 ﻿#include "gxpch.h"
 #include "Genix/Renderer/Mesh.h"
-#include "Genix/Renderer/Buffer.h"
+#include "Genix/Renderer/VertexBuffer.h"
 #include "Genix/Renderer/RenderCommand.h"
 #include "Genix/Renderer/Shader.h"
 #include "Genix/Renderer/Texture.h"
