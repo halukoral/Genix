@@ -38,17 +38,7 @@ private:
 	bool CheckCompileErrors(unsigned int shader, const std::string& type);
 	static bool CheckOpenGLRendererAPI();
 
-	void CompileOrGetVulkanBinaries(const std::unordered_map<GLenum, std::string>& shaderSources);
-	void CompileOrGetOpenGLBinaries();
-	void CreateProgram();
-	void Reflect(GLenum stage, const std::vector<uint32>& shaderData);
-	
 	uint32 m_ID;
 	std::string m_Name;
-
-	std::unordered_map<GLenum, std::vector<uint32_t>> m_VulkanSPIRV;
-	std::unordered_map<GLenum, std::vector<uint32_t>> m_OpenGLSPIRV;
-
-	std::unordered_map<GLenum, std::string> m_OpenGLSourceCode;
 	std::unordered_map<GLenum, std::string> m_FilePaths;
 };
