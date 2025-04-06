@@ -1,0 +1,30 @@
+Scene: Untitled
+Entities:
+  - Entity: 3409370917904688103
+    Name: LightActor_0
+    LightComponent:
+      LightColor: [1, 1, 1]
+    TransformComponent:
+      Translation: [3, 3, 3]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+      WorldUp: [0, 1, 0]
+      Up: [0, 0, 0]
+      Front: [0, 0, 0]
+      Right: [0, 0, 0]
+  - Entity: 15409193557908130585
+    Name: Cube
+    StaticMeshComponent:
+      ModelPath: Assets/Models/Basic/Cube.fbx
+      VertexShaderPath: Assets/Shaders/Shader.vert
+      FragmentShaderPath: Assets/Shaders/Shader.frag
+      Hide: false
+      DiffuseColor: [1, 1, 1]
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+      WorldUp: [0, 1, 0]
+      Up: [0, 0, 0]
+      Front: [0, 0, 0]
+      Right: [0, 0, 0]

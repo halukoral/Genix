@@ -1,0 +1,22 @@
+[submodule "Genix/ThirdParty/spdlog"]
+	path = Genix/ThirdParty/spdlog
+	url = https://github.com/gabime/spdlog.git
+	branch = v2.x
+[submodule "Genix/ThirdParty/imgui"]
+	path = Genix/ThirdParty/imgui
+	url = https://github.com/ocornut/imgui
+	branch = docking
+[submodule "Genix/ThirdParty/GLFW"]
+	path = Genix/ThirdParty/GLFW
+	url = https://github.com/glfw/glfw.git
+	branch = master
+[submodule "Genix/ThirdParty/glm"]
+	path = Genix/ThirdParty/glm
+	url = https://github.com/g-truc/glm.git
+	branch = master
+[submodule "yaml-cpp"]
+	path = Genix/ThirdParty/yaml-cpp
+	url = https://github.com/jbeder/yaml-cpp.git
+[submodule "Genix/ThirdParty/ImGuizmo"]
+	path = Genix/ThirdParty/ImGuizmo
+	url = https://github.com/CedricGuillemet/ImGuizmo.git
