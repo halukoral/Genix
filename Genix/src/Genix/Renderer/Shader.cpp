@@ -143,8 +143,6 @@ namespace Utils
 
 Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc)
 {
-	GX_PROFILE_FUNCTION();
-
 	// Extract name from filepath
 	auto lastSlash = vertexSrc.find_last_of("/\\");
 	lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
@@ -161,8 +159,6 @@ Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc)
 Shader::Shader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 	: m_Name(name)
 {
-	GX_PROFILE_FUNCTION();
-
 	Utils::CreateCacheDirectoryIfNeeded();
 	
 	m_FilePaths[GL_VERTEX_SHADER] = vertexSrc;
@@ -176,125 +172,93 @@ Shader::Shader(const std::string& name, const std::string& vertexSrc, const std:
 
 Shader::~Shader()
 {
-	GX_PROFILE_FUNCTION();
-
 	glDeleteProgram(m_ID);
 }
 
 void Shader::Bind() const
 {
-	GX_PROFILE_FUNCTION();
-
 	glUseProgram(m_ID);
 }
 
 void Shader::Unbind() const
 {
-	GX_PROFILE_FUNCTION();
-
 	glUseProgram(0);
 }
 
 void Shader::GLSetUniform_Bool(const std::string& name, const bool value) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniform1i(glGetUniformLocation(m_ID, name.c_str()), (int)value);
 }
 
 void Shader::GLSetUniform_Int(const std::string& name, const int value) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniform1i(glGetUniformLocation(m_ID, name.c_str()), value);
 }
 
 void Shader::GLSetUniform_Float(const std::string& name, float value) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniform1f(glGetUniformLocation(m_ID, name.c_str()), value);
 }
 
 void Shader::GLSetUniform_Vec2(const std::string& name, const glm::vec2& value) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniform2fv(glGetUniformLocation(m_ID, name.c_str()), 1, glm::value_ptr(value));
 }
 
 void Shader::GLSetUniform_Vec2(const std::string& name, const float x, const float y) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniform2f(glGetUniformLocation(m_ID, name.c_str()), x, y);
 }
 
 void Shader::GLSetUniform_Vec3(const std::string& name, const glm::vec3& value) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniform3fv(glGetUniformLocation(m_ID, name.c_str()), 1, glm::value_ptr(value));
 }
 
 void Shader::GLSetUniform_Vec3(const std::string& name, const float x, const float y, const float z) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniform3f(glGetUniformLocation(m_ID, name.c_str()), x, y, z);
 }
 
 void Shader::GLSetUniform_Vec4(const std::string& name, const glm::vec4& value) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniform4fv(glGetUniformLocation(m_ID, name.c_str()), 1, glm::value_ptr(value));
 }
 
 void Shader::GLSetUniform_Vec4(const std::string& name, const float x, const float y, const float z, const float w) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniform4f(glGetUniformLocation(m_ID, name.c_str()), x, y, z, w);
 }
 
 void Shader::GLSetUniform_Mat2(const std::string& name, const glm::mat2& matrix) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniformMatrix2fv(glGetUniformLocation(m_ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 void Shader::GLSetUniform_Mat3(const std::string& name, const glm::mat3& matrix) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniformMatrix3fv(glGetUniformLocation(m_ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 void Shader::GLSetUniform_Mat4(const std::string& name, const glm::mat4& matrix) const
 {
-	GX_PROFILE_FUNCTION();
-
 	CheckOpenGLRendererAPI();
 	glUniformMatrix4fv(glGetUniformLocation(m_ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
 void Shader::Compile(std::unordered_map<GLenum, std::string> shaderSources)
 {
-	GX_PROFILE_FUNCTION();
-
 	GLuint program = glCreateProgram();
 	std::vector<GLenum> glShaderIDs;
 	for (auto& kv : shaderSources)

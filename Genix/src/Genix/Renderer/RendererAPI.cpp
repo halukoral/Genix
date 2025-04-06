@@ -43,8 +43,6 @@ void OpenGLMessageCallback(
 
 void RendererAPI::Init()
 {
-	GX_PROFILE_FUNCTION();
-
 #ifdef GX_DEBUG
 	glEnable(GL_DEBUG_OUTPUT);
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);

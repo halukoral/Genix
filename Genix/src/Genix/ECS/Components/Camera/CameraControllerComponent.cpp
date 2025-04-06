@@ -36,8 +36,6 @@ CameraControllerComponent& CameraControllerComponent::operator=(CameraController
 
 void CameraControllerComponent::OnUpdate(TimeStep deltaTime)
 {
-	GX_PROFILE_FUNCTION();
-
 	if (Input::IsKeyPressed(GX_KEY_A))
 	{
 		OnMove(CameraMovement::Left, deltaTime);
@@ -59,8 +57,6 @@ void CameraControllerComponent::OnUpdate(TimeStep deltaTime)
 
 void CameraControllerComponent::OnEvent(Event& e)
 {
-	GX_PROFILE_FUNCTION();
-
 	EventDispatcher dispatcher(e);
 	dispatcher.Dispatch<MouseMovedEvent>(GX_BIND(CameraControllerComponent::OnMouseMoved));
 	dispatcher.Dispatch<MouseScrolledEvent>(GX_BIND(CameraControllerComponent::OnMouseScrolled));
@@ -70,8 +66,6 @@ void CameraControllerComponent::OnEvent(Event& e)
 
 void CameraControllerComponent::OnMove(const CameraMovement direction, TimeStep deltaTime) const
 {
-	GX_PROFILE_FUNCTION();
-
 	const float velocity = m_MovementSpeed * deltaTime;
 	SetPosition(direction, velocity);
 }
@@ -119,8 +113,6 @@ void CameraControllerComponent::SetPosition(CameraMovement direction, float velo
 
 bool CameraControllerComponent::OnMouseMoved(MouseMovedEvent& e)
 {
-	GX_PROFILE_FUNCTION();
-
 	if (m_FirstMouseMove)
 	{
 		m_LastMouseX = e.GetX();	
@@ -149,8 +141,6 @@ bool CameraControllerComponent::OnMouseMoved(MouseMovedEvent& e)
 
 bool CameraControllerComponent::OnMousePanned(MouseMovedEvent& e)
 {
-	GX_PROFILE_FUNCTION();
-
 	if (m_FirstMouseMove)
 	{
 		m_LastMouseX = e.GetX();	
@@ -185,8 +175,6 @@ bool CameraControllerComponent::OnMouseScrolled(MouseScrolledEvent& e)
 
 bool CameraControllerComponent::OnWindowResized(WindowResizeEvent& e)
 {
-	GX_PROFILE_FUNCTION();
-
 	if (const auto& cmp = GetEntity()->GetComponent<CameraComponent>())
 	{
 		cmp->SetAspectRatio((float)e.GetWidth() / (float)e.GetHeight());

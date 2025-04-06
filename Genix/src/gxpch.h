@@ -27,7 +27,6 @@
 #include <vector>
 
 #include "Genix/Core/Log.h"
-#include "Genix/Debug/Instrumentor.h"
 
 #ifdef GX_PLATFORM_WINDOWS
 #include <Windows.h>

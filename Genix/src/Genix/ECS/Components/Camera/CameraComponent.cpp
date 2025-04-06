@@ -41,8 +41,6 @@ CameraComponent& CameraComponent::operator=(CameraComponent& other)
 
 void CameraComponent::UpdateCameraVectors() const
 {
-	GX_PROFILE_FUNCTION();
-
 	if (const auto& cmp = GetEntity()->GetComponent<TransformComponent>())
 	{
 		// calculate the new Front vector

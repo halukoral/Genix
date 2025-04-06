@@ -118,15 +118,11 @@ Scope<Window> Window::Create(const WindowAttributes& props)
 
 Window::Window(const WindowAttributes& attributes)
 {
-	GX_PROFILE_FUNCTION();
-
 	Init(attributes);
 }
 
 Window::~Window()
 {
-	GX_PROFILE_FUNCTION();
-
 	Shutdown();
 }
 
@@ -169,8 +165,6 @@ void Window::Init(const WindowAttributes& attributes)
 
 	if (s_GLFWWindowCount == 0)
 	{
-		GX_PROFILE_SCOPE("glfwInit");
-		
 		LOG_CORE_INFO("Initializing GLFW");
 		int success = glfwInit();
 		ASSERT_CORE(success, "Could not intialize GLFW!")
@@ -202,7 +196,6 @@ void Window::Init(const WindowAttributes& attributes)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
 	
 	{
-		GX_PROFILE_SCOPE("glfwCreateWindow");
 		m_Window = glfwCreateWindow((int32)attributes.Width, (int32)attributes.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		++s_GLFWWindowCount;		
 	}
@@ -233,16 +226,12 @@ void Window::Init(const WindowAttributes& attributes)
 
 void Window::OnUpdate()
 {
-	GX_PROFILE_FUNCTION();
-
 	glfwPollEvents();
 	m_Context->SwapBuffers();
 }
 
 void Window::Shutdown()
 {
-	GX_PROFILE_FUNCTION();
-
 	m_Context->Shutdown();
 	--s_GLFWWindowCount;
 	glfwDestroyWindow(m_Window);

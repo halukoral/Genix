@@ -13,15 +13,12 @@ Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneDa
 
 void Renderer::Init()
 {
-	GX_PROFILE_FUNCTION();
-
 	RenderCommand::Init();
 	s_SceneData->CameraUniformBuffer = UniformBuffer::Create(sizeof(SceneData::CameraData), 0);
 }
 
 void Renderer::Shutdown()
 {
-	GX_PROFILE_FUNCTION();
 }
 
 void Renderer::OnWindowResize(const uint32 width, const uint32 height)
@@ -31,8 +28,6 @@ void Renderer::OnWindowResize(const uint32 width, const uint32 height)
 
 void Renderer::BeginScene(const Ref<Entity>& camera)
 {
-	GX_PROFILE_FUNCTION();
-
 	s_SceneData->CameraBuffer.ViewProjectionMatrix = camera->GetComponent<CameraComponent>()->GetViewProjectionMatrix();
 	s_SceneData->CameraBuffer.Position = camera->GetComponent<TransformComponent>()->Position;
 	s_SceneData->CameraUniformBuffer->SetData(&s_SceneData->CameraBuffer, sizeof(SceneData::CameraData));
@@ -41,7 +36,6 @@ void Renderer::BeginScene(const Ref<Entity>& camera)
 
 void Renderer::EndScene()
 {
-	GX_PROFILE_FUNCTION();
 }
 
 void Renderer::Submit(const Ref<Shader>& shader,const Ref<VertexArray>& vertexArray, glm::mat4& transform)

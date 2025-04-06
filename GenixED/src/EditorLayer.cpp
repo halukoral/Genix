@@ -417,8 +417,6 @@ void EditorLayer::UIToolbar()
 
 void EditorLayer::OnImGuiRender()
 {
-	GX_PROFILE_FUNCTION();
-
 	// Note: Switch this to true to enable dockspace
 	static bool dockspaceOpen = true;
 	static bool optFullscreenPersistent = true;

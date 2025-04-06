@@ -8,8 +8,6 @@
 
 CameraActor::CameraActor() : Actor(s_Name + std::to_string(s_CameraActorCount++))
 {
-	GX_PROFILE_FUNCTION();
-
 	m_CameraComponent = m_Entity->AddComponent<CameraComponent>();
 	m_CameraControllerComponent = m_Entity->AddComponent<CameraControllerComponent>();
 	m_TransformComponent = m_Entity->AddComponent<TransformComponent>();
@@ -19,8 +17,6 @@ CameraActor::CameraActor() : Actor(s_Name + std::to_string(s_CameraActorCount++)
 
 CameraActor::CameraActor(const std::string& name) : Actor(name)
 {
-	GX_PROFILE_FUNCTION();
-
 	m_CameraComponent = m_Entity->AddComponent<CameraComponent>();
 	m_CameraControllerComponent = m_Entity->AddComponent<CameraControllerComponent>();
 	m_TransformComponent = m_Entity->AddComponent<TransformComponent>();

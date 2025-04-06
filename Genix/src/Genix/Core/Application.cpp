@@ -13,7 +13,6 @@ Application* Application::s_Instance = nullptr;
 
 Application::Application(const ApplicationSpecification& specification) : m_Specification(specification)
 {
-	GX_PROFILE_FUNCTION();
 	ASSERT_CORE(!s_Instance, "Application already exists!")
 	s_Instance = this;
 	
@@ -34,19 +33,13 @@ Application::Application(const ApplicationSpecification& specification) : m_Spec
 
 Application::~Application()
 {
-	GX_PROFILE_FUNCTION();
-
 	Renderer::Shutdown();
 }
 
 void Application::Run()
 {
-	GX_PROFILE_FUNCTION();
-
 	while (m_Running)
 	{
-		GX_PROFILE_SCOPE("RunLoop");
-		
 		const float time = Time::GetTime();
 		const TimeStep deltaTime = time - m_LastFrameTime;
 		m_LastFrameTime = time;
@@ -54,16 +47,12 @@ void Application::Run()
 		if (!m_Minimized)
 		{
 			{
-				GX_PROFILE_SCOPE("LayerStack OnUpdate");
-
 				for (Layer* layer : m_LayerStack)
 					layer->OnUpdate(deltaTime);
 			}
 
 			m_ImGuiLayer->Begin();
 			{
-				GX_PROFILE_SCOPE("LayerStack OnImGuiRender");
-
 				for (Layer* layer : m_LayerStack)
 				{
 					layer->OnImGuiRender();
@@ -77,8 +66,6 @@ void Application::Run()
 
 void Application::OnEvent(Event& e)
 {
-	GX_PROFILE_FUNCTION();
-
 	EventDispatcher dispatcher(e);
 	dispatcher.Dispatch<WindowCloseEvent>(GX_BIND(Application::OnWindowClose));
 	dispatcher.Dispatch<WindowResizeEvent>(GX_BIND(Application::OnWindowResize));
@@ -95,16 +82,12 @@ void Application::OnEvent(Event& e)
 
 void Application::PushLayer(Layer* layer)
 {
-	GX_PROFILE_FUNCTION();
-
 	m_LayerStack.PushLayer(layer);
 	layer->OnAttach();
 }
 
 void Application::PushOverlay(Layer* layer)
 {
-	GX_PROFILE_FUNCTION();
-
 	m_LayerStack.PushOverlay(layer);
 	layer->OnAttach();
 }
@@ -116,8 +99,6 @@ void Application::Close()
 
 bool Application::OnWindowResize(WindowResizeEvent& e)
 {
-	GX_PROFILE_FUNCTION();
-
 	if (e.GetWidth() == 0 || e.GetHeight() == 0)
 	{
 		m_Minimized = true;

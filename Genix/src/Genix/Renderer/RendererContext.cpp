@@ -20,8 +20,6 @@ RendererContext::RendererContext(GLFWwindow* windowHandle) : m_WindowHandle(wind
 
 void RendererContext::Init()
 {
-	GX_PROFILE_FUNCTION();
-
 	glfwMakeContextCurrent(m_WindowHandle);
 	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 	ASSERT_CORE(status, "Failed to initialize Glad!")
@@ -43,7 +41,5 @@ void RendererContext::Init()
 
 void RendererContext::SwapBuffers()
 {
-	GX_PROFILE_FUNCTION();
-
 	glfwSwapBuffers(m_WindowHandle);
 }
