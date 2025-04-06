@@ -1,8 +1,6 @@
 ﻿#pragma once
 #include "Genix/Core/Application.h"
 
-#ifdef GX_PLATFORM_WINDOWS
-
 extern Application* CreateApplication(ApplicationCommandLineArgs args);
 
 int main(int argc, char** argv)
@@ -13,5 +11,3 @@ int main(int argc, char** argv)
 	app->Run();
 	delete app;
 }
-
-#endif

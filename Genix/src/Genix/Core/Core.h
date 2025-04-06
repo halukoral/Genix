@@ -2,14 +2,8 @@
 
 #include <memory>
 
-#include "Genix/Core/PlatformDetection.h"
-
 #ifdef GX_DEBUG
-	#if defined(GX_PLATFORM_WINDOWS)
-		#define GX_DEBUGBREAK() __debugbreak()
-	#else
-		#error "Platform doesn't support debugbreak yet!"
-	#endif
+	#define GX_DEBUGBREAK() __debugbreak()
 	#define GX_ENABLE_ASSERTS
 #else
 	#define GX_DEBUGBREAK()
