@@ -16,7 +16,7 @@ public:
 		m_Entity = EntityManager::Get()->SpawnEntity<Entity>(name);
 	}
 
-	Actor(const UUID& uuid, const std::string& name)
+	Actor(const GUUID& uuid, const std::string& name)
 	{
 		m_Entity = EntityManager::Get()->SpawnEntity<Entity>(uuid, name);
 	}

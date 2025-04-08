@@ -6,7 +6,7 @@ class TextureCube;
 class Texture2D;
 class Shader;
 class Entity;
-class UUID;
+class GUUID;
 class KeyPressedEvent;
 class Actor;
 class CameraActor;

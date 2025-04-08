@@ -180,16 +180,7 @@ void Window::Init(const WindowAttributes& attributes)
 #endif
 
 
-	if (Renderer::GetAPI() == RendererAPI::API::Vulkan)
-	{
-		if (!glfwVulkanSupported())
-		{
-			glfwTerminate();
-			ASSERT_CORE(false, "Vulkan is not supported");
-			return;
-		}
-		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-	}
+
 
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);

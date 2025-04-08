@@ -4,7 +4,7 @@
 #include "Genix/ECS/Components/TagComponent.h"
 #include "Genix/ECS/Components/TransformComponent.h"
 #include "Genix/ECS/Components/StaticMeshComponent.h"
-#include "Genix/Core/UUID.h"
+#include "Genix/Core/GUUID.h"
 
 class TimeStep;
 
@@ -19,11 +19,11 @@ public:
 	virtual ~Entity() { ShutDown(); }
 
 	Entity(const std::string& name);
-	Entity(const UUID& uuid, const std::string& name);
+	Entity(const GUUID& uuid, const std::string& name);
 
 	void ShutDown();
 
-	UUID GetUUID() const { return m_Id; }
+	GUUID GetUUID() const { return m_Id; }
 
 	// Editor Only
 	uint32 GetIdForMousePicking() const { return m_IdForMousePick; }
@@ -120,7 +120,7 @@ public:
 	}
 	
 private:
-	UUID m_Id;
+	GUUID m_Id;
 	std::string m_Name;
 	bool m_Invisible = false;
 

@@ -40,7 +40,6 @@ project "Genix"
         "%{IncludeDir.stb_image}",
         "%{IncludeDir.yaml_cpp}",
         "%{IncludeDir.ImGuizmo}",
-        "%{IncludeDir.VulkanSDK}"
     }
 
     libdirs 
@@ -55,7 +54,6 @@ project "Genix"
         "Glad",
         "ImGui",
         "yaml-cpp",
-        "%{Library.Vulkan}",
 	}
     
     filter "files:ThirdParty/ImGuizmo/**.cpp"
@@ -81,9 +79,6 @@ project "Genix"
         links 
         { 
             "assimp-vc143-mtd.lib",
-            "%{Library.ShaderC_Debug}",
-            "%{Library.SPIRV_Cross_Debug}",
-            "%{Library.SPIRV_Cross_GLSL_Debug}"
         }
         
     filter "configurations:Release"
@@ -93,9 +88,6 @@ project "Genix"
         links 
         { 
             "assimp-vc143-mt.lib",
-            "%{Library.ShaderC_Release}",
-            "%{Library.SPIRV_Cross_Release}",
-            "%{Library.SPIRV_Cross_GLSL_Release}"
         }
 
             
@@ -106,7 +98,4 @@ project "Genix"
         links 
         { 
             "assimp-vc143-mt.lib",
-            "%{Library.ShaderC_Release}",
-            "%{Library.SPIRV_Cross_Release}",
-            "%{Library.SPIRV_Cross_GLSL_Release}"
         }

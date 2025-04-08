@@ -275,7 +275,7 @@ namespace YAML {
 
 				LOG_CORE_TRACE("Deserialized entity with ID = {0}, name = {1}", uuid, name);
 
-				auto deserializedActor = m_Scene->CreateActor<Actor>(UUID(uuid), name);
+				auto deserializedActor = m_Scene->CreateActor<Actor>(GUUID(uuid), name);
 				auto deserializedEntity = deserializedActor->GetEntity();
 
 				if (auto node = entity["CameraComponent"])

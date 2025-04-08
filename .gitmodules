@@ -20,3 +20,7 @@
 [submodule "Genix/ThirdParty/ImGuizmo"]
 	path = Genix/ThirdParty/ImGuizmo
 	url = https://github.com/CedricGuillemet/ImGuizmo.git
+[submodule "ThirdParty/spdlog"]
+	path = ThirdParty/spdlog
+	url = https://github.com/gabime/spdlog.git
+	branch = v2.x

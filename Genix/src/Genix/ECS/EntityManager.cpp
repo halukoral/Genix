@@ -24,7 +24,7 @@ Ref<Entity> EntityManager::FindEntityByName(const std::string& entityName) const
 	return nullptr;
 }
 
-Ref<Entity> EntityManager::GetEntity(const UUID id) const
+Ref<Entity> EntityManager::GetEntity(const GUUID id) const
 {
 	for (auto entity : m_Entities)
 	{
@@ -36,7 +36,7 @@ Ref<Entity> EntityManager::GetEntity(const UUID id) const
 	return nullptr;
 }
 
-void EntityManager::RemoveEntity(UUID entityId)
+void EntityManager::RemoveEntity(GUUID entityId)
 {
 	const auto it = std::find_if(
 		m_Entities.begin(),

@@ -11,12 +11,12 @@ Entity::Entity(const Entity& other)
 
 Entity::Entity(const std::string& name)
 {
-	m_Id = UUID();
+	m_Id = GUUID();
 	m_Name = name;
 	m_IdForMousePick = Rnd::GetRandValue();
 }
 
-Entity::Entity(const UUID& uuid, const std::string& name)
+Entity::Entity(const GUUID& uuid, const std::string& name)
 {
 	m_Id = uuid;
 	m_Name = name;

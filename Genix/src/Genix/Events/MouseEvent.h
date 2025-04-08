@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include <sstream>
+
 #include "Genix/Events/Event.h"
 #include "Genix/Input/Input.h"
 

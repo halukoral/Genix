@@ -14,8 +14,6 @@ public:
 	{
 		None,
 		OpenGL = 1,
-		DirectX = 2,
-		Vulkan = 3
 	};
 
 	struct RenderAPICapabilities

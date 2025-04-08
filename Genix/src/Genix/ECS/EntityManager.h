@@ -3,7 +3,7 @@
 #include "Genix/Common/PrimitiveTypes.h"
 #include "Genix/ECS/Systems/RenderingManager.h"
 
-class UUID;
+class GUUID;
 class Entity;
 class TimeStep;
 
@@ -39,11 +39,11 @@ public:
 		return nullptr;
 	}
 
-	Ref<Entity> GetEntity(UUID id) const;
+	Ref<Entity> GetEntity(GUUID id) const;
 	Ref<Entity> FindEntityByName(const std::string& entityName) const;
 
 	void Clear() const;
-	void RemoveEntity(UUID entityId);
+	void RemoveEntity(GUUID entityId);
 	size_t GetEntityCount() const { return m_Entities.size(); }
 
 	static Ref<EntityManager> Get() { return s_Instance; }

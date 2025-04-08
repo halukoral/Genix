@@ -23,9 +23,7 @@
 #include <thread>
 #include <type_traits>
 #include <vector>
+#include <Windows.h>
 
 #include "Genix/Core/Log.h"
 
-#ifdef GX_PLATFORM_WINDOWS
-#include <Windows.h>
-#endif
