@@ -68,9 +68,9 @@ private:
 	
 	float m_LastFrameTime = 0.0f;
 	
-	LayerStack m_LayerStack;
 	Scope<Window> m_Window;
 	ImGuiLayer* m_ImGuiLayer;
+	LayerStack m_LayerStack;
 	
 	static Application* s_Instance;
 	friend int ::main(int argc, char** argv);
