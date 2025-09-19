@@ -17,15 +17,6 @@ If the repository was cloned non-recursively previously, use `git submodule upda
 
 Run the Setup.bat file found in scripts folder. This will download the required prerequisites for the project if they are not present yet.
 
-## Roadmap
-1. DirectX12 and Vulkan implementation
-2. Path tracing
-3. Animation system
-4. Audio system
-5. UI system
-6. Physics system
-7. Particle system
-
 ## Resources
 The resources I used to develop the project are listed below:
 1. https://github.com/TheCherno/Hazel
