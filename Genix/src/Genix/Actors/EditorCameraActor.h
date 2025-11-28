@@ -6,7 +6,6 @@ enum class CameraType;
 class CameraComponent;
 class EditorCameraControllerComponent;
 class Event;
-class TransformComponent;
 
 class EditorCameraActor : public Actor
 {
@@ -33,5 +32,4 @@ private:
 
 	Ref<CameraComponent> m_CameraComponent;
 	Ref<EditorCameraControllerComponent> m_CameraControllerComponent;
-	Ref<TransformComponent> m_TransformComponent;
 };

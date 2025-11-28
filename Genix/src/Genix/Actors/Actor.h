@@ -3,6 +3,8 @@
 #include "Genix/ECS/Entity.h"
 #include "Genix/ECS/EntityManager.h"
 
+class TransformComponent;
+
 class Actor
 {
 public:
@@ -32,6 +34,7 @@ public:
 protected:
 	
 	Ref<Entity> m_Entity;
+	Ref<TransformComponent> m_TransformComponent;
 	
 private:
 	inline static const std::string s_Name = "Actor_";

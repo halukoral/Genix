@@ -4,7 +4,6 @@
 
 class LightComponent;
 class StaticMeshComponent;
-class TransformComponent;
 
 class LightActor : public Actor
 {
@@ -24,5 +23,4 @@ private:
 	inline static const std::string s_Name = "LightActor_";
 
 	Ref<LightComponent> m_LightComponent;
-	Ref<TransformComponent> m_TransformComponent;
 };
