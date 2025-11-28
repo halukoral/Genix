@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Genix/Actors/Actor.h"
 
-class PBRMaterialComponent;
+class MaterialComponent;
 class StaticMeshComponent;
 
 class StaticMeshActor : public Actor
@@ -15,6 +15,6 @@ private:
 	inline static uint32 s_StaticMeshActorCount = 0;
 	inline static const std::string s_Name = "StaticMeshActor_";
 
-	Ref<PBRMaterialComponent> m_PBR_MaterialComponent;
+	Ref<MaterialComponent> m_PBR_MaterialComponent;
 	Ref<StaticMeshComponent> m_StaticMeshComponent;
 };

@@ -20,7 +20,7 @@
 #include "Genix/ECS/Components/Camera/CameraComponent.h"
 #include "Genix/ECS/Components/Camera/CameraControllerComponent.h"
 
-#include "Genix/ECS/Components/PBRMaterialComponent.h"
+#include "Genix/ECS/Components/MaterialComponent.h"
 #include "Genix/ECS/Components/LightComponent.h"
 #include "Genix/ECS/Components/TagComponent.h"
 #include "Genix/ECS/Components/TransformComponent.h"

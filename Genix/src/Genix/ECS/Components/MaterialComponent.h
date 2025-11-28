@@ -1,13 +1,13 @@
 ﻿#pragma once
 #include "Genix/ECS/Component.h"
 
-class PBRMaterialComponent : public Component
+class MaterialComponent : public Component
 {
 public:
-	COMPONENT_CLASS_TYPE(Material_PBR)
+	COMPONENT_CLASS_TYPE(Material)
 	
-	PBRMaterialComponent() = default;
-	PBRMaterialComponent(PBRMaterialComponent& other) : Component(other)
+	MaterialComponent() = default;
+	MaterialComponent(MaterialComponent& other) : Component(other)
 	{
 		Albedo = other.Albedo;
 		Roughness = other.Roughness;
@@ -16,7 +16,7 @@ public:
 		EmissionPower = other.EmissionPower;
 	}
 
-	PBRMaterialComponent& operator=(PBRMaterialComponent& other)
+	MaterialComponent& operator=(MaterialComponent& other)
 	{
 		m_Entity = other.m_Entity;
 

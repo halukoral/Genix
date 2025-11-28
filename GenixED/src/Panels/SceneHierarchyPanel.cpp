@@ -306,7 +306,7 @@ void SceneHierarchyPanel::DrawComponents(const Ref<Entity>& entity) const
 	{
 		DisplayAddComponentEntry<CameraComponent>("Camera");
 		DisplayAddComponentEntry<CameraControllerComponent>("Camera Controller");
-		DisplayAddComponentEntry<PBRMaterialComponent>("Material");
+		DisplayAddComponentEntry<MaterialComponent>("Material");
 		DisplayAddComponentEntry<TagComponent>("Tag");
 		DisplayAddComponentEntry<TransformComponent>("Transform");
 
@@ -326,7 +326,7 @@ void SceneHierarchyPanel::DrawComponents(const Ref<Entity>& entity) const
 	}
 	ImGui::PopItemWidth();
 
-	DrawComponent<PBRMaterialComponent>("Material", entity, [](auto& component)
+	DrawComponent<MaterialComponent>("Material", entity, [](auto& component)
 	{
 		ImGui::ColorEdit3("Albedo", glm::value_ptr(component->Albedo));
 		ImGui::DragFloat("Roughness", &component->Roughness, 0.05f, 0.05f, 1.0f);

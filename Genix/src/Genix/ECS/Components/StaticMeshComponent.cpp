@@ -1,7 +1,7 @@
 ﻿#include "gxpch.h"
 #include "Genix/ECS/Components/StaticMeshComponent.h"
 
-#include "PBRMaterialComponent.h"
+#include "MaterialComponent.h"
 #include "Genix/ECS/Components/LightComponent.h"
 #include "Genix/ECS/Components/TransformComponent.h"
 #include "Genix/ECS/Entity.h"
@@ -30,7 +30,7 @@ StaticMeshComponent::StaticMeshComponent(StaticMeshComponent& other) : Component
 	m_Shader = Shader::Create(other.GetVertexShaderPath(), other.GetFragmentShaderPath());
 }
 
-void StaticMeshComponent::Render()
+void StaticMeshComponent::Render() const
 {
 	if (m_Hide == false && m_StaticMesh && m_Shader)
 	{
@@ -44,7 +44,7 @@ void StaticMeshComponent::Render()
 		m_Shader->GLSetUniform_Vec3("u_ViewPos", camPosition);
 		m_Shader->GLSetUniform_Mat3("u_Normal", glm::transpose(glm::inverse(glm::mat3(transform))));
 		
-		if (const auto& cmp = GetEntity()->GetComponent<PBRMaterialComponent>())
+		if (const auto& cmp = GetEntity()->GetComponent<MaterialComponent>())
 		{
 			m_Shader->GLSetUniform_Vec3("albedo", cmp->Albedo);
 			m_Shader->GLSetUniform_Float("metallic", cmp->Metallic);

@@ -23,7 +23,7 @@ public:
 	StaticMeshComponent(const SStaticMeshSpawnParams& params);
 	StaticMeshComponent(StaticMeshComponent& other);
 
-	void Render();
+	void Render() const;
 	
 	void SetHide(bool hide) { m_Hide = hide; } 
 	bool IsHidden() const { return m_Hide; }
