@@ -1,3 +1,5 @@
+
+
 # Genix
 Genix is an early-stage game engine for Windows.
 The project was developed for learning purposes and to gain experience in engine architecture and graphics pipeline.
@@ -11,7 +13,7 @@ The project was developed for learning purposes and to gain experience in engine
 
 Start by cloning the repository with `git clone --recursive https://github.com/halukoral/Genix`.
 
-If the repository was cloned non-recursively previously, use `git submodule update --init` to clone the necessary submodules.
+If the repository was cloned non-recursively previously, use `git submodule update --init --recursive` to clone the necessary submodules.
 
 2. Configuring the dependencies:
 
